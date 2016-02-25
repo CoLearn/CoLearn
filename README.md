@@ -6,20 +6,20 @@
 
 The following are the completed functionality:
 
-- [] Authentication - 3rd party authentication [ Facebook ]
-- [] User Roles (Instructor, Learner)
-- [] User Profile (From Facebook, and restricted share)
-- [] Server maintenance
-- [] Scheduling a session [ Through a schedule page, it is done by the learner and the instructor has a choice to accept or reject that (with a message) Need to take care of the time zones here.]
-- [] Integration with 3rd party [ authentication and video/audio chat]
-- [] Video Chat/ Audio Chat
-- [] Rescheduling/Cancellation resulting into losing few credits
-- [] Search by instructor, topic, Region
-- [] Rewards -  
-- [] Ratings - [after each all ??]
-- [] Notifications - Push Notification, email notifications(server integration), app notifications
-- [] Feedback from users
-- [] Suggestions [ we recommend the user with some particular instructors based on his topic of interest ].
+- [ ] Authentication - 3rd party authentication [ Facebook ]
+- [ ] User Roles (Instructor, Learner)
+- [ ] User Profile (From Facebook, and restricted share)
+- [ ] Server maintenance
+- [ ] Scheduling a session [ Through a schedule page, it is done by the learner and the instructor has a choice to accept or reject that (with a message) Need to take care of the time zones here.]
+- [ ] Integration with 3rd party [ authentication and video/audio chat]
+- [ ] Video Chat/ Audio Chat
+- [ ] Rescheduling/Cancellation resulting into losing few credits
+- [ ] Search by instructor, topic, Region
+- [ ] Rewards -  
+- [ ] Ratings - [after each all ??]
+- [ ] Notifications - Push Notification, email notifications(server integration), app notifications
+- [ ] Feedback from users
+- [ ] Suggestions [ we recommend the user with some particular instructors based on his topic of interest ].
 
 
 ## Video Walkthrough 
