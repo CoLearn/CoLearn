@@ -7,21 +7,22 @@
 
 Basic functionality:
 
-- [ ] Authentication - [3rd party authentication with Facebook]
+- [X] Authentication - [3rd party authentication with Facebook]
 - [ ] User Roles - [Instructor, Learner]
 - [ ] User Profile - [From Facebook, and restricted share]
 - [ ] Scheduling a session - [Through a schedule page, it is done by the learner and the instructor has the choice to accept or reject them (with a message) Need to take care of the time zones here]
 - [ ] Integration with 3rd party - [Authentication and video/audio chat]
 - [ ] Video Chat/ Audio Chat - [Ability to video or audio chat for learning sessions]
 - [ ] Rescheduling/Cancellation resulting into losing few credits
-- [ ] Search by instructor, topic, Region - [User has ability to search based on other user info to find a comaptible teacher/learner]
+- [ ] Search by instructor, topic, Region - [User has ability to search based on other user info to find a compatible teacher/learner]
 - [ ] Rewards - [Credits are gained by teaching and used by learning]
 
 
 Optional functionality:
 
 - [ ] Feedback from users - [Feedback given straight to us from users to improve app functionality]
-- [ ] Suggestions [Recommend the user to a particular instructor based on their topic of interest]- [ ] Ratings - [After each session for learner and teacher alike]
+- [ ] Suggestions [Recommend the user to a particular instructor based on their topic of interest]- 
+- [ ] Ratings - [After each session for learner and teacher alike]
 - [ ] Notifications - [Push Notification, email notifications(server integration), app notifications]
 
 
