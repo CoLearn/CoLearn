@@ -1,0 +1,6 @@
+framework module Pods_CoLearn {
+  umbrella header "Pods-CoLearn-umbrella.h"
+
+  export *
+  module * { export * }
+}

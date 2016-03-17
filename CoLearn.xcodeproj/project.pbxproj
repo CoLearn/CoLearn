@@ -8,20 +8,70 @@
 
 /* Begin PBXBuildFile section */
 		7C0B88151C7E96E3003461FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0B88141C7E96E3003461FE /* AppDelegate.swift */; };
-		7C0B88171C7E96E3003461FE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0B88161C7E96E3003461FE /* ViewController.swift */; };
-		7C0B881A1C7E96E3003461FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C0B88181C7E96E3003461FE /* Main.storyboard */; };
 		7C0B881C1C7E96E3003461FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C0B881B1C7E96E3003461FE /* Assets.xcassets */; };
 		7C0B881F1C7E96E3003461FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C0B881D1C7E96E3003461FE /* LaunchScreen.storyboard */; };
+		7C5A57921C911C61002F68E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C5A57911C911C61002F68E3 /* Main.storyboard */; };
+		7C5A57A31C912139002F68E3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5A579F1C912139002F68E3 /* LoginViewController.swift */; };
+		7C5A57A41C912139002F68E3 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5A57A01C912139002F68E3 /* UserViewController.swift */; };
+		7C5A57A51C912139002F68E3 /* SchedulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5A57A11C912139002F68E3 /* SchedulesViewController.swift */; };
+		7C5A57A61C912139002F68E3 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5A57A21C912139002F68E3 /* MainPageViewController.swift */; };
+		7C5A57A81C912974002F68E3 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5A57A71C912974002F68E3 /* Accounts.framework */; };
+		7C5A57AA1C912980002F68E3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5A57A91C912980002F68E3 /* AudioToolbox.framework */; };
+		7C5A57AC1C912993002F68E3 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5A57AB1C912993002F68E3 /* Bolts.framework */; };
+		7C5A57AE1C91299C002F68E3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5A57AD1C91299C002F68E3 /* CFNetwork.framework */; };
+		7C5A57B01C9129A6002F68E3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5A57AF1C9129A6002F68E3 /* CoreGraphics.framework */; };
+		7C5A57B21C9129AD002F68E3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5A57B11C9129AD002F68E3 /* CoreLocation.framework */; };
+		7C5A57B41C9129B6002F68E3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5A57B31C9129B6002F68E3 /* QuartzCore.framework */; };
+		7C5A57B61C9129BF002F68E3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5A57B51C9129BF002F68E3 /* Security.framework */; };
+		7C5A57B81C9129CB002F68E3 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5A57B71C9129CB002F68E3 /* Parse.framework */; };
+		7C5A57BA1C9129CF002F68E3 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5A57B91C9129CF002F68E3 /* ParseUI.framework */; };
+		7C5A57BC1C9129D8002F68E3 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5A57BB1C9129D8002F68E3 /* Social.framework */; };
+		7C5A57BE1C9129E2002F68E3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5A57BD1C9129E2002F68E3 /* StoreKit.framework */; };
+		7C5A57C01C9129EA002F68E3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5A57BF1C9129EA002F68E3 /* SystemConfiguration.framework */; };
+		7C5A57C21C9129F3002F68E3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5A57C11C9129F3002F68E3 /* libz.tbd */; };
+		7C5A57C41C9129FD002F68E3 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5A57C31C9129FD002F68E3 /* libsqlite3.tbd */; };
+		7CC1A7FF1C9A3FD300D26790 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CC1A7FE1C9A3FD300D26790 /* ParseFacebookUtils.framework */; };
+		7CCCCE521C9A3980009400BA /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CCCCE4E1C9A3980009400BA /* FBSDKCoreKit.framework */; };
+		7CCCCE531C9A3980009400BA /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CCCCE4F1C9A3980009400BA /* FBSDKLoginKit.framework */; };
+		7CCCCE541C9A3980009400BA /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CCCCE501C9A3980009400BA /* FBSDKShareKit.framework */; };
+		7CCCCE581C9A39BF009400BA /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CCCCE551C9A39BF009400BA /* ParseFacebookUtilsV4.framework */; };
+		904841FCDA324E95E1470F3D /* Pods_CoLearn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F75D7507031EB77C3AC08C1 /* Pods_CoLearn.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7C0B88111C7E96E3003461FE /* CoLearn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoLearn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C0B88141C7E96E3003461FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7C0B88161C7E96E3003461FE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		7C0B88191C7E96E3003461FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7C0B881B1C7E96E3003461FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7C0B881E1C7E96E3003461FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7C0B88201C7E96E3003461FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7C5A57911C911C61002F68E3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		7C5A579F1C912139002F68E3 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		7C5A57A01C912139002F68E3 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		7C5A57A11C912139002F68E3 /* SchedulesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulesViewController.swift; sourceTree = "<group>"; };
+		7C5A57A21C912139002F68E3 /* MainPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
+		7C5A57A71C912974002F68E3 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		7C5A57A91C912980002F68E3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		7C5A57AB1C912993002F68E3 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "Pods/../build/Debug-iphoneos/Bolts.framework"; sourceTree = "<group>"; };
+		7C5A57AD1C91299C002F68E3 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		7C5A57AF1C9129A6002F68E3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7C5A57B11C9129AD002F68E3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		7C5A57B31C9129B6002F68E3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		7C5A57B51C9129BF002F68E3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		7C5A57B71C9129CB002F68E3 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "Pods/../build/Debug-iphoneos/Parse.framework"; sourceTree = "<group>"; };
+		7C5A57B91C9129CF002F68E3 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = "Pods/../build/Debug-iphoneos/ParseUI.framework"; sourceTree = "<group>"; };
+		7C5A57BB1C9129D8002F68E3 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		7C5A57BD1C9129E2002F68E3 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		7C5A57BF1C9129EA002F68E3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		7C5A57C11C9129F3002F68E3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		7C5A57C31C9129FD002F68E3 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		7CC1A7FE1C9A3FD300D26790 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
+		7CCCCE4E1C9A3980009400BA /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		7CCCCE4F1C9A3980009400BA /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		7CCCCE501C9A3980009400BA /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		7CCCCE551C9A39BF009400BA /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
+		8F75D7507031EB77C3AC08C1 /* Pods_CoLearn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoLearn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E29627A7D356DC474F9FCC8A /* Pods-CoLearn.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoLearn.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoLearn/Pods-CoLearn.debug.xcconfig"; sourceTree = "<group>"; };
+		F5EB2390BF70AE421DB5C690 /* Pods-CoLearn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoLearn.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoLearn/Pods-CoLearn.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +79,63 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C5A57C41C9129FD002F68E3 /* libsqlite3.tbd in Frameworks */,
+				7C5A57C21C9129F3002F68E3 /* libz.tbd in Frameworks */,
+				7CCCCE581C9A39BF009400BA /* ParseFacebookUtilsV4.framework in Frameworks */,
+				7C5A57C01C9129EA002F68E3 /* SystemConfiguration.framework in Frameworks */,
+				7C5A57BE1C9129E2002F68E3 /* StoreKit.framework in Frameworks */,
+				7C5A57BC1C9129D8002F68E3 /* Social.framework in Frameworks */,
+				7C5A57BA1C9129CF002F68E3 /* ParseUI.framework in Frameworks */,
+				7C5A57B81C9129CB002F68E3 /* Parse.framework in Frameworks */,
+				7CCCCE521C9A3980009400BA /* FBSDKCoreKit.framework in Frameworks */,
+				7C5A57B61C9129BF002F68E3 /* Security.framework in Frameworks */,
+				7C5A57B41C9129B6002F68E3 /* QuartzCore.framework in Frameworks */,
+				7C5A57B21C9129AD002F68E3 /* CoreLocation.framework in Frameworks */,
+				7C5A57B01C9129A6002F68E3 /* CoreGraphics.framework in Frameworks */,
+				7CCCCE541C9A3980009400BA /* FBSDKShareKit.framework in Frameworks */,
+				7CC1A7FF1C9A3FD300D26790 /* ParseFacebookUtils.framework in Frameworks */,
+				7C5A57AE1C91299C002F68E3 /* CFNetwork.framework in Frameworks */,
+				7CCCCE531C9A3980009400BA /* FBSDKLoginKit.framework in Frameworks */,
+				7C5A57AC1C912993002F68E3 /* Bolts.framework in Frameworks */,
+				7C5A57AA1C912980002F68E3 /* AudioToolbox.framework in Frameworks */,
+				7C5A57A81C912974002F68E3 /* Accounts.framework in Frameworks */,
+				904841FCDA324E95E1470F3D /* Pods_CoLearn.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		65EA85DF60B84AD303EED283 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7C5A57C31C9129FD002F68E3 /* libsqlite3.tbd */,
+				7C5A57C11C9129F3002F68E3 /* libz.tbd */,
+				7C5A57BF1C9129EA002F68E3 /* SystemConfiguration.framework */,
+				7C5A57BD1C9129E2002F68E3 /* StoreKit.framework */,
+				7C5A57BB1C9129D8002F68E3 /* Social.framework */,
+				7C5A57B91C9129CF002F68E3 /* ParseUI.framework */,
+				7C5A57B71C9129CB002F68E3 /* Parse.framework */,
+				7C5A57B51C9129BF002F68E3 /* Security.framework */,
+				7C5A57B31C9129B6002F68E3 /* QuartzCore.framework */,
+				7C5A57B11C9129AD002F68E3 /* CoreLocation.framework */,
+				7C5A57AF1C9129A6002F68E3 /* CoreGraphics.framework */,
+				7C5A57AD1C91299C002F68E3 /* CFNetwork.framework */,
+				7C5A57AB1C912993002F68E3 /* Bolts.framework */,
+				7C5A57A91C912980002F68E3 /* AudioToolbox.framework */,
+				7C5A57A71C912974002F68E3 /* Accounts.framework */,
+				8F75D7507031EB77C3AC08C1 /* Pods_CoLearn.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7C0B88081C7E96E3003461FE = {
 			isa = PBXGroup;
 			children = (
 				7C0B88131C7E96E3003461FE /* CoLearn */,
 				7C0B88121C7E96E3003461FE /* Products */,
+				DE916EF1DB982581769FDF6C /* Pods */,
+				65EA85DF60B84AD303EED283 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +150,63 @@
 		7C0B88131C7E96E3003461FE /* CoLearn */ = {
 			isa = PBXGroup;
 			children = (
+				7C5A57961C911EFF002F68E3 /* SDK */,
+				7C5A57951C911E63002F68E3 /* Views */,
+				7C5A57941C911E5E002F68E3 /* Model */,
+				7C5A57931C911E55002F68E3 /* ViewControllers */,
 				7C0B88141C7E96E3003461FE /* AppDelegate.swift */,
-				7C0B88161C7E96E3003461FE /* ViewController.swift */,
-				7C0B88181C7E96E3003461FE /* Main.storyboard */,
 				7C0B881B1C7E96E3003461FE /* Assets.xcassets */,
+				7C5A57911C911C61002F68E3 /* Main.storyboard */,
 				7C0B881D1C7E96E3003461FE /* LaunchScreen.storyboard */,
 				7C0B88201C7E96E3003461FE /* Info.plist */,
 			);
 			path = CoLearn;
+			sourceTree = "<group>";
+		};
+		7C5A57931C911E55002F68E3 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				7C5A579F1C912139002F68E3 /* LoginViewController.swift */,
+				7C5A57A01C912139002F68E3 /* UserViewController.swift */,
+				7C5A57A11C912139002F68E3 /* SchedulesViewController.swift */,
+				7C5A57A21C912139002F68E3 /* MainPageViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		7C5A57941C911E5E002F68E3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		7C5A57951C911E63002F68E3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		7C5A57961C911EFF002F68E3 /* SDK */ = {
+			isa = PBXGroup;
+			children = (
+				7CC1A7FE1C9A3FD300D26790 /* ParseFacebookUtils.framework */,
+				7CCCCE551C9A39BF009400BA /* ParseFacebookUtilsV4.framework */,
+				7CCCCE4E1C9A3980009400BA /* FBSDKCoreKit.framework */,
+				7CCCCE4F1C9A3980009400BA /* FBSDKLoginKit.framework */,
+				7CCCCE501C9A3980009400BA /* FBSDKShareKit.framework */,
+			);
+			name = SDK;
+			sourceTree = "<group>";
+		};
+		DE916EF1DB982581769FDF6C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E29627A7D356DC474F9FCC8A /* Pods-CoLearn.debug.xcconfig */,
+				F5EB2390BF70AE421DB5C690 /* Pods-CoLearn.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +216,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7C0B88231C7E96E3003461FE /* Build configuration list for PBXNativeTarget "CoLearn" */;
 			buildPhases = (
+				0096487AACBCA0FAA8B682FA /* Check Pods Manifest.lock */,
 				7C0B880D1C7E96E3003461FE /* Sources */,
 				7C0B880E1C7E96E3003461FE /* Frameworks */,
 				7C0B880F1C7E96E3003461FE /* Resources */,
+				93CC33808A66ED92B7C4573A /* Embed Pods Frameworks */,
+				E925C536E9B4A5FB3615D3BA /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -122,35 +270,78 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C5A57921C911C61002F68E3 /* Main.storyboard in Resources */,
 				7C0B881F1C7E96E3003461FE /* LaunchScreen.storyboard in Resources */,
 				7C0B881C1C7E96E3003461FE /* Assets.xcassets in Resources */,
-				7C0B881A1C7E96E3003461FE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0096487AACBCA0FAA8B682FA /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		93CC33808A66ED92B7C4573A /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CoLearn/Pods-CoLearn-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E925C536E9B4A5FB3615D3BA /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CoLearn/Pods-CoLearn-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7C0B880D1C7E96E3003461FE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C0B88171C7E96E3003461FE /* ViewController.swift in Sources */,
+				7C5A57A61C912139002F68E3 /* MainPageViewController.swift in Sources */,
+				7C5A57A31C912139002F68E3 /* LoginViewController.swift in Sources */,
+				7C5A57A41C912139002F68E3 /* UserViewController.swift in Sources */,
 				7C0B88151C7E96E3003461FE /* AppDelegate.swift in Sources */,
+				7C5A57A51C912139002F68E3 /* SchedulesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		7C0B88181C7E96E3003461FE /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7C0B88191C7E96E3003461FE /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		7C0B881D1C7E96E3003461FE /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -245,8 +436,14 @@
 		};
 		7C0B88241C7E96E3003461FE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E29627A7D356DC474F9FCC8A /* Pods-CoLearn.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CoLearn",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = CoLearn/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.colearn.CoLearn;
@@ -256,8 +453,14 @@
 		};
 		7C0B88251C7E96E3003461FE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F5EB2390BF70AE421DB5C690 /* Pods-CoLearn.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CoLearn",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = CoLearn/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.colearn.CoLearn;
@@ -284,6 +487,7 @@
 				7C0B88251C7E96E3003461FE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
