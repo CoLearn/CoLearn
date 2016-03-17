@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="CoLearn" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AMr-8A-8dg">
+                                <rect key="frame" x="0.0" y="28" width="40" height="540"/>
+                                <color key="backgroundColor" red="0.81413612570000005" green="0.75345416899999995" blue="0.11616973899999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="VpX-Xd-ZKq"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qYR-CP-gnh">
+                                <rect key="frame" x="0.0" y="530" width="320" height="38"/>
+                                <color key="backgroundColor" red="0.81413612570000005" green="0.75345416899999995" blue="0.11616973899999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="1t0-lt-tWF"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CoLearn" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6fa-kv-pZD">
+                                <rect key="frame" x="174" y="470" width="126" height="39"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="126" id="74M-8R-TDt"/>
+                                    <constraint firstAttribute="height" constant="39" id="gsx-Kg-pDH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="32"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sFO-cY-fwQ" userLabel="Login With Facebook" customClass="FBSDKLoginButton">
+                                <rect key="frame" x="56" y="266" width="208" height="35"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <state key="normal" title="  Login With Facebook  ">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qYR-CP-gnh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="26m-nO-3K9"/>
+                            <constraint firstItem="AMr-8A-8dg" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="4kN-Lf-uJ5"/>
+                            <constraint firstAttribute="trailing" secondItem="6fa-kv-pZD" secondAttribute="trailing" constant="20" id="C8S-9l-60V"/>
+                            <constraint firstItem="sFO-cY-fwQ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Fci-Yk-FIg"/>
+                            <constraint firstItem="qYR-CP-gnh" firstAttribute="top" secondItem="6fa-kv-pZD" secondAttribute="bottom" constant="21" id="Wpb-fG-5nG"/>
+                            <constraint firstAttribute="trailing" secondItem="qYR-CP-gnh" secondAttribute="trailing" id="fIW-av-pda"/>
+                            <constraint firstItem="AMr-8A-8dg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="v3V-QK-ZcO"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="qYR-CP-gnh" secondAttribute="bottom" id="vIb-PX-m6h"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="AMr-8A-8dg" secondAttribute="bottom" id="yJO-2B-gke"/>
+                            <constraint firstItem="sFO-cY-fwQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="zee-Ow-Aq1"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="rvy-kq-QrY"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="facebookLoginButton" destination="sFO-cY-fwQ" id="eHD-xn-6MO"/>
+                        <segue destination="52p-NO-BIW" kind="modal" identifier="loginSegue" id="tn0-lw-J6S"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-308" y="420"/>
+        </scene>
+        <!--Schedules-->
+        <scene sceneID="Zvv-8d-HJE">
+            <objects>
+                <viewController storyboardIdentifier="SchedulesViewController" id="lDn-oL-bLI" customClass="SchedulesViewController" customModule="CoLearn" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="stQ-iP-MWy"/>
+                        <viewControllerLayoutGuide type="bottom" id="U8n-fR-o7C"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SD5-pM-gfL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" tag="2" title="Schedules" image="home-24" id="N5z-cK-Yir"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rUc-4V-IAe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="452" y="848"/>
+        </scene>
+        <!--User-->
+        <scene sceneID="RWq-KR-n9d">
+            <objects>
+                <viewController storyboardIdentifier="UserViewController" id="mA0-87-L2Y" customClass="UserViewController" customModule="CoLearn" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nyO-YJ-2E7"/>
+                        <viewControllerLayoutGuide type="bottom" id="xEH-Gv-k9P"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Yc6-Zt-rFc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome to CoLearn" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rTm-K7-lYk">
+                                <rect key="frame" x="20" y="41" width="280" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="baU-JQ-gG5" customClass="FBSDKLoginButton">
+                                <rect key="frame" x="130" y="456" width="60" height="35"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <state key="normal" title="Logout"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rahul Krishna" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hI0-uM-kd9">
+                                <rect key="frame" x="108" y="103" width="105" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="rahulkrish85@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G5W-p1-5W9">
+                                <rect key="frame" x="65" y="146" width="190" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="baU-JQ-gG5" firstAttribute="centerX" secondItem="Yc6-Zt-rFc" secondAttribute="centerX" id="7VL-gJ-pRY"/>
+                            <constraint firstItem="xEH-Gv-k9P" firstAttribute="top" secondItem="baU-JQ-gG5" secondAttribute="bottom" constant="28" id="cxY-YA-9ny"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" tag="1" title="User" image="user-32" id="xjs-Wj-bdQ"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="emailLabel" destination="G5W-p1-5W9" id="H02-BA-1aX"/>
+                        <outlet property="facebookLogoutButton" destination="baU-JQ-gG5" id="f7n-bb-SMf"/>
+                        <outlet property="nameLabel" destination="hI0-uM-kd9" id="fgc-qV-LCx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Qf-fr-X2K" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="452" y="206"/>
+        </scene>
+        <!--Main Page View Controller-->
+        <scene sceneID="uHI-9x-uZs">
+            <objects>
+                <tabBarController storyboardIdentifier="MainPageViewController" id="52p-NO-BIW" customClass="MainPageViewController" customModule="CoLearn" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="65F-Iw-eZa"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="wv1-cF-g95">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="mA0-87-L2Y" kind="relationship" relationship="viewControllers" id="taI-4l-gB1"/>
+                        <segue destination="lDn-oL-bLI" kind="relationship" relationship="viewControllers" id="fja-SE-VJM"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ngg-NZ-Tto" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="54" y="420"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="home-24" width="24" height="24"/>
+        <image name="user-32" width="32" height="32"/>
+    </resources>
+</document>
