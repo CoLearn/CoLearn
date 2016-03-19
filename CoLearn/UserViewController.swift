@@ -46,4 +46,23 @@ class UserViewController: UIViewController, FBSDKLoginButtonDelegate {
             }
         }
     }
+    
+    @IBAction func onClickCallButton(sender: AnyObject) {
+        facetime("14804340901")
+    }
+    
+    func facetime(phoneNumber:String) {
+        if let facetimeURL:NSURL = NSURL(string: "facetime://\(phoneNumber)") {
+            let application:UIApplication = UIApplication.sharedApplication()
+            if (application.canOpenURL(facetimeURL)) {
+                print("can open facetime url")
+                application.openURL(facetimeURL);
+            }else{
+                print("cannot open facetime url")
+            }
+            
+            
+        }
+    }
+    
 }
