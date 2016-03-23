@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -76,6 +76,26 @@
             </objects>
             <point key="canvasLocation" x="-308" y="420"/>
         </scene>
+        <!--Session-->
+        <scene sceneID="Hco-lj-1dd">
+            <objects>
+                <viewController id="7TQ-0O-GSO" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8J5-2x-WsH"/>
+                        <viewControllerLayoutGuide type="bottom" id="6ib-QK-Ham"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HJX-Sb-MX1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Session" image="video-chat-32" id="eMu-Z0-PS5"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Jt-t8-0Rv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="54" y="1111"/>
+        </scene>
         <!--Schedules-->
         <scene sceneID="Zvv-8d-HJE">
             <objects>
@@ -122,13 +142,13 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rahul Krishna" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hI0-uM-kd9">
                                 <rect key="frame" x="108" y="103" width="105" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="rahulkrish85@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G5W-p1-5W9">
                                 <rect key="frame" x="65" y="146" width="190" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -162,8 +182,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="mA0-87-L2Y" kind="relationship" relationship="viewControllers" id="taI-4l-gB1"/>
                         <segue destination="lDn-oL-bLI" kind="relationship" relationship="viewControllers" id="fja-SE-VJM"/>
+                        <segue destination="7TQ-0O-GSO" kind="relationship" relationship="viewControllers" id="znm-pC-klP"/>
+                        <segue destination="mA0-87-L2Y" kind="relationship" relationship="viewControllers" id="taI-4l-gB1"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ngg-NZ-Tto" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -174,5 +195,6 @@
     <resources>
         <image name="home-24" width="24" height="24"/>
         <image name="user-32" width="32" height="32"/>
+        <image name="video-chat-32" width="32" height="32"/>
     </resources>
 </document>
