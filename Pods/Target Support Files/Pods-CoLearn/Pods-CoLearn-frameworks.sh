@@ -84,11 +84,13 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods-CoLearn/AFNetworking.framework"
   install_framework "Pods-CoLearn/Bolts.framework"
   install_framework "Pods-CoLearn/Parse.framework"
   install_framework "Pods-CoLearn/ParseUI.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods-CoLearn/AFNetworking.framework"
   install_framework "Pods-CoLearn/Bolts.framework"
   install_framework "Pods-CoLearn/Parse.framework"
   install_framework "Pods-CoLearn/ParseUI.framework"

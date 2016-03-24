@@ -35,6 +35,7 @@
 		7CCCCE531C9A3980009400BA /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CCCCE4F1C9A3980009400BA /* FBSDKLoginKit.framework */; };
 		7CCCCE541C9A3980009400BA /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CCCCE501C9A3980009400BA /* FBSDKShareKit.framework */; };
 		7CCCCE581C9A39BF009400BA /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CCCCE551C9A39BF009400BA /* ParseFacebookUtilsV4.framework */; };
+		8F0229311CA39ECA0075A8DD /* LanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0229301CA39ECA0075A8DD /* LanguageCell.swift */; };
 		904841FCDA324E95E1470F3D /* Pods_CoLearn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F75D7507031EB77C3AC08C1 /* Pods_CoLearn.framework */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,7 @@
 		7CCCCE4F1C9A3980009400BA /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		7CCCCE501C9A3980009400BA /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		7CCCCE551C9A39BF009400BA /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
+		8F0229301CA39ECA0075A8DD /* LanguageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageCell.swift; sourceTree = "<group>"; };
 		8F75D7507031EB77C3AC08C1 /* Pods_CoLearn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoLearn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E29627A7D356DC474F9FCC8A /* Pods-CoLearn.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoLearn.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoLearn/Pods-CoLearn.debug.xcconfig"; sourceTree = "<group>"; };
 		F5EB2390BF70AE421DB5C690 /* Pods-CoLearn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoLearn.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoLearn/Pods-CoLearn.release.xcconfig"; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 		7C5A57951C911E63002F68E3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8F0229301CA39ECA0075A8DD /* LanguageCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				7C5A57A61C912139002F68E3 /* MainPageViewController.swift in Sources */,
 				7C5A57A31C912139002F68E3 /* LoginViewController.swift in Sources */,
 				7C5A57A41C912139002F68E3 /* UserViewController.swift in Sources */,
+				8F0229311CA39ECA0075A8DD /* LanguageCell.swift in Sources */,
 				7C0B88151C7E96E3003461FE /* AppDelegate.swift in Sources */,
 				7C5A57A51C912139002F68E3 /* SchedulesViewController.swift in Sources */,
 			);

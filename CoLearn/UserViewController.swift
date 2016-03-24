@@ -9,17 +9,28 @@
 import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
+import AFNetworking
 
-class UserViewController: UIViewController, FBSDKLoginButtonDelegate {
+class UserViewController: UIViewController, FBSDKLoginButtonDelegate, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var taglineLabel: UILabel!
+    @IBOutlet weak var rewardsLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var profilePictureImageView: UIImageView!
+    @IBOutlet weak var coverPhotoImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var facebookLogoutButton: FBSDKLoginButton!
+    @IBOutlet weak var languageTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getUserInfo()
         facebookLogoutButton.delegate = self
+        
+        languageTableView.dataSource = self
+        languageTableView.delegate = self
+        languageTableView.rowHeight = UITableViewAutomaticDimension
+        languageTableView.estimatedRowHeight = 60
         // Do any additional setup after loading the view.
     }
     
@@ -34,16 +45,52 @@ class UserViewController: UIViewController, FBSDKLoginButtonDelegate {
     }
     
     func getUserInfo() {
-        let params = ["fields":"id, name, first_name, last_name, email"]
+        let params = ["fields":"id, name, first_name, last_name, email, picture, cover, about, friends, locale, location,  timezone"]
         let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: params)
         graphRequest.startWithCompletionHandler { (connection, result, error) -> Void in
             if error == nil {
                 print(result)
+                
+//                self.locationLabel.text = 
+//                self.rewardsLabel.text =   // Need to make API calls to our database for these
+                
                 self.nameLabel.text = result["name"] as? String
-                self.emailLabel.text = result["email"] as? String
+                self.taglineLabel.text = result["about"] as? String
+                print(result["about"]) // Doesn't give me anything, not sure if it is a code problem or FB's database hasn't registered that I just updated my about me section?
+                
+                let picture = result["picture"] as? NSDictionary
+                let data = picture!["data"] as? NSDictionary
+                let profileImageUrl = data!["url"] as? String
+                if let profileImageUrl = profileImageUrl {
+                    self.profilePictureImageView.setImageWithURL(NSURL(string: profileImageUrl)!)
+                }
+                
+                let cover = result["cover"] as? NSDictionary
+                let coverPhotoUrl = cover!["source"] as? String
+                if let coverPhotoUrl = coverPhotoUrl {
+                    self.coverPhotoImageView.setImageWithURL(NSURL(string: coverPhotoUrl)!)
+                }
+
             } else {
                 print(error.localizedDescription)
             }
         }
     }
+    
+    // Need to make API call to our database for the language object that includes the language and the flag 
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        if let languages = langauges {
+//            return languages!.count
+//        } else {
+            return 0
+//        }
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("LanguageCell", forIndexPath: indexPath) as! LanguageCell
+        
+        
+        return cell
+    }
+    
 }
