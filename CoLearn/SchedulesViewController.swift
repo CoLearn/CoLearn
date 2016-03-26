@@ -14,6 +14,7 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
     
     var scheduledMeeting = [Meeting]()
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -41,6 +42,7 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
         }else{
             return 0
         }
+
     }
 
 

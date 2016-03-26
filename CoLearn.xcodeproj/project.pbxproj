@@ -180,9 +180,7 @@
 		};
 		7C5A57941C911E5E002F68E3 /* Model */ = {
 			isa = PBXGroup;
-			children = (
-				4A4C218C1CA6D4BE000B94C8 /* Meetings.swift */,
-			);
+			children = (4A4C218C1CA6D4BE000B94C8 /* Meetings.swift */,);
 			name = Model;
 			sourceTree = "<group>";
 		};
@@ -190,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				4A4C218E1CA6D7D6000B94C8 /* ScheduleTableViewCell.swift */,
+
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -338,10 +337,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C5A57A61C912139002F68E3 /* MainPageViewController.swift in Sources */,
+
 				4A4C218F1CA6D7D6000B94C8 /* ScheduleTableViewCell.swift in Sources */,
 				7C5A57A31C912139002F68E3 /* LoginViewController.swift in Sources */,
 				7C5A57A41C912139002F68E3 /* UserViewController.swift in Sources */,
 				4A4C218D1CA6D4BE000B94C8 /* Meetings.swift in Sources */,
+
 				7C0B88151C7E96E3003461FE /* AppDelegate.swift in Sources */,
 				7C5A57A51C912139002F68E3 /* SchedulesViewController.swift in Sources */,
 			);
