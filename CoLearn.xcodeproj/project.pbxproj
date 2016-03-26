@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A4C218D1CA6D4BE000B94C8 /* Meetings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4C218C1CA6D4BE000B94C8 /* Meetings.swift */; };
+		4A4C218F1CA6D7D6000B94C8 /* ScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4C218E1CA6D7D6000B94C8 /* ScheduleTableViewCell.swift */; };
 		7C0B88151C7E96E3003461FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0B88141C7E96E3003461FE /* AppDelegate.swift */; };
 		7C0B881C1C7E96E3003461FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C0B881B1C7E96E3003461FE /* Assets.xcassets */; };
 		7C0B881F1C7E96E3003461FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C0B881D1C7E96E3003461FE /* LaunchScreen.storyboard */; };
@@ -39,6 +41,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A4C218C1CA6D4BE000B94C8 /* Meetings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meetings.swift; sourceTree = "<group>"; };
+		4A4C218E1CA6D7D6000B94C8 /* ScheduleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewCell.swift; sourceTree = "<group>"; };
 		7C0B88111C7E96E3003461FE /* CoLearn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoLearn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C0B88141C7E96E3003461FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7C0B881B1C7E96E3003461FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -177,6 +181,7 @@
 		7C5A57941C911E5E002F68E3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4A4C218C1CA6D4BE000B94C8 /* Meetings.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -184,6 +189,7 @@
 		7C5A57951C911E63002F68E3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4A4C218E1CA6D7D6000B94C8 /* ScheduleTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -332,8 +338,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C5A57A61C912139002F68E3 /* MainPageViewController.swift in Sources */,
+				4A4C218F1CA6D7D6000B94C8 /* ScheduleTableViewCell.swift in Sources */,
 				7C5A57A31C912139002F68E3 /* LoginViewController.swift in Sources */,
 				7C5A57A41C912139002F68E3 /* UserViewController.swift in Sources */,
+				4A4C218D1CA6D4BE000B94C8 /* Meetings.swift in Sources */,
 				7C0B88151C7E96E3003461FE /* AppDelegate.swift in Sources */,
 				7C5A57A51C912139002F68E3 /* SchedulesViewController.swift in Sources */,
 			);
