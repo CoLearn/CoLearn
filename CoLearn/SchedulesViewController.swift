@@ -20,10 +20,10 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
 
         // Do any additional setup after loading the view.
         self.title = "Schedule"
-        scheduledMeeting.append(Meeting(language: "Spanish" , mtime: "April 2nd, 2016", instructor: "Rahul", learner: "Caleb", requestNote: "I wish to learn spanish please spare some time"))
-        scheduledMeeting.append(Meeting(language: "German" , mtime: "April 2nd, 2016", instructor: "Rahul", learner: "Caleb", requestNote: "I wish to learn spanish please spare some time"))
-        scheduledMeeting.append(Meeting(language: "Italian" , mtime: "April 2nd, 2016", instructor: "Rahul", learner: "Caleb", requestNote: "I wish to learn spanish please spare some time"))
-        scheduledMeeting.append(Meeting(language: "Japanese" , mtime: "April 2nd, 2016", instructor: "Rahul", learner: "Caleb", requestNote: "I wish to learn spanish please spare some time"))
+        scheduledMeeting.append(Meeting(language: "Spanish" , mtime: "Apr 1st, 2016 @7:30am", instructor: "Rahul Vasantham", learner: "Caleb Ripley", requestNote: "I wish to learn spanish please spare some time"))
+        scheduledMeeting.append(Meeting(language: "German" , mtime: " Jun 23rd, 2016 @6pm", instructor: "Rahul Vasantham", learner: "Timothy Lee", requestNote: "I want to learn german"))
+        scheduledMeeting.append(Meeting(language: "Italian" , mtime: "Sept 19th, 2016 @1pm", instructor: "Rahul Vasantham", learner: "Charlie Hieger", requestNote: "Can you help me in learning Italian? I won't take much of your time Rahul Sir. Let me know please."))
+        scheduledMeeting.append(Meeting(language: "Japanese" , mtime: "Dec 31st, 2016 @12noon", instructor: "Rahul Vasantham", learner: "Sachin Gandhi", requestNote: "I wish to learn spanish please spare some time"))
         
         self.schedulesTableView.dataSource = self
         self.schedulesTableView.delegate = self
