@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A4C218D1CA6D4BE000B94C8 /* Meetings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4C218C1CA6D4BE000B94C8 /* Meetings.swift */; };
+		4A4C218F1CA6D7D6000B94C8 /* ScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4C218E1CA6D7D6000B94C8 /* ScheduleTableViewCell.swift */; };
+		4A4C21911CA75674000B94C8 /* ApprovalsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4C21901CA75674000B94C8 /* ApprovalsTableViewCell.swift */; };
+		4A4C21931CA756D4000B94C8 /* ApprovalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4C21921CA756D4000B94C8 /* ApprovalsViewController.swift */; };
 		7C0B88151C7E96E3003461FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0B88141C7E96E3003461FE /* AppDelegate.swift */; };
 		7C0B881C1C7E96E3003461FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C0B881B1C7E96E3003461FE /* Assets.xcassets */; };
 		7C0B881F1C7E96E3003461FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C0B881D1C7E96E3003461FE /* LaunchScreen.storyboard */; };
@@ -48,6 +52,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A4C218C1CA6D4BE000B94C8 /* Meetings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meetings.swift; sourceTree = "<group>"; };
+		4A4C218E1CA6D7D6000B94C8 /* ScheduleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewCell.swift; sourceTree = "<group>"; };
+		4A4C21901CA75674000B94C8 /* ApprovalsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApprovalsTableViewCell.swift; sourceTree = "<group>"; };
+		4A4C21921CA756D4000B94C8 /* ApprovalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApprovalsViewController.swift; sourceTree = "<group>"; };
 		7C0B88111C7E96E3003461FE /* CoLearn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoLearn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C0B88141C7E96E3003461FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7C0B881B1C7E96E3003461FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -188,6 +196,7 @@
 				7C5A57A01C912139002F68E3 /* UserViewController.swift */,
 				7C5A57A11C912139002F68E3 /* SchedulesViewController.swift */,
 				7C5A57A21C912139002F68E3 /* MainPageViewController.swift */,
+				4A4C21921CA756D4000B94C8 /* ApprovalsViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -203,6 +212,7 @@
 				7CE03EB31CA739DE00AB61AC /* Schedule.swift */,
 				7CE03EB51CA73A6E00AB61AC /* ScheduleStatus.swift */,
 				7CE03EB71CA74A3500AB61AC /* Constants.swift */,
+				4A4C218C1CA6D4BE000B94C8 /* Meetings.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -211,6 +221,8 @@
 			isa = PBXGroup;
 			children = (
 				8F0229301CA39ECA0075A8DD /* LanguageCell.swift */,
+				4A4C218E1CA6D7D6000B94C8 /* ScheduleTableViewCell.swift */,
+				4A4C21901CA75674000B94C8 /* ApprovalsTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -359,6 +371,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C5A57A61C912139002F68E3 /* MainPageViewController.swift in Sources */,
+				4A4C218F1CA6D7D6000B94C8 /* ScheduleTableViewCell.swift in Sources */,
+				4A4C21911CA75674000B94C8 /* ApprovalsTableViewCell.swift in Sources */,
+				4A4C21931CA756D4000B94C8 /* ApprovalsViewController.swift in Sources */,
 				7C5A57A31C912139002F68E3 /* LoginViewController.swift in Sources */,
 				7CE03EB61CA73A6E00AB61AC /* ScheduleStatus.swift in Sources */,
 				7CE03EAA1CA6FEB200AB61AC /* Location.swift in Sources */,
@@ -372,6 +387,7 @@
 				7CE03EB81CA74A3500AB61AC /* Constants.swift in Sources */,
 				7CE03EB01CA71B0C00AB61AC /* LanguagesChosen.swift in Sources */,
 				7C5A57A51C912139002F68E3 /* SchedulesViewController.swift in Sources */,
+				4A4C218D1CA6D4BE000B94C8 /* Meetings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
