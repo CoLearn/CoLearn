@@ -18,8 +18,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-//        PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
-        Parse.setApplicationId("CoLearn", clientKey: "key-key-key")
+
+        Parse.initializeWithConfiguration(
+            ParseClientConfiguration(block: { (configuration:ParseMutableClientConfiguration) -> Void in
+                configuration.applicationId = "CoLearn"
+                configuration.clientKey = "key-key-key"
+                configuration.server = "http://colearnapp.herokuapp.com/parse"
+            })
+        )
+//        Parse.setApplicationId("CoLearn", clientKey: "key-key-key")
         let result = FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions:launchOptions)
         
         if(FBSDKAccessToken.currentAccessToken() != nil) {
