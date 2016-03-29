@@ -15,16 +15,19 @@ class CoLearnClient: NSObject {
     
     static let UserClass = "user"
     static let ScheduleClass = "schedule"
-    static let teachSpanishClass = "teachSpanish"
-    static let teachEnglishClass = "teachEnglish"
-    static let teachFrenchClass = "teachFrench"
-    static let teachChineseClass = "teachChinese"
-    static let learnSpanishClass = "learnSpanish"
-    static let learnEnglishClass = "learnEnglish"
-    static let learnFrenchClass = "learnFrench"
-    static let learnChineseClass = "learnChinese"
+    static let LangCanTeachClass = "LanguagesCanTeach"
+    static let LangToLearnClass = "LanguagesToLearn"
+    
+//    static let teachSpanishClass = "teachSpanish"
+//    static let teachEnglishClass = "teachEnglish"
+//    static let teachFrenchClass = "teachFrench"
+//    static let teachChineseClass = "teachChinese"
+//    static let learnSpanishClass = "learnSpanish"
+//    static let learnEnglishClass = "learnEnglish"
+//    static let learnFrenchClass = "learnFrench"
+//    static let learnChineseClass = "learnChinese"
 
-    static let LanguagesToLearnClass = "langtolearn"
+//    static let LanguagesToLearnClass = "langtolearn"
     
     
     /*------------------------------ User Information - Start ----------------------------------------*/
@@ -121,156 +124,92 @@ class CoLearnClient: NSObject {
     /*------------------------------ User Information - Start ----------------------------------------*/
     
     /* ---------------------- Post the Languages chosen to Teach to DB - Start ----------------------------------*/
-    class func postLanguagesToTeach(langToTeach: LanguagesChosen, withCompletion completion: PFBooleanResultBlock?) {
+    class func postLanguagesToTeach(langToTeach: Languages.LangType, user_id: String, withCompletion completion: PFBooleanResultBlock?) {
         
-        for lang in langToTeach.lanuages {
-            switch lang {
-                case .CHINESE:
-                    postLanguageCanTeach(lang, className: teachChineseClass, id: langToTeach.id)
-                case .ENGLISH:
-                    postLanguageCanTeach(lang, className: teachEnglishClass, id: langToTeach.id)
-                case .FRENCH:
-                    postLanguageCanTeach(lang, className: teachFrenchClass, id: langToTeach.id)
-                case .SPANISH:
-                    postLanguageCanTeach(lang, className: teachSpanishClass, id: langToTeach.id)
-            }
-        }
-
+        let post = PFObject(className: LangCanTeachClass)
+        post["user_id"] = user_id
+        post["lang"] = langToTeach.getName()
+        
+        post.saveInBackgroundWithBlock(completion)
     }
     
-    private class func postLanguageCanTeach(lang: Languages.LangType, className: String, id: String) {
-        
-        var userList = id
-        
-        //Get the current list of users to check if the user is already in the list.
-        getUsersCanTeachForALangauge(lang, success: { (users: String?) in
-            if users?.characters.count > 0 {
-                // If User is not in the list already
-                if !((users?.containsString(id))!) {
-                    userList += ",\(users)"
-                    let post = PFObject(className: className)
-                    post["users"] = userList
-                    post.saveInBackground()
-                }
-            } else { // new list and now users found.
-                let post = PFObject(className: className)
-                post["users"] = userList
-                post.saveInBackground()
-            }
-        }) { (error: NSError?) in
-            print(error?.localizedDescription)
-        }
-    }
-    
-    private class func getUsersCanTeachForALangauge(langType: Languages.LangType, success: (String?) -> (), failure: (NSError?) -> ()){
-        
-        //Class Name
-        var className = teachEnglishClass
-        switch langType {
-        case .CHINESE:
-            className = teachChineseClass
-        case .ENGLISH:
-            className = teachEnglishClass
-        case .FRENCH:
-            className = teachFrenchClass
-        case .SPANISH:
-            className = teachSpanishClass
-        }
-        
+    // All the users that can teach a specific langauge
+    private class func getUsersCanTeachForALangauge(langType: Languages.LangType, success: ([PFObject]?) -> (), failure: (NSError?) -> ()){
         
         // Query
-        let query = PFQuery(className: className)
-        query.includeKey("users")
+        let query = PFQuery(className: LangCanTeachClass)
+        query.includeKey("user_id")
+        query.whereKey("lang", equalTo: langType.getName())
         
         query.findObjectsInBackgroundWithBlock { (posts: [PFObject]?, error: NSError?) in
             if error != nil {
                 failure(error)
             } else {
-                if let posts = posts {
-                    print(posts)
-                    let users = posts[0]["users"] as? String
-                    print(users)
-                    success(users)
-                }
-                success("")
+                success(posts)
             }
         }
     }
+    
+    // Languages an User can Teach
+    private class func getLanguagesCanTeachByAnUser(user_id: String, success: ([PFObject]?) -> (), failure: (NSError?) -> ()){
+        
+        //Query
+        let query = PFQuery(className: LangCanTeachClass)
+        query.includeKey("lang")
+        query.whereKey("user_id", equalTo: user_id)
+        
+        query.findObjectsInBackgroundWithBlock { (posts: [PFObject]?, error: NSError?) in
+            if error != nil {
+                failure(error)
+            } else {
+                success(posts)
+            }
+        }
+    }
+    
     /* ---------------------- Post the Languages chosen to Teach to DB - End ----------------------------------*/
     
     
     /* ---------------------- Post the Languages Chosen to Learn to DB - Start ----------------------------------*/
-    class func postLanguagesToLearn(langToLearn: LanguagesChosen, withCompletion completion: PFBooleanResultBlock?) {
+    class func postLanguagesToLearn(langToTeach: Languages.LangType, user_id: String, withCompletion completion: PFBooleanResultBlock?) {
         
-        for lang in langToLearn.lanuages {
-            switch lang {
-                case .CHINESE:
-                    postLanguageToLearn(lang, className: learnChineseClass, id: langToLearn.id)
-                case .ENGLISH:
-                    postLanguageToLearn(lang, className: learnEnglishClass, id: langToLearn.id)
-                case .FRENCH:
-                    postLanguageToLearn(lang, className: learnFrenchClass, id: langToLearn.id)
-                case .SPANISH:
-                    postLanguageToLearn(lang, className: learnSpanishClass, id: langToLearn.id)
-            }
-        }
+        let post = PFObject(className: LangToLearnClass)
+        post["user_id"] = user_id
+        post["lang"] = langToTeach.getName()
+        
+        post.saveInBackgroundWithBlock(completion)
     }
     
-    private class func postLanguageToLearn(lang: Languages.LangType, className: String, id: String) {
-        
-        var userList = id
-        
-        //Get the current list of users to check if the user is already in the list.
-        getUsersToLearnALanguage(lang, success: { (users: String?) in
-            if users?.characters.count > 0 {
-                // If User is not in the list already
-                if !((users?.containsString(id))!) {
-                    userList += ",\(users)"
-                    let post = PFObject(className: className)
-                    post["users"] = userList
-                    post.saveInBackground()
-                }
-            } else { // new list and now users found.
-                let post = PFObject(className: className)
-                post["users"] = userList
-                post.saveInBackground()
-            }
-        }) { (error: NSError?) in
-                print(error?.localizedDescription)
-        }
-        
-    }
-    
-    private class func getUsersToLearnALanguage(langType: Languages.LangType, success: (String?) -> (), failure: (NSError?) -> ()){
-        
-        // ClassName
-        var className = learnEnglishClass
-        switch langType {
-        case .CHINESE:
-            className = learnChineseClass
-        case .ENGLISH:
-            className = learnEnglishClass
-        case .FRENCH:
-            className = learnFrenchClass
-        case .SPANISH:
-            className = learnSpanishClass
-        }
+    // All the users taht want to learn a specific langauge
+    private class func getUsersToLearnALanguage(langType: Languages.LangType, success: ([PFObject]?) -> (), failure: (NSError?) -> ()){
         
         //Query
-        let query = PFQuery(className: className)
-        query.includeKey("users")
+        let query = PFQuery(className: LangToLearnClass)
+        query.includeKey("user_id")
+        query.whereKey("lang", equalTo: langType.getName())
         
         query.findObjectsInBackgroundWithBlock { (posts: [PFObject]?, error: NSError?) in
             if error != nil {
                 failure(error)
             } else {
-                if let posts = posts {
-                    print(posts)
-                    let users = posts[0]["users"] as? String
-                    print(users)
-                    success(users)
-                }
-                success("")
+                success(posts)
+            }
+        }
+    }
+    
+    // All the languages an user wants to learn
+    private class func getLanguagesToLearnByAnUser(user_id: String, success: ([PFObject]?) -> (), failure: (NSError?) -> ()){
+        
+        //Query
+        let query = PFQuery(className: LangToLearnClass)
+        query.includeKey("lang")
+        query.whereKey("user_id", equalTo: user_id)
+        
+        query.findObjectsInBackgroundWithBlock { (posts: [PFObject]?, error: NSError?) in
+            if error != nil {
+                failure(error)
+            } else {
+                success(posts)
             }
         }
     }
