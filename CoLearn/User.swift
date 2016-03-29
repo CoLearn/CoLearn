@@ -59,11 +59,13 @@ class User: NSObject {
                     }
                 }
                 // Cover Picture
-                //        let cover = userInfo["cover"] as? NSDictionary
-                //        let coverPhotoUrl = cover!["source"] as? String
-                //        if let coverPhotoUrl = coverPhotoUrl {
-                //            self.coverPictureURL = NSURL(string: coverPhotoUrl)
-                //        }
+                if let cover = userInfo["cover"] as? NSDictionary {
+                    if let coverPhotoUrl = cover["source"] as? String {
+                            self.coverPictureURL = NSURL(string: coverPhotoUrl)
+                    }
+                }
+                
+                
             }
         }
     }

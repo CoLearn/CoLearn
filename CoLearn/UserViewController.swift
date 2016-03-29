@@ -65,11 +65,11 @@ class UserViewController: UIViewController, FBSDKLoginButtonDelegate, UITableVie
                     self.profilePictureImageView.setImageWithURL(NSURL(string: profileImageUrl)!)
                 }
                 
-//                let cover = result["cover"] as? NSDictionary
-//                let coverPhotoUrl = cover!["source"] as? String
-//                if let coverPhotoUrl = coverPhotoUrl {
-//                    self.coverPhotoImageView.setImageWithURL(NSURL(string: coverPhotoUrl)!)
-//                }
+                if let cover = data!["cover"] as? NSDictionary {
+                    if let coverPhotoUrl = cover["source"] as? String {
+                        self.coverPhotoImageView.setImageWithURL(NSURL(string: coverPhotoUrl)!)
+                    }
+                }
 
             } else {
                 print(error.localizedDescription)
