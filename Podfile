@@ -4,7 +4,7 @@ platform :ios, '8.0'
 use_frameworks!
 
 target 'CoLearn' do
-	pod 'ParseUI'
-	pod ‘AFNetworking’
+    pod 'ParseUI'
+    pod 'AFNetworking'
 end
 
