@@ -8,13 +8,13 @@
 Basic functionality:
 
 - [X] Authentication - [3rd party authentication with Facebook]
-- [ ] User Roles - [Instructor, Learner]
-- [ ] User Profile - [From Facebook, and restricted share]
+- [X] User Roles - [Instructor, Learner]
+- [X] User Profile - [From Facebook, and restricted share]
 - [ ] Scheduling a session - [Through a schedule page, it is done by the learner and the instructor has the choice to accept or reject them (with a message) Need to take care of the time zones here]
-- [ ] Integration with 3rd party - [Authentication and video/audio chat]
-- [ ] Video Chat/ Audio Chat - [Ability to video or audio chat for learning sessions]
+- [X] Integration with 3rd party - [Authentication and video/audio chat]
+- [X] Video Chat/ Audio Chat - [Ability to video or audio chat for learning sessions]
 - [ ] Rescheduling/Cancellation resulting into losing few credits
-- [ ] Search by instructor, topic, Region - [User has ability to search based on other user info to find a compatible teacher/learner]
+- [X] Search by instructor, topic, Region - [User has ability to search based on other user info to find a compatible teacher/learner]
 - [ ] Rewards - [Credits are gained by teaching and used by learning]
 
 
@@ -30,14 +30,14 @@ Optional functionality:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='*' title='TweetBox' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/mV2irzj.gif' title='CoLearn' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 
 ## License
 
-    Copyright [2016] [CoLearn]
+    Copyright [2016] [Rahul Krishna Vasantham, Caleb Ripley, Satyam Jaiswal]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
