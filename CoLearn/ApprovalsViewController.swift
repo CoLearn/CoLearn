@@ -6,7 +6,7 @@
 //  Copyright © 2016 CoLearn. All rights reserved.
 //
 
-import UIKit
+import UIKit	
 
 class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -21,6 +21,8 @@ class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableVie
         // Do any additional setup after loading the view.
         self.approvalsTableView.delegate = self
         self.approvalsTableView.dataSource = self
+        self.approvalsTableView.rowHeight = UITableViewAutomaticDimension
+        self.approvalsTableView.estimatedRowHeight = 120
         
         self.title = "Approvals"
         pendingApprovalMeetings.append(Meeting(language: "Spanish" , mtime: "Apr 1st, 2016 @7:30am", instructor: "Rahul Vasantham", learner: "Caleb Ripley", requestNote: "I wish to learn spanish. Please spare some time for me"))

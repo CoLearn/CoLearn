@@ -21,6 +21,8 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
         // Do any additional setup after loading the view.
         self.title = "Schedule"
         self.schedulesTableView.reloadData()
+        self.schedulesTableView.rowHeight = UITableViewAutomaticDimension
+        self.schedulesTableView.estimatedRowHeight = 120
         
         print("Inside viewDidLoad of schedules")
         scheduledMeetings.append(Meeting(language: "Spanish" , mtime: "Apr 1st, 2016 @7:30am", instructor: "Rahul Vasantham", learner: "Caleb Ripley", requestNote: "I wish to learn spanish please spare some time"))
