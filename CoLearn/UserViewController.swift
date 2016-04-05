@@ -10,6 +10,7 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 import AFNetworking
+import ParseFacebookUtilsV4
 
 class UserViewController: UIViewController, FBSDKLoginButtonDelegate, UITableViewDelegate, UITableViewDataSource {
 
@@ -49,6 +50,7 @@ class UserViewController: UIViewController, FBSDKLoginButtonDelegate, UITableVie
         let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: params)
         graphRequest.startWithCompletionHandler { (connection, result, error) -> Void in
             if error == nil {
+                
                 print(result)
                 
 //                self.locationLabel.text = 

@@ -10,13 +10,16 @@ import UIKit
 import Parse
 import FBSDKCoreKit
 import FBSDKLoginKit
-
+    
 class CoLearnClient: NSObject {
     
     static let UserClass = "user"
     static let ScheduleClass = "schedule"
     static let LangCanTeachClass = "LanguagesCanTeach"
     static let LangToLearnClass = "LanguagesToLearn"
+    static var sharedInstance: CoLearnClient?
+    
+    //static var currentUserId: String?
     
 //    static let teachSpanishClass = "teachSpanish"
 //    static let teachEnglishClass = "teachEnglish"
@@ -29,6 +32,10 @@ class CoLearnClient: NSObject {
 
 //    static let LanguagesToLearnClass = "langtolearn"
     
+    override init(){
+        super.init()
+        CoLearnClient.sharedInstance = self
+    }
     
     /*------------------------------ User Information - Start ----------------------------------------*/
     // Get the User Information from Facebook, using Graph Request.
@@ -37,9 +44,10 @@ class CoLearnClient: NSObject {
         let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: params)
         graphRequest.startWithCompletionHandler { (connection, result, error) -> Void in
             if error == nil {
-                print("UserInfo From Facebook: " , result)
+                //print("UserInfo From Facebook: " , result)
                 let user:User = User()
                 user.userInfo = result
+                
                 success(user)
             } else {
                 print(error.localizedDescription)

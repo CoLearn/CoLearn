@@ -6,9 +6,10 @@
 //  Copyright © 2016 CoLearn. All rights reserved.
 //
 
-import UIKit	
+import UIKit
+import SWTableViewCell
 
-class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SWTableViewCellDelegate {
 
     @IBOutlet var approvalsTableView: UITableView!
     
@@ -30,6 +31,7 @@ class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableVie
         pendingApprovalMeetings.append(Meeting(language: "Italian" , mtime: "Sept 19th, 2016 @1pm", instructor: "Rahul Vasantham", learner: "Charlie Hieger", requestNote: "Can you help me in learning Italian? I won't take much of your time Rahul Sir. Let me know please."))
         pendingApprovalMeetings.append(Meeting(language: "Japanese" , mtime: "Dec 31st, 2016 @12noon", instructor: "Rahul Vasantham", learner: "Sachin Gandhi", requestNote: "I wish to learn spanish please spare some time"))
         
+        /*
         let rightSwipe = UISwipeGestureRecognizer(target: self, action: Selector("onRightSwipe:"))
         rightSwipe.direction = .Right
         self.approvalsTableView.addGestureRecognizer(rightSwipe)
@@ -37,7 +39,7 @@ class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableVie
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: Selector("onLeftSwipe:"))
         rightSwipe.direction = .Left
         self.approvalsTableView.addGestureRecognizer(leftSwipe)
-        
+        */
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,9 +50,33 @@ class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ApprovalsTableViewCell", forIndexPath: indexPath) as? ApprovalsTableViewCell
+        
+        
         //ScheduleTableViewCell()
+        cell!.delegate = self
+        let leftUtilityButtons: NSMutableArray = []
+        leftUtilityButtons.sw_addUtilityButtonWithColor(UIColor.redColor(), title: "Decline")
+        
+        let rightUtilityButtons: NSMutableArray = []
+        rightUtilityButtons.sw_addUtilityButtonWithColor(UIColor.greenColor(), title: "Accept")
+        
+        cell!.leftUtilityButtons = leftUtilityButtons as [AnyObject]
+        cell!.rightUtilityButtons = rightUtilityButtons as [AnyObject]
+        
         cell?.pendingApprovalMeeting = self.pendingApprovalMeetings[indexPath.row]
         return cell!
+    }
+    
+    func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerLeftUtilityButtonWithIndex index: Int) {
+        /*
+        self.pendingApprovalMeetings.removeAtIndex(indexPath.row)
+        self.approvalsTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+        */
+        
+    }
+    
+    func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerRightUtilityButtonWithIndex index: Int) {
+        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

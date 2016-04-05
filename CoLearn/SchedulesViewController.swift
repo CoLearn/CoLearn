@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import ParseUI
 
 class SchedulesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet var schedulesTableView: UITableView!
     
     var scheduledMeetings = [Meeting]()
-    
+    var currentUserId: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,23 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
         self.schedulesTableView.reloadData()
         self.schedulesTableView.rowHeight = UITableViewAutomaticDimension
         self.schedulesTableView.estimatedRowHeight = 120
+        
+        CoLearnClient.getUserInfoFromFacebook({ (user: User?) -> () in
+            if let id = user?.id{
+                self.currentUserId = id
+                print("CurrentUserId: \(self.currentUserId!)")
+                
+                CoLearnClient.getSchedules(self.currentUserId!, success: { (schedules: [PFObject]?) -> () in
+                    print("Received schedules from server: \(schedules)")
+                    }) { (error: NSError?) -> () in
+                        print(error?.localizedDescription)
+                }
+            }
+            }) { (error: NSError?) -> () in
+                print(error?.localizedDescription)
+        }
+        
+        
         
         print("Inside viewDidLoad of schedules")
         scheduledMeetings.append(Meeting(language: "Spanish" , mtime: "Apr 1st, 2016 @7:30am", instructor: "Rahul Vasantham", learner: "Caleb Ripley", requestNote: "I wish to learn spanish please spare some time"))

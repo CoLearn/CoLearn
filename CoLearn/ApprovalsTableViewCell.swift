@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import SWTableViewCell
 
-class ApprovalsTableViewCell: UITableViewCell {
+class ApprovalsTableViewCell: SWTableViewCell{
+    
 
     @IBOutlet weak var languageLabel: UILabel!
     
@@ -42,5 +44,7 @@ class ApprovalsTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    
 
 }
