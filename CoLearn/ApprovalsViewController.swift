@@ -64,19 +64,21 @@ class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableVie
         cell!.rightUtilityButtons = rightUtilityButtons as [AnyObject]
         
         cell?.pendingApprovalMeeting = self.pendingApprovalMeetings[indexPath.row]
+        cell?.index = indexPath.row
         return cell!
     }
     
     func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerLeftUtilityButtonWithIndex index: Int) {
-        /*
-        self.pendingApprovalMeetings.removeAtIndex(indexPath.row)
-        self.approvalsTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
-        */
         
+        let cellIndex = self.approvalsTableView.indexPathForCell(cell)
+        self.pendingApprovalMeetings.removeAtIndex((cellIndex?.row)!)
+        self.approvalsTableView.deleteRowsAtIndexPaths([cellIndex!], withRowAnimation: UITableViewRowAnimation.Fade)
     }
     
     func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerRightUtilityButtonWithIndex index: Int) {
-        
+        let cellIndex = self.approvalsTableView.indexPathForCell(cell)
+        self.pendingApprovalMeetings.removeAtIndex((cellIndex?.row)!)
+        self.approvalsTableView.deleteRowsAtIndexPaths([cellIndex!], withRowAnimation: UITableViewRowAnimation.Fade)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

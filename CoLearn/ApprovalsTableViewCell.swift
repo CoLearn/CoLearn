@@ -24,6 +24,8 @@ class ApprovalsTableViewCell: SWTableViewCell{
     
     @IBOutlet weak var feedbackCommentTextField: UITextField!
     
+    var index: Int?
+    
     var pendingApprovalMeeting: Meeting?{
         didSet{
             self.languageLabel.text = pendingApprovalMeeting?.language
