@@ -26,7 +26,7 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
         self.schedulesTableView.rowHeight = UITableViewAutomaticDimension
         self.schedulesTableView.estimatedRowHeight = 120
         
-        self.createSchedules()
+        //self.createSchedules()
         
         CoLearnClient.getUserInfoFromFacebook({ (user: User?) -> () in
             if let id = user?.id{
