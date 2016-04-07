@@ -91,9 +91,9 @@ class CoLearnClient: NSObject {
     // UserData from the DB is retrieved based on Id and PFObject is returned.
     class func getUserDataFromDB(id: String, success: (PFObject?) -> (), failure: (NSError?) -> ()) {
         
-        let keys = ["phoneNumber","about","country","state","timezone","city","author"]
+        //let keys = ["phoneNumber","about","country","state","timezone","city","author"]
         let query = PFQuery(className: UserClass)
-        query.includeKeys(keys)
+        //query.includeKeys(keys)
         query.whereKey("user_id", equalTo: id)
         
         query.getFirstObjectInBackgroundWithBlock { (userInfo: PFObject?, error: NSError?) in
@@ -248,8 +248,8 @@ class CoLearnClient: NSObject {
         let keys = ["author", "instructor_id", "language", "time", "timezone","request_note", "response_note","status"]
         let query = PFQuery(className: ScheduleClass)
         query.whereKey("user_id", equalTo: userId)
-        query.whereKey("status", containedIn: [Constants.APPROVED, Constants.PENDING, Constants.REJECTED])
-        query.includeKeys(keys)
+        //query.whereKey("status", containedIn: [Constants.APPROVED, Constants.PENDING, Constants.REJECTED])
+        //query.includeKeys(keys)
         
         query.findObjectsInBackgroundWithBlock { (schedulesInfo: [PFObject]?, error: NSError?) in
             if error != nil {
