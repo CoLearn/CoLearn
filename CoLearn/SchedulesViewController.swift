@@ -31,22 +31,22 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
         CoLearnClient.getUserInfoFromFacebook({ (user: User?) -> () in
             if let id = user?.id{
                 self.currentUserId = id
-                print("CurrentUserId: \(self.currentUserId!)")
+                //print("CurrentUserId: \(self.currentUserId!)")
                 
                 CoLearnClient.getSchedules(self.currentUserId!, success: { (schedules: [PFObject]?) -> () in
                     
                     if let receivedSchedules = schedules{
-                        print("Received schedules from server: \(schedules)")
-                        print("Adding schedules to collection")
+                        //print("Received schedules from server: \(schedules)")
+                        //print("Adding schedules to collection")
                         
                         for s in receivedSchedules{
                             
                             let userId = s["user_id"] as! String
-                            print("userID: \(userId)")
+                            //print("userID: \(userId)")
                             
                             
                             let instructorID = s["instructor_id"] as! String
-                            print("instructorID: \(instructorID)")
+                            //print("instructorID: \(instructorID)")
                             
                             let language: Languages.LangType
                             switch(s["language"] as! String){
@@ -56,7 +56,7 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
                                 case Constants.FRENCH: language = Languages.LangType.FRENCH
                                 default: language = Languages.LangType.ENGLISH
                             }
-                            print("Language: \(language.getName())")
+                            //print("Language: \(language.getName())")
                             
                             // let formatter = NSDateFormatter()
                             // formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"

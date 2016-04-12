@@ -22,6 +22,8 @@ class ScheduleTableViewCell: UITableViewCell {
     
     @IBOutlet weak var requestNoteLabel: UILabel!
     
+    @IBOutlet weak var flagPosterView: UIImageView!
+    
     /*
     var schedule: Meeting?{
         didSet{
@@ -36,6 +38,17 @@ class ScheduleTableViewCell: UITableViewCell {
     var schedule: Schedule?{
         didSet{
             languageLabel.text = schedule?.language.getName()
+            
+            if let language = schedule?.language.getName(){
+                switch language{
+                case Languages.LangType.CHINESE.getName(): self.flagPosterView.image = UIImage(named: "FlagOfChina")
+                case Languages.LangType.ENGLISH.getName(): self.flagPosterView.image = UIImage(named: "FlagOfBritain")
+                case Languages.LangType.FRENCH.getName(): self.flagPosterView.image = UIImage(named: "FlagOfFrance")
+                case Languages.LangType.SPANISH.getName(): self.flagPosterView.image = UIImage(named: "FlagOfSpain")
+                default: self.flagPosterView.image = UIImage(named: "FlagOfBritain")
+                }
+
+            }
             
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateStyle = .MediumStyle
