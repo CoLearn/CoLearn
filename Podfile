@@ -6,5 +6,6 @@ use_frameworks!
 target 'CoLearn' do
     pod 'ParseUI'
     pod 'AFNetworking'
+    pod 'SWTableViewCell', '~> 0.3.7'
 end
 

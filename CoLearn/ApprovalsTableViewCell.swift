@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import SWTableViewCell
 
-class ApprovalsTableViewCell: UITableViewCell {
+class ApprovalsTableViewCell: SWTableViewCell{
+    
 
     @IBOutlet weak var languageLabel: UILabel!
     
@@ -21,6 +23,8 @@ class ApprovalsTableViewCell: UITableViewCell {
     @IBOutlet weak var requestNoteLabel: UILabel!
     
     @IBOutlet weak var feedbackCommentTextField: UITextField!
+    
+    var index: Int?
     
     var pendingApprovalMeeting: Meeting?{
         didSet{
@@ -42,5 +46,7 @@ class ApprovalsTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    
 
 }

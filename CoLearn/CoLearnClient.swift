@@ -1,4 +1,4 @@
-//
+	//
 //  CoLearnClient.swift
 //  CoLearn
 //
@@ -9,12 +9,19 @@
 import UIKit
 import Parse
 
+import FBSDKCoreKit
+import FBSDKLoginKit
+    
+
 class CoLearnClient: NSObject {
     
     static let UserClass = "user"
     static let ScheduleClass = "schedule"
     static let LangCanTeachClass = "LanguagesCanTeach"
     static let LangToLearnClass = "LanguagesToLearn"
+    static var sharedInstance: CoLearnClient?
+    
+    //static var currentUserId: String?
     
 //    static let teachSpanishClass = "teachSpanish"
 //    static let teachEnglishClass = "teachEnglish"
@@ -27,9 +34,13 @@ class CoLearnClient: NSObject {
 
 //    static let LanguagesToLearnClass = "langtolearn"
     
+    override init(){
+        super.init()
+        CoLearnClient.sharedInstance = self
+    }
     
     /*------------------------------ User Information - Start ----------------------------------------*/
-    
+
 
     // Post User Information to the table.
     class func postUserInfo(user: User, withCompletion completion: PFBooleanResultBlock?) {
@@ -80,9 +91,11 @@ class CoLearnClient: NSObject {
     
     // UserData from the DB is retrieved based on Id and PFObject is returned.
     class func getUserDataFromDB(id: String, success: (PFObject?) -> (), failure: (NSError?) -> ()) {
+
 //        let keys = ["phoneNumber","about","country","state","timezone","city","author"]
         let query = PFQuery(className: UserClass)
 //        query.includeKeys(keys)
+
         query.whereKey("user_id", equalTo: id)
         
         query.getFirstObjectInBackgroundWithBlock { (userInfo: PFObject?, error: NSError?) in
@@ -266,6 +279,7 @@ class CoLearnClient: NSObject {
         query.whereKey("user_id", equalTo: userId)
         query.whereKey("status", containedIn: [Constants.APPROVED, Constants.PENDING, Constants.REJECTED])
 //        query.includeKeys(keys)
+
         
         query.findObjectsInBackgroundWithBlock { (schedulesInfo: [PFObject]?, error: NSError?) in
             if error != nil {

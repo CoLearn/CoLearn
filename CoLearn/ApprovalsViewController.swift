@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SWTableViewCell
 
-class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SWTableViewCellDelegate {
 
     @IBOutlet var approvalsTableView: UITableView!
     
@@ -21,6 +22,8 @@ class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableVie
         // Do any additional setup after loading the view.
         self.approvalsTableView.delegate = self
         self.approvalsTableView.dataSource = self
+        self.approvalsTableView.rowHeight = UITableViewAutomaticDimension
+        self.approvalsTableView.estimatedRowHeight = 120
         
         self.title = "Approvals"
         pendingApprovalMeetings.append(Meeting(language: "Spanish" , mtime: "Apr 1st, 2016 @7:30am", instructor: "Rahul Vasantham", learner: "Caleb Ripley", requestNote: "I wish to learn spanish. Please spare some time for me"))
@@ -28,6 +31,7 @@ class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableVie
         pendingApprovalMeetings.append(Meeting(language: "Italian" , mtime: "Sept 19th, 2016 @1pm", instructor: "Rahul Vasantham", learner: "Charlie Hieger", requestNote: "Can you help me in learning Italian? I won't take much of your time Rahul Sir. Let me know please."))
         pendingApprovalMeetings.append(Meeting(language: "Japanese" , mtime: "Dec 31st, 2016 @12noon", instructor: "Rahul Vasantham", learner: "Sachin Gandhi", requestNote: "I wish to learn spanish please spare some time"))
         
+        /*
         let rightSwipe = UISwipeGestureRecognizer(target: self, action: Selector("onRightSwipe:"))
         rightSwipe.direction = .Right
         self.approvalsTableView.addGestureRecognizer(rightSwipe)
@@ -35,7 +39,7 @@ class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableVie
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: Selector("onLeftSwipe:"))
         rightSwipe.direction = .Left
         self.approvalsTableView.addGestureRecognizer(leftSwipe)
-        
+        */
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,9 +50,35 @@ class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ApprovalsTableViewCell", forIndexPath: indexPath) as? ApprovalsTableViewCell
+        
+        
         //ScheduleTableViewCell()
+        cell!.delegate = self
+        let leftUtilityButtons: NSMutableArray = []
+        leftUtilityButtons.sw_addUtilityButtonWithColor(UIColor.redColor(), title: "Decline")
+        
+        let rightUtilityButtons: NSMutableArray = []
+        rightUtilityButtons.sw_addUtilityButtonWithColor(UIColor.greenColor(), title: "Accept")
+        
+        cell!.leftUtilityButtons = leftUtilityButtons as [AnyObject]
+        cell!.rightUtilityButtons = rightUtilityButtons as [AnyObject]
+        
         cell?.pendingApprovalMeeting = self.pendingApprovalMeetings[indexPath.row]
+        cell?.index = indexPath.row
         return cell!
+    }
+    
+    func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerLeftUtilityButtonWithIndex index: Int) {
+        
+        let cellIndex = self.approvalsTableView.indexPathForCell(cell)
+        self.pendingApprovalMeetings.removeAtIndex((cellIndex?.row)!)
+        self.approvalsTableView.deleteRowsAtIndexPaths([cellIndex!], withRowAnimation: UITableViewRowAnimation.Fade)
+    }
+    
+    func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerRightUtilityButtonWithIndex index: Int) {
+        let cellIndex = self.approvalsTableView.indexPathForCell(cell)
+        self.pendingApprovalMeetings.removeAtIndex((cellIndex?.row)!)
+        self.approvalsTableView.deleteRowsAtIndexPaths([cellIndex!], withRowAnimation: UITableViewRowAnimation.Fade)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

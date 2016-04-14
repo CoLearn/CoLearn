@@ -11,6 +11,8 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import AFNetworking
 import Parse
+import ParseFacebookUtilsV4
+
 
 class UserViewController: UIViewController, FBSDKLoginButtonDelegate, UITableViewDelegate, UITableViewDataSource {
 
@@ -52,6 +54,7 @@ class UserViewController: UIViewController, FBSDKLoginButtonDelegate, UITableVie
         self.presentViewController(viewController, animated: true, completion: nil)
     }
     
+
     // Need to make API call to our database for the language object that includes the language and the flag 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         

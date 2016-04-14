@@ -95,7 +95,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Jt-t8-0Rv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-204" y="1155"/>
+            <point key="canvasLocation" x="80" y="1157"/>
         </scene>
         <!--Approvals View Controller-->
         <scene sceneID="hrd-1s-PqP">
@@ -204,90 +204,100 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fhS-kP-uhv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="152" y="1384"/>
+            <point key="canvasLocation" x="926" y="1292"/>
         </scene>
         <!--Schedules View Controller-->
         <scene sceneID="Zvv-8d-HJE">
             <objects>
                 <viewController storyboardIdentifier="SchedulesViewController" id="lDn-oL-bLI" customClass="SchedulesViewController" customModule="CoLearn" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="118" sectionHeaderHeight="28" sectionFooterHeight="28" id="mNg-bl-hBT">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="101" sectionHeaderHeight="28" sectionFooterHeight="28" id="mNg-bl-hBT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ScheduleTableViewCell" rowHeight="118" id="NvG-qj-trv" customClass="ScheduleTableViewCell" customModule="CoLearn" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="320" height="118"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ScheduleTableViewCell" rowHeight="101" id="NvG-qj-trv" customClass="ScheduleTableViewCell" customModule="CoLearn" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="320" height="101"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NvG-qj-trv" id="lbo-Tl-iwd">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="117.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="100.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spanish" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RYE-Pr-aIk">
-                                            <rect key="frame" x="8" y="8" width="78" height="24"/>
+                                            <rect key="frame" x="51" y="9" width="78" height="24"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <color key="textColor" red="0.32856570509999999" green="0.0096231066019999995" blue="0.0095630274930000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instructor:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aff-gZ-2BS">
-                                            <rect key="frame" x="8" y="36" width="63" height="16"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <rect key="frame" x="8" y="35" width="59" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="April 2nd, 2016 @7:30am" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WU7-qL-3HD">
-                                            <rect key="frame" x="139" y="11" width="173" height="18"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <rect key="frame" x="169" y="13" width="143" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rahul" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x8X-RL-r8Y">
-                                            <rect key="frame" x="79" y="35" width="39" height="18"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <rect key="frame" x="80" y="34" width="37" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Learner:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hD-JZ-9uz">
-                                            <rect key="frame" x="8" y="60" width="50" height="16"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <rect key="frame" x="8" y="56" width="47" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caleb" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qfc-bl-PAi">
-                                            <rect key="frame" x="78" y="59" width="40" height="18"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <rect key="frame" x="80" y="55" width="38" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wJM-V3-z7D">
+                                            <rect key="frame" x="8" y="8" width="40" height="25"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="40" id="3KD-hs-SY0"/>
+                                                <constraint firstAttribute="height" constant="25" id="4rU-sj-b6T"/>
+                                            </constraints>
+                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Can you help me to learn?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wgC-iK-78E">
-                                            <rect key="frame" x="8" y="84" width="168" height="17"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <rect key="frame" x="8" y="77" width="147" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="WU7-qL-3HD" secondAttribute="trailing" constant="8" id="3kf-mM-tnZ"/>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="wgC-iK-78E" secondAttribute="trailing" constant="9" id="46W-GL-2uy"/>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Qfc-bl-PAi" secondAttribute="trailing" constant="10" id="4jr-hE-lS4"/>
-                                        <constraint firstItem="Qfc-bl-PAi" firstAttribute="leading" secondItem="7hD-JZ-9uz" secondAttribute="trailing" constant="20" id="At1-t6-Zyk"/>
-                                        <constraint firstItem="Qfc-bl-PAi" firstAttribute="centerY" secondItem="7hD-JZ-9uz" secondAttribute="centerY" id="HDz-vi-HOY"/>
-                                        <constraint firstAttribute="bottom" secondItem="wgC-iK-78E" secondAttribute="bottom" constant="16" id="HT8-tE-bUD"/>
-                                        <constraint firstItem="7hD-JZ-9uz" firstAttribute="leading" secondItem="lbo-Tl-iwd" secondAttribute="leading" constant="8" id="Oto-Kr-cz5"/>
-                                        <constraint firstItem="wgC-iK-78E" firstAttribute="leading" secondItem="lbo-Tl-iwd" secondAttribute="leading" constant="8" id="PX5-Bn-rYh"/>
-                                        <constraint firstItem="x8X-RL-r8Y" firstAttribute="leading" secondItem="aff-gZ-2BS" secondAttribute="trailing" constant="8" id="PdT-ol-tnX"/>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="x8X-RL-r8Y" secondAttribute="trailing" constant="10" id="UFp-ZZ-zdo"/>
-                                        <constraint firstItem="wgC-iK-78E" firstAttribute="top" secondItem="Qfc-bl-PAi" secondAttribute="bottom" constant="7" id="Y54-JR-KsZ"/>
-                                        <constraint firstItem="WU7-qL-3HD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RYE-Pr-aIk" secondAttribute="trailing" constant="9" id="YXL-he-ose"/>
-                                        <constraint firstItem="RYE-Pr-aIk" firstAttribute="leading" secondItem="lbo-Tl-iwd" secondAttribute="leading" constant="8" id="cu5-Hy-dco"/>
-                                        <constraint firstItem="RYE-Pr-aIk" firstAttribute="top" secondItem="lbo-Tl-iwd" secondAttribute="top" constant="8" id="goe-SM-qqq"/>
-                                        <constraint firstItem="WU7-qL-3HD" firstAttribute="centerY" secondItem="RYE-Pr-aIk" secondAttribute="centerY" id="leg-Yz-uVv"/>
-                                        <constraint firstItem="aff-gZ-2BS" firstAttribute="leading" secondItem="lbo-Tl-iwd" secondAttribute="leading" constant="8" id="m5t-Yz-0DT"/>
-                                        <constraint firstItem="7hD-JZ-9uz" firstAttribute="top" secondItem="aff-gZ-2BS" secondAttribute="bottom" constant="8" id="nXx-SD-TU2"/>
-                                        <constraint firstItem="aff-gZ-2BS" firstAttribute="top" secondItem="RYE-Pr-aIk" secondAttribute="bottom" constant="4" id="yRN-GE-PkW"/>
-                                        <constraint firstItem="x8X-RL-r8Y" firstAttribute="centerY" secondItem="aff-gZ-2BS" secondAttribute="centerY" id="zO6-kM-w0m"/>
+                                        <constraint firstItem="aff-gZ-2BS" firstAttribute="top" secondItem="wJM-V3-z7D" secondAttribute="bottom" constant="2" id="4Xx-ua-zi4"/>
+                                        <constraint firstItem="wgC-iK-78E" firstAttribute="leading" secondItem="lbo-Tl-iwd" secondAttribute="leading" constant="8" id="694-YE-vMo"/>
+                                        <constraint firstItem="wgC-iK-78E" firstAttribute="top" secondItem="Qfc-bl-PAi" secondAttribute="bottom" constant="5" id="8Cm-di-Ajd"/>
+                                        <constraint firstItem="x8X-RL-r8Y" firstAttribute="leading" secondItem="aff-gZ-2BS" secondAttribute="trailing" constant="13" id="8ju-dM-QYK"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="x8X-RL-r8Y" secondAttribute="trailing" constant="9" id="IgW-Jh-guR"/>
+                                        <constraint firstItem="Qfc-bl-PAi" firstAttribute="centerY" secondItem="7hD-JZ-9uz" secondAttribute="centerY" id="Jpx-lv-t5q"/>
+                                        <constraint firstItem="wJM-V3-z7D" firstAttribute="top" secondItem="lbo-Tl-iwd" secondAttribute="top" constant="8" id="K2h-6S-frC"/>
+                                        <constraint firstItem="RYE-Pr-aIk" firstAttribute="top" secondItem="lbo-Tl-iwd" secondAttribute="top" constant="9" id="MQr-oB-l2I"/>
+                                        <constraint firstItem="Qfc-bl-PAi" firstAttribute="leading" secondItem="7hD-JZ-9uz" secondAttribute="trailing" constant="25" id="S3C-BT-cim"/>
+                                        <constraint firstItem="WU7-qL-3HD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RYE-Pr-aIk" secondAttribute="trailing" constant="9" id="VgX-2h-JyH"/>
+                                        <constraint firstAttribute="trailing" secondItem="WU7-qL-3HD" secondAttribute="trailing" constant="8" id="Wj2-jK-pjA"/>
+                                        <constraint firstItem="WU7-qL-3HD" firstAttribute="top" secondItem="lbo-Tl-iwd" secondAttribute="top" constant="13" id="bex-P4-gkN"/>
+                                        <constraint firstItem="wJM-V3-z7D" firstAttribute="leading" secondItem="lbo-Tl-iwd" secondAttribute="leading" constant="8" id="edx-U0-WL6"/>
+                                        <constraint firstItem="aff-gZ-2BS" firstAttribute="leading" secondItem="lbo-Tl-iwd" secondAttribute="leading" constant="8" id="efs-R4-zeb"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Qfc-bl-PAi" secondAttribute="trailing" constant="9" id="hSb-7A-qJ1"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="wgC-iK-78E" secondAttribute="trailing" constant="9" id="lsa-Qw-fHc"/>
+                                        <constraint firstItem="RYE-Pr-aIk" firstAttribute="leading" secondItem="wJM-V3-z7D" secondAttribute="trailing" constant="3" id="nom-gf-ih3"/>
+                                        <constraint firstItem="7hD-JZ-9uz" firstAttribute="leading" secondItem="lbo-Tl-iwd" secondAttribute="leading" constant="8" id="qVT-it-sPS"/>
+                                        <constraint firstItem="7hD-JZ-9uz" firstAttribute="top" secondItem="aff-gZ-2BS" secondAttribute="bottom" constant="6" id="rv8-Gg-dVX"/>
+                                        <constraint firstAttribute="bottom" secondItem="wgC-iK-78E" secondAttribute="bottom" constant="8" id="tDQ-BO-Hkw"/>
+                                        <constraint firstItem="x8X-RL-r8Y" firstAttribute="centerY" secondItem="aff-gZ-2BS" secondAttribute="centerY" id="zhD-Q4-PEM"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="flagPosterView" destination="wJM-V3-z7D" id="cJJ-r6-jMP"/>
                                     <outlet property="instructorLabel" destination="x8X-RL-r8Y" id="qHh-bd-nba"/>
                                     <outlet property="languageLabel" destination="RYE-Pr-aIk" id="a7l-po-0s4"/>
                                     <outlet property="learnerLabel" destination="Qfc-bl-PAi" id="WEc-bl-FrO"/>
@@ -316,7 +326,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rUc-4V-IAe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="490" y="1384"/>
+            <point key="canvasLocation" x="926" y="570"/>
         </scene>
         <!--Add Schedule View Controller-->
         <scene sceneID="LOR-Yz-vlK">
@@ -332,7 +342,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TSn-F5-EIr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="852" y="1384"/>
+            <point key="canvasLocation" x="1358" y="570"/>
         </scene>
         <!--User-->
         <scene sceneID="RWq-KR-n9d">
@@ -726,7 +736,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lm9-fC-Pqo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="490" y="562"/>
+            <point key="canvasLocation" x="490" y="570"/>
         </scene>
     </scenes>
     <resources>
