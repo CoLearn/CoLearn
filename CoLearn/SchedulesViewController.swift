@@ -1,8 +1,6 @@
 //
 //  SchedulesViewController.swift
 //  CoLearn
-//
-//  Created by Rahul Krishna Vasantham on 3/9/16.
 //  Copyright © 2016 CoLearn. All rights reserved.
 //
 
@@ -13,7 +11,6 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
 
     @IBOutlet var schedulesTableView: UITableView!
     
-    //var scheduledMeetings = [Meeting]()
     var scheduledMeetings = [Schedule]()
     var currentUserId: String?
 
@@ -27,105 +24,26 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
         self.schedulesTableView.estimatedRowHeight = 120
         
         //self.createSchedules()
-        /*
-        CoLearnClient.getUserInfoFromFacebook({ (user: User?) -> () in
-            if let id = user?.id{
-                self.currentUserId = id
-                //print("CurrentUserId: \(self.currentUserId!)")
-                
-                CoLearnClient.getSchedules(currentUser?.id, success: { (schedules: [PFObject]?) -> () in
-                    
-                    if let receivedSchedules = schedules{
-                        //print("Received schedules from server: \(schedules)")
-                        //print("Adding schedules to collection")
-                        
-                        for s in receivedSchedules{
-                            
-                            let userId = s["user_id"] as! String
-                            //print("userID: \(userId)")
-                            
-                            
-                            let instructorID = s["instructor_id"] as! String
-                            //print("instructorID: \(instructorID)")
-                            
-                            let language: Languages.LangType
-                            switch(s["language"] as! String){
-                                case Constants.ENGLISH: language = Languages.LangType.ENGLISH
-                                case Constants.CHINESE: language = Languages.LangType.CHINESE
-                                case Constants.SPANISH: language = Languages.LangType.SPANISH
-                                case Constants.FRENCH: language = Languages.LangType.FRENCH
-                                default: language = Languages.LangType.ENGLISH
-                            }
-                            //print("Language: \(language.getName())")
-                            
-                            // let formatter = NSDateFormatter()
-                            // formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-                            //let time = formatter.dateFromString(s["time"] as! String)
-                            var time = NSDate()
-                            let timeString = s["time"] as? String
-                            if let str = timeString{
-                                //time = str.toDateTime()
-                            }else{
-                                print("Nil at time")
-                            }
-                            
-                            print("received time: \(s["time"])")
-                            print("time: \(time)")
-                            
-                            let timezone = NSTimeZone(name: s["timezone"] as! String)
-                            print("timezone: \(timezone)")
-                            
-                            let reqNote = s["request_note"] as! String
-                            print("reqNote: \(reqNote)")
-                            
-                            let resNote = s["response_note"] as! String
-                            print("resNote: \(resNote)")
-                            
-                            let status: ScheduleStatus.status
-                            switch (s["status"] as! String){
-                                case Constants.PENDING: status = ScheduleStatus.status.PENDING
-                                case Constants.APPROVED: status = ScheduleStatus.status.APPROVED
-                                case Constants.REJECTED: status = ScheduleStatus.status.REJECTED
-                                default: status = ScheduleStatus.status.PENDING
-                            }
-                            print("status: \(status.getName())")
-                            
-                            self.scheduledMeetings.append(Schedule(user_id: userId, instructor_id: instructorID, lang: language, time: time, timezone: timezone!, requestNote: reqNote, responseNote: resNote, scheduleStatus: status))
-                            self.schedulesTableView.reloadData()
-                            /*
-                            self.scheduledMeetings.append(Schedule(userId,
-                                instructor_id: s["instructor_id"] as! String,
-                                lang: language,
-                                time: NSDate(s["time"])!,
-                                timezone: NSTimezone(s["timezone"]),
-                                requestNote: s["request_note"],
-                                responseNote: s["response_note"] as! String,
-                                scheduleStatus: status
-                            ))
-                            */
-                        }
-                    }
-                    
-                    //scheduledMeetings.append
-                    }) { (error: NSError?) -> () in
-                        print("Error in getting schedules \(error?.localizedDescription)")
-                }
-            }
-            }) { (error: NSError?) -> () in
-                print(error?.localizedDescription)
-        }
-        */
         
+        self.schedulesTableView.dataSource = self
+        self.schedulesTableView.delegate = self
         
+        self.populateScheduleTable()
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "onRefreshAction:", forControlEvents: UIControlEvents.ValueChanged)
+        self.schedulesTableView.insertSubview(refreshControl, atIndex: 0)
+    }
+    
+    
+    func populateScheduleTable(){
         FacebookSDK.getUserInfoFromFacebook({ (user: User?) in
             if let user = user {
                 currentUser = user
-                print(currentUser?.id)
+                //print(currentUser?.id)
                 
                 CoLearnClient.getSchedules((currentUser?.id)!, success: { (schedules: [PFObject]?) in
                     if let receivedSchedules = schedules{
-                        //print("Received schedules from server: \(schedules)")
-                        //print("Adding schedules to collection")
                         
                         for s in receivedSchedules{
                             
@@ -144,21 +62,25 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
                             case Constants.FRENCH: language = Languages.LangType.FRENCH
                             default: language = Languages.LangType.ENGLISH
                             }
-                            //print("Language: \(language.getName())")
                             
-                            // let formatter = NSDateFormatter()
-                            // formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-                            //let time = formatter.dateFromString(s["time"] as! String)
                             var time = NSDate()
-                            let timeString = s["time"] as? String
-                            if let str = timeString{
-                                //time = str.toDateTime()
+                            let formatter = NSDateFormatter()
+                            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+                            
+                            if let dateString = s["time"] as? String{
+                                //print("s[\"time\"] successfully converted to string")
+                                if let d = formatter.dateFromString(dateString){
+                                    time = d
+                                }else{
+                                    print("formatter error")
+                                }
                             }else{
-                                print("Nil at time")
+                                print("error while converting s[\"time\"] to string")
                             }
                             
+                            
                             print("received time: \(s["time"])")
-                            print("time: \(time)")
+                            print("formatted time: \(time)")
                             
                             let timezone = NSTimeZone(name: s["timezone"] as! String)
                             print("timezone: \(timezone)")
@@ -180,53 +102,32 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
                             
                             self.scheduledMeetings.append(Schedule(user_id: userId, instructor_id: instructorID, lang: language, time: time, timezone: timezone!, requestNote: reqNote, responseNote: resNote, scheduleStatus: status))
                             self.schedulesTableView.reloadData()
-                            /*
-                             self.scheduledMeetings.append(Schedule(userId,
-                             instructor_id: s["instructor_id"] as! String,
-                             lang: language,
-                             time: NSDate(s["time"])!,
-                             timezone: NSTimezone(s["timezone"]),
-                             requestNote: s["request_note"],
-                             responseNote: s["response_note"] as! String,
-                             scheduleStatus: status
-                             ))
-                             */
                         }
                     }
-                }) { (error: NSError?) in
-                    print("Error in getting schedules \(error?.localizedDescription)")
+                    }) { (error: NSError?) in
+                        print("Error in getting schedules \(error?.localizedDescription)")
                 }
                 
             }
-        }) { (error: NSError?) in
-            print(error?.localizedDescription)
+            }) { (error: NSError?) in
+                print(error?.localizedDescription)
         }
-        /*
-        */
-
-        
-        /*
-        print("Inside viewDidLoad of schedules")
-        scheduledMeetings.append(Meeting(language: "Spanish" , mtime: "Apr 1st, 2016 @7:30am", instructor: "Rahul Vasantham", learner: "Caleb Ripley", requestNote: "I wish to learn spanish please spare some time"))
-        scheduledMeetings.append(Meeting(language: "German" , mtime: " Jun 23rd, 2016 @6pm", instructor: "Rahul Vasantham", learner: "Timothy Lee", requestNote: "I want to learn german"))
-        scheduledMeetings.append(Meeting(language: "Italian" , mtime: "Sept 19th, 2016 @1pm", instructor: "Rahul Vasantham", learner: "Charlie Hieger", requestNote: "Can you help me in learning Italian? I won't take much of your time Rahul Sir. Let me know please."))
-        scheduledMeetings.append(Meeting(language: "Japanese" , mtime: "Dec 31st, 2016 @12noon", instructor: "Rahul Vasantham", learner: "Sachin Gandhi", requestNote: "I wish to learn spanish please spare some time"))
-        */
-        
-        self.schedulesTableView.dataSource = self
-        self.schedulesTableView.delegate = self
-        
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: "onRefreshAction:", forControlEvents: UIControlEvents.ValueChanged)
-        self.schedulesTableView.insertSubview(refreshControl, atIndex: 0)
     }
-    
-    
     
     func createSchedules(){
         // CoLearn: 123042818089530
         // Satyam: 1265123510169659
-        let s = Schedule(user_id: "10153818548450873", instructor_id: "123042818089530", lang: Languages.LangType.FRENCH, time: NSDate(), timezone: NSTimeZone.localTimeZone(), requestNote: "Visit to France soon. It would be of great help to me if spare some time", responseNote: "", scheduleStatus: ScheduleStatus.status.PENDING)
+        // Caleb: 10153818548450873
+        
+        //2016-04-14T14:22:43+0000
+        //yyyy-MM-dd'T'HH:mm:ssZ
+        
+        var scheduleTime: NSDate
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        scheduleTime = formatter.dateFromString("2016-05-14T14:30:00+0000")!
+        
+        let s = Schedule(user_id: "1265123510169659", instructor_id: "10153818548450873", lang: Languages.LangType.ENGLISH, time: scheduleTime, timezone: NSTimeZone.localTimeZone(), requestNote: "Need help for GRE and TOEFL exams. Speaking to a native speaker would create a major impact.", responseNote: "", scheduleStatus: ScheduleStatus.status.PENDING)
         
         CoLearnClient.addASchedule(s) { (b: Bool, error: NSError?) -> Void in
             if let e = error{
@@ -287,7 +188,7 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
 }
-
+/*
 extension String
 {
     func toDateTime() -> NSDate
@@ -305,3 +206,4 @@ extension String
         return dateFromString
     }
 }
+*/

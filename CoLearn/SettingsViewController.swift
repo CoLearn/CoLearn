@@ -24,7 +24,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         
         setTextFields()
         disableTextFields()
-        hideKeyboardOnTapOutside()
+        //hideKeyboardOnTapOutside()
         
         self.aboutMeTextField.delegate = self
         self.nameTextField.delegate = self
@@ -131,7 +131,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func onTapView(sender: AnyObject) {
-        dismissKeyboard()
+        //dismissKeyboard()
     }
     
     

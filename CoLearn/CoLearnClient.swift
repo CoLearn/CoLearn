@@ -262,7 +262,10 @@ class CoLearnClient: NSObject {
         post["user_id"] = schedule.user_id
         post["instructor_id"] = schedule.instructor_id
         post["language"] = schedule.language.getName()
-        post["time"] = schedule.time.description
+        
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        post["time"] = formatter.stringFromDate(schedule.time)
         post["timezone"] = schedule.timezone.abbreviation
         post["request_note"] = schedule.requestNote
         post["response_note"] = schedule.responseNote
@@ -274,12 +277,32 @@ class CoLearnClient: NSObject {
     // Retrives all the schedules of the current user
     class func getSchedules(userId: String, success: ([PFObject]?) -> (), failure: (NSError?) -> ()) {
         
-//        let keys = ["author", "instructor_id", "language", "time", "timezone","request_note", "response_note","status"]
-        let query = PFQuery(className: ScheduleClass)
-        query.whereKey("user_id", equalTo: userId)
-        query.whereKey("status", containedIn: [Constants.APPROVED, Constants.PENDING, Constants.REJECTED])
-//        query.includeKeys(keys)
+        let learnerQuery = PFQuery(className: ScheduleClass)
+        learnerQuery.whereKey("user_id", equalTo: userId)
+        learnerQuery.whereKey("status", containedIn: [Constants.APPROVED, Constants.PENDING, Constants.REJECTED])
+        
+        let instructorQuery = PFQuery(className: ScheduleClass)
+        instructorQuery.whereKey("instructor_id", equalTo: userId)
+        instructorQuery.whereKey("status", containedIn: [Constants.APPROVED, Constants.PENDING, Constants.REJECTED])
+        
+        let queryArray = [learnerQuery, instructorQuery]
+        let mainQuery = PFQuery.orQueryWithSubqueries(queryArray)
 
+        mainQuery.findObjectsInBackgroundWithBlock { (schedulesInfo: [PFObject]?, error: NSError?) in
+            if error != nil {
+                failure(error)
+            } else {
+                success(schedulesInfo)
+            }
+        }
+    }
+    
+    // Retrives schedules pending on current user for approval
+    class func getApprovalSchedules(userId: String, success: ([PFObject]?) -> (), failure: (NSError?) -> ()) {
+        
+        let query = PFQuery(className: ScheduleClass)
+        query.whereKey("instructor_id", equalTo: userId)
+        query.whereKey("status", equalTo: Constants.PENDING)
         
         query.findObjectsInBackgroundWithBlock { (schedulesInfo: [PFObject]?, error: NSError?) in
             if error != nil {
@@ -289,6 +312,7 @@ class CoLearnClient: NSObject {
             }
         }
     }
+
     
     // Updating the schedule of the current user
     class func updateScheduleStatus(sch_id : String, newStatus: ScheduleStatus.status, withCompletion completion: PFBooleanResultBlock?) {

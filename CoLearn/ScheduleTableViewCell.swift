@@ -24,16 +24,8 @@ class ScheduleTableViewCell: UITableViewCell {
     
     @IBOutlet weak var flagPosterView: UIImageView!
     
-    /*
-    var schedule: Meeting?{
-        didSet{
-            languageLabel.text = schedule?.language
-            meetingDatatime.text = schedule?.mtime
-            instructorLabel.text = schedule?.instructor
-            learnerLabel.text = schedule?.learner
-            requestNoteLabel.text = schedule?.requestNote
-        }
-    }*/
+    @IBOutlet weak var statusPoster: UIImageView!
+    
     
     var schedule: Schedule?{
         didSet{
@@ -52,22 +44,11 @@ class ScheduleTableViewCell: UITableViewCell {
             
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateStyle = .MediumStyle
-            dateFormatter.timeStyle = .NoStyle
+            dateFormatter.timeStyle = .ShortStyle
             dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
-            
-            let date = dateFormatter.stringFromDate((schedule?.time)!)
-            
-            let timeFormatter = NSDateFormatter()
-            timeFormatter.dateFormat = "HH:mm"
-            let time = timeFormatter.stringFromDate((schedule?.time)!)
-            
-            meetingDatatime.text = "\(date) @\(time)"
-            
-            //meetingDatatime.text = "\(schedule?.time)"
-            
+            meetingDatatime.text = dateFormatter.stringFromDate((schedule?.time)!)
             
             instructorLabel.text = schedule?.instructor_id
-            //let instructor =
             CoLearnClient.getUserDataFromDB((schedule?.instructor_id)!, success: { (user: PFObject?) -> () in
                 print(user)
                 self.instructorLabel.text = user!["name"] as? String
@@ -84,6 +65,16 @@ class ScheduleTableViewCell: UITableViewCell {
             }
             
             requestNoteLabel.text = schedule?.requestNote
+            
+            if let staus = schedule?.scheduleStatus.getName(){
+                switch staus{
+                case Constants.APPROVED: self.statusPoster.image = UIImage(named: "approved")
+                case Constants.REJECTED: self.statusPoster.image = UIImage(named: "rejected")
+                case Constants.PENDING: self.statusPoster.image = UIImage(named: "pending")
+                default: self.statusPoster.image = UIImage(named: "pending")
+                }
+                
+            }
         }
     }
     
