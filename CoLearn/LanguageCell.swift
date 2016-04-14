@@ -7,19 +7,13 @@
 //
 
 import UIKit
+import Parse
 
 class LanguageCell: UITableViewCell {
     
     @IBOutlet weak var languageLabel: UILabel!
     @IBOutlet weak var flagImageView: UIImageView!
     
-//    var language: langauges! {
-//        didSet {
-//            langauge.languagelabel =
-//            langauge.flagImageView =
-//        }
-//    }
-
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

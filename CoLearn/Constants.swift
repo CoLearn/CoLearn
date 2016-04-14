@@ -18,4 +18,6 @@ class Constants: NSObject {
     static let PENDING = "Pending"
     static let REJECTED = "Rejected"
     static let COMPLETED = "Completed"
+    
+    static let USER_OBJECT_NAME = "currentUser"
 }

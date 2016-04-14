@@ -20,7 +20,7 @@ extension String {
 class LanguagesChosen: NSObject {
     
     var id: String!
-    var lanuages = Set<Languages.LangType>() // Chosen a set, as a language can be added only once.
+    var languages = Set<Languages.LangType>() // Chosen a set, as a language can be added only once.
     
     init(id:String, language: String) {
         
@@ -32,13 +32,13 @@ class LanguagesChosen: NSObject {
         for lang in languages {
             switch lang.condenseWhitespace() {
                 case Constants.CHINESE:
-                    self.lanuages.insert(Languages.LangType.CHINESE)
+                    self.languages.insert(Languages.LangType.CHINESE)
                 case Constants.ENGLISH:
-                    self.lanuages.insert(Languages.LangType.ENGLISH)
+                    self.languages.insert(Languages.LangType.ENGLISH)
                 case Constants.FRENCH:
-                    self.lanuages.insert(Languages.LangType.FRENCH)
+                    self.languages.insert(Languages.LangType.FRENCH)
                 case Constants.SPANISH:
-                    self.lanuages.insert(Languages.LangType.SPANISH)
+                    self.languages.insert(Languages.LangType.SPANISH)
                 default: ()
             }
         }
@@ -46,15 +46,16 @@ class LanguagesChosen: NSObject {
     
     // Add a language to the set
     func addLanguage(lang: Languages.LangType) {
-        lanuages.insert(lang)
+        print(lang)
+        languages.insert(lang)
     }
     
     // Return the list of Languages in a string format.
     func toString() -> String {
-        
+        print("to string method called")
         var response:String = ""
         
-        for lang in lanuages {
+        for lang in languages {
             response += "\(lang.getName()),"
         }
         

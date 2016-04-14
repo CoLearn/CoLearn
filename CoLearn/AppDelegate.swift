@@ -30,13 +30,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let result = FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions:launchOptions)
         
         if(FBSDKAccessToken.currentAccessToken() != nil) {
-            print("AppDelegate : logged in :-)")
             let story = UIStoryboard(name: "Main", bundle: nil)
             let vc = story.instantiateViewControllerWithIdentifier("MainPageViewController")
             window?.rootViewController = vc
             return true
         } else {
-            print("AppDelegate : not logged in :-(")
             return result
         }
 //        return true

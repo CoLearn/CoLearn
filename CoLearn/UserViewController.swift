@@ -10,6 +10,7 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 import AFNetworking
+import Parse
 
 class UserViewController: UIViewController, FBSDKLoginButtonDelegate, UITableViewDelegate, UITableViewDataSource {
 
@@ -21,10 +22,13 @@ class UserViewController: UIViewController, FBSDKLoginButtonDelegate, UITableVie
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var facebookLogoutButton: FBSDKLoginButton!
     @IBOutlet weak var languageTableView: UITableView!
+    var user: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getUserInfo()
+        
+        setUserProperties()
+        
         facebookLogoutButton.delegate = self
         
         languageTableView.dataSource = self
@@ -32,6 +36,10 @@ class UserViewController: UIViewController, FBSDKLoginButtonDelegate, UITableVie
         languageTableView.rowHeight = UITableViewAutomaticDimension
         languageTableView.estimatedRowHeight = 60
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        setUserProperties()
     }
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
@@ -44,53 +52,60 @@ class UserViewController: UIViewController, FBSDKLoginButtonDelegate, UITableVie
         self.presentViewController(viewController, animated: true, completion: nil)
     }
     
-    func getUserInfo() {
-        let params = ["fields":"id, name, first_name, last_name, email, picture, cover, about, friends, locale, location,  timezone"]
-        let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: params)
-        graphRequest.startWithCompletionHandler { (connection, result, error) -> Void in
-            if error == nil {
-                print(result)
-                
-//                self.locationLabel.text = 
-//                self.rewardsLabel.text =   // Need to make API calls to our database for these
-                
-                self.nameLabel.text = result["name"] as? String
-                self.taglineLabel.text = result["about"] as? String
-                print(result["about"]) // Doesn't give me anything, not sure if it is a code problem or FB's database hasn't registered that I just updated my about me section?
-                
-                let picture = result["picture"] as? NSDictionary
-                let data = picture!["data"] as? NSDictionary
-                let profileImageUrl = data!["url"] as? String
-                if let profileImageUrl = profileImageUrl {
-                    self.profilePictureImageView.setImageWithURL(NSURL(string: profileImageUrl)!)
-                }
-                
-                if let cover = data!["cover"] as? NSDictionary {
-                    if let coverPhotoUrl = cover["source"] as? String {
-                        self.coverPhotoImageView.setImageWithURL(NSURL(string: coverPhotoUrl)!)
-                    }
-                }
-
-            } else {
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
     // Need to make API call to our database for the language object that includes the language and the flag 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if let languages = langauges {
-//            return languages!.count
-//        } else {
+        
+        if let user = self.user {
+            return (user.languagesCanTeach?.languages.count)!
+        } else {
             return 0
-//        }
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("LanguageCell", forIndexPath: indexPath) as! LanguageCell
-        
+
+        let langs = Array(arrayLiteral: user?.languagesCanTeach?.languages)
+//        let langType: Languages.LangType = langs[indexPath.row]
+        let language = "\(langs[indexPath.row])"
+        switch language {
+            case "0":
+            cell.languageLabel.text = Constants.SPANISH
+            case "1":
+            cell.languageLabel.text = Constants.CHINESE
+            case "2":
+            cell.languageLabel.text = Constants.FRENCH
+            case "3":
+            cell.languageLabel.text = Constants.ENGLISH
+            default:
+            cell.languageLabel.text = Constants.ENGLISH
+        }
         
         return cell
     }
+    
+    private func setUserProperties() {
+        if let about = currentUser?.about {
+            taglineLabel.text = about
+        }
+//        rewardsLabel.text = 
+        if let location = currentUser?.location?.loc {
+            locationLabel.text = location
+        }
+        if  let profilePic = currentUser?.profilePictureURL {
+            profilePictureImageView.setImageWithURL(profilePic)
+        }
+        if let coverPhoto = currentUser?.coverPictureURL {
+            coverPhotoImageView.setImageWithURL(coverPhoto)
+        }
+        if let name = currentUser?.fullName {
+            nameLabel.text = name
+        }
+    }
+    
+    @IBAction func onPressSettings(sender: AnyObject) {
+        
+    }
+    
     
 }

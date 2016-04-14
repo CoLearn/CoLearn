@@ -10,27 +10,22 @@ import UIKit
 
 class Location: NSObject {
     
-    var city: String?
-    var state: String?
+    var loc: String? //City, State
     var country: String
     var timeZone: String
     
     init( country: String, timeZone: String) {
         self.country = country
         self.timeZone = timeZone
-        self.city = ""
-        self.state = ""
+        self.loc = ""
     }
     
-    init( country: String, timeZone: String, city: String?, state: String?) {
-        if let city = city {
-            self.city = city
+    init( country: String, timeZone: String, loc: String?) {
+        if let loc = loc {
+            self.loc = loc
         }
-        if let state = state {
-            self.state = state
-        }
+        
         self.country = country
         self.timeZone = timeZone
     }
-    
 }

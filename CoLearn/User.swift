@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import Parse
 
 class User: NSObject {
     
     var id: String!
     var firstName: String!
     var lastName: String!
+    var fullName: String!
+    var email: String!
     var phoneNumber: String?
     var about: String?
     var rewards: String?
@@ -20,57 +23,76 @@ class User: NSObject {
     var profilePictureURL: NSURL?
     var coverPictureURL: NSURL?
     var location: Location?
+    var languagesCanTeach: LanguagesChosen?
+    var languagesToLearn: LanguagesChosen?
     
-    var userInfo: AnyObject? {
+    
+    class func setUserInfoFromDB(userInfo: AnyObject?) -> User {
+    let user = User()
+    
+        if userInfo != nil {
+            CoLearnClient.getUserDataFromDB((currentUser?.id)!, success: { (userInfo: PFObject?) in
+
+                if let about = userInfo!["about"] {
+                    currentUser!.about = about as? String
+                }
+                if let name = userInfo!["name"] {
+                    currentUser!.fullName = name as? String
+                }
+                if let location = userInfo!["loc"] {
+                    currentUser!.location?.loc = location as? String
+                }
+                if let phoneNum = userInfo!["phoneNumber"] {
+                    currentUser!.phoneNumber = phoneNum as? String
+                }
+
+                }, failure: { (error: NSError?) in
+                    print(error?.localizedDescription)
+            })
+           
+        }
+    
+    return user
+    }
+    
+    var learnLang: [PFObject]? {
         didSet {
-            if let userInfo = userInfo {
-                // Id
-                if let id = userInfo["id"] as? String{
-                    self.id = id
+            for lanObject in learnLang! {
+                switch lanObject["lang"] as! String {
+                case "English":
+                    languagesToLearn?.addLanguage(Languages.LangType.ENGLISH)
+                case "French":
+                    languagesToLearn?.addLanguage(Languages.LangType.FRENCH)
+                case "Spanish":
+                    languagesToLearn?.addLanguage(Languages.LangType.SPANISH)
+                case "Chinese":
+                    languagesToLearn?.addLanguage(Languages.LangType.CHINESE)
+                default: ()
                 }
-                // First Name
-                if let firstName = userInfo["first_name"] as? String {
-                    self.firstName = firstName
+            }
+        }
+    }
+    
+    var teachLang: [PFObject]? {
+        didSet {
+            for lanObject in teachLang! {
+                switch lanObject["lang"] as! String {
+                case "English":
+                    languagesCanTeach?.addLanguage(Languages.LangType.ENGLISH)
+                case "French":
+                    languagesCanTeach?.addLanguage(Languages.LangType.FRENCH)
+                case "Spanish":
+                    languagesCanTeach?.addLanguage(Languages.LangType.SPANISH)
+                case "Chinese":
+                    languagesCanTeach?.addLanguage(Languages.LangType.CHINESE)
+                default: ()
                 }
-                // Last Name
-                if let lastName = userInfo["last_name"] as? String {
-                    self.lastName = lastName
-                }
-                // About
-                if let about = userInfo["about"] as? String {
-                    self.about = about
-                } else {
-                    self.about = ""
-                }
-                // Location
-                let timeZone = userInfo["timezone"] as? Int
-                let locale = userInfo["locale"] as? String
-                if let timeZone = timeZone {
-                    if let locale = locale {
-                        self.location = Location(country: locale, timeZone: "\(timeZone)")
-                    }
-                }
-                //Profile Picture
-                if let picture = userInfo["picture"] as? NSDictionary{
-                    if let data = picture["data"] as? NSDictionary {
-                        if let profileImageUrl = data["url"] as? String {
-                            self.profilePictureURL =  NSURL(string: profileImageUrl)
-                        }
-                    }
-                }
-                // Cover Picture
-                if let cover = userInfo["cover"] as? NSDictionary {
-                    if let coverPhotoUrl = cover["source"] as? String {
-                            self.coverPictureURL = NSURL(string: coverPhotoUrl)
-                    }
-                }
-                
                 
             }
         }
     }
     
     func toString() -> String{
-        return "User: { [id: \(self.id)] [First Name: \(self.firstName)] [Last Name: \(self.lastName)] [Phone: \(self.phoneNumber)] [About: \(self.about)] [Country: \(self.location?.country)] [State: \(self.location?.state)] [City: \(self.location?.city)] [Timezone: \(self.location?.timeZone)] [Rewards: \(self.rewards)]"
+        return "User: { [id: \(self.id)] [First Name: \(self.firstName)] [Last Name: \(self.lastName)] [Phone: \(self.phoneNumber)] [About: \(self.about)] [Country: \(self.location?.country)] [Location: \(self.location?.loc)] [Timezone: \(self.location?.timeZone)] [Rewards: \(self.rewards)]"
     }
 }

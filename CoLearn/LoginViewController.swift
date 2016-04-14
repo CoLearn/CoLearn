@@ -18,15 +18,13 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate {
         super.viewDidLoad()
         
         facebookLoginButton.delegate = self
-        facebookLoginButton.readPermissions = ["email"]
+        facebookLoginButton.readPermissions = ["email", "user_about_me", "user_hometown", "user_location", "user_status"]
     }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        print("Logged out")
     }
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
-        print("Logged in")
         self.facebookLoginButton.hidden = true
         if(error == nil) {
             self.performSegueWithIdentifier("loginSegue", sender: nil)

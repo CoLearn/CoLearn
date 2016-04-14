@@ -8,8 +8,6 @@
 
 import UIKit
 import Parse
-import FBSDKCoreKit
-import FBSDKLoginKit
 
 class CoLearnClient: NSObject {
     
@@ -31,61 +29,60 @@ class CoLearnClient: NSObject {
     
     
     /*------------------------------ User Information - Start ----------------------------------------*/
-    // Get the User Information from Facebook, using Graph Request.
-    class func getUserInfoFromFacebook(success: (User?) -> (), failure: (NSError?) -> () ) {
-        let params = ["fields":"id, name, first_name, last_name, picture, cover, locale, location, timezone"]
-        let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: params)
-        graphRequest.startWithCompletionHandler { (connection, result, error) -> Void in
-            if error == nil {
-                print("UserInfo From Facebook: " , result)
-                let user:User = User()
-                user.userInfo = result
-                success(user)
-            } else {
-                print(error.localizedDescription)
-                failure(error)
-            }
-        }
-    }
+    
 
     // Post User Information to the table.
     class func postUserInfo(user: User, withCompletion completion: PFBooleanResultBlock?) {
         
-        let post = PFObject(className: UserClass)
-        
-        post["user_id"] = user.id
-        if let phoneNumber = user.phoneNumber {
-            post["phoneNumber"] = phoneNumber
-        } else {
-            post["phoneNumber"] = "(+XX XXX XXX XXXX)"
-        }
-        if let about = user.about {
-            post["about"] = about
-        }
-        if let location = user.location {
-            post["country"] = location.country
-            post["timezone"] = location.timeZone
-            if let city = location.city {
-                post["city"] = city
-            } else {
-                post["city"] = "---------"
+        // Save a new User if the user doesn't exist
+        isUserAlreadySaved(user.id) { (status: Bool?) in
+            if let status = status {
+                if status == false {
+                    let post = PFObject(className: UserClass)
+                    
+                    post["user_id"] = user.id
+                    if let phoneNumber = user.phoneNumber {
+                        post["phoneNumber"] = phoneNumber
+                    } else {
+                        post["phoneNumber"] = ""
+                    }
+                    if let about = user.about {
+                        post["about"] = about
+                    } else {
+                        post["about"] = ""
+                    }
+                    if let location = user.location {
+                        post["country"] = location.country
+                        post["timezone"] = location.timeZone
+                        if let loc = location.loc {
+                            post["loc"] = loc
+                        } else {
+                            post["loc"] = ""
+                        }
+                    } else {
+                        post["country"] = ""
+                        post["timezone"] = ""
+                        post["loc"] = ""
+                    }
+                    
+                    if let name = user.fullName {
+                        post["name"] = name
+                    } else {
+                        post["name"] = ""
+                    }
+                    
+                    post.saveInBackgroundWithBlock(completion)
+                }
             }
-            if let state = location.state {
-                post["state"] = state
-            } else {
-                post["state"] = "------"
-            }
         }
         
-        post.saveInBackgroundWithBlock(completion)
     }
     
     // UserData from the DB is retrieved based on Id and PFObject is returned.
     class func getUserDataFromDB(id: String, success: (PFObject?) -> (), failure: (NSError?) -> ()) {
-        
-        let keys = ["phoneNumber","about","country","state","timezone","city","author"]
+//        let keys = ["phoneNumber","about","country","state","timezone","city","author"]
         let query = PFQuery(className: UserClass)
-        query.includeKeys(keys)
+//        query.includeKeys(keys)
         query.whereKey("user_id", equalTo: id)
         
         query.getFirstObjectInBackgroundWithBlock { (userInfo: PFObject?, error: NSError?) in
@@ -100,9 +97,11 @@ class CoLearnClient: NSObject {
     // Update the User Information on DB.
     class func updateUserDataOnDB(user: User, status: (NSError?) -> (), withCompletion completion: PFBooleanResultBlock?) {
         
-        let keys = ["phoneNumber","about","country","state","timezone","city","author"]
+//        let keys = ["phoneNumber","about","country","state","timezone","city","author"]
         let query = PFQuery(className: UserClass)
-        query.includeKeys(keys)
+//        query.includeKey("phoneNumber")
+//        query.includeKey("name")
+//        query.includeKey("about")
         query.whereKey("user_id", equalTo: user.id)
         
         query.getFirstObjectInBackgroundWithBlock { (userInfo: PFObject?, error: NSError?) in
@@ -110,18 +109,43 @@ class CoLearnClient: NSObject {
                 status(error)
             } else {
                 if let userInfo = userInfo {
-                    userInfo["phoneNumber"] = user.phoneNumber
-                    userInfo["about"] = user.about
-                    userInfo["country"] = user.location?.country
-                    userInfo["state"] = user.location?.state
-                    userInfo["timezone"] = user.timeZone
-                    userInfo["city"] = user.location?.city
+                    if let phoneNum = user.phoneNumber {
+                        userInfo["phoneNumber"] = phoneNum as String
+                    }
+                    if let name = user.fullName {
+                        userInfo["name"] = name as String
+                    }
+                    if let about = user.about {
+                        userInfo["about"] = about as String
+                    }
+                    if let country = user.location?.country {
+                        userInfo["country"] = country as String
+                    }
+                    if let location = user.location?.loc {
+                        userInfo["loc"] = location as String
+                    }
+                    if let timeZone = user.timeZone {
+                        userInfo["timezone"] = timeZone as String
+                    }
                     userInfo.saveInBackgroundWithBlock(completion)
                 }
             }
         }
     }
-    /*------------------------------ User Information - Start ----------------------------------------*/
+    
+    class func isUserAlreadySaved(id: String, success: (Bool?) -> ()) {
+        getUserDataFromDB(id, success: { (user: PFObject?) in
+            if user == nil {
+                success(false)
+            } else {
+                success(true)
+            }
+        }) { (error: NSError?) in
+            success(false)
+        }
+
+    }
+     /*------------------------------ User Information - Start ----------------------------------------*/
     
     /* ---------------------- Post the Languages chosen to Teach to DB - Start ----------------------------------*/
     class func postLanguagesToTeach(langToTeach: Languages.LangType, user_id: String, withCompletion completion: PFBooleanResultBlock?) {
@@ -150,8 +174,8 @@ class CoLearnClient: NSObject {
         }
     }
     
-    // Languages an User can Teach
-    private class func getLanguagesCanTeachByAnUser(user_id: String, success: ([PFObject]?) -> (), failure: (NSError?) -> ()){
+    // Languages a User can Teach
+    class func getLanguagesCanTeachByAnUser(user_id: String, success: ([PFObject]?) -> (), failure: (NSError?) -> ()){
         
         //Query
         let query = PFQuery(className: LangCanTeachClass)
@@ -180,8 +204,8 @@ class CoLearnClient: NSObject {
         post.saveInBackgroundWithBlock(completion)
     }
     
-    // All the users taht want to learn a specific langauge
-    private class func getUsersToLearnALanguage(langType: Languages.LangType, success: ([PFObject]?) -> (), failure: (NSError?) -> ()){
+    // All the users that want to learn a specific langauge
+    class func getUsersToLearnALanguage(langType: Languages.LangType, success: ([PFObject]?) -> (), failure: (NSError?) -> ()){
         
         //Query
         let query = PFQuery(className: LangToLearnClass)
@@ -197,8 +221,8 @@ class CoLearnClient: NSObject {
         }
     }
     
-    // All the languages an user wants to learn
-    private class func getLanguagesToLearnByAnUser(user_id: String, success: ([PFObject]?) -> (), failure: (NSError?) -> ()){
+    // All the languages a user wants to learn
+    class func getLanguagesToLearnByAnUser(user_id: String, success: ([PFObject]?) -> (), failure: (NSError?) -> ()){
         
         //Query
         let query = PFQuery(className: LangToLearnClass)
@@ -237,11 +261,11 @@ class CoLearnClient: NSObject {
     // Retrives all the schedules of the current user
     class func getSchedules(userId: String, success: ([PFObject]?) -> (), failure: (NSError?) -> ()) {
         
-        let keys = ["author", "instructor_id", "language", "time", "timezone","request_note", "response_note","status"]
+//        let keys = ["author", "instructor_id", "language", "time", "timezone","request_note", "response_note","status"]
         let query = PFQuery(className: ScheduleClass)
         query.whereKey("user_id", equalTo: userId)
         query.whereKey("status", containedIn: [Constants.APPROVED, Constants.PENDING, Constants.REJECTED])
-        query.includeKeys(keys)
+//        query.includeKeys(keys)
         
         query.findObjectsInBackgroundWithBlock { (schedulesInfo: [PFObject]?, error: NSError?) in
             if error != nil {
@@ -255,10 +279,10 @@ class CoLearnClient: NSObject {
     // Updating the schedule of the current user
     class func updateScheduleStatus(sch_id : String, newStatus: ScheduleStatus.status, withCompletion completion: PFBooleanResultBlock?) {
         
-        let key = "status"
+//        let key = "status"
         let query = PFQuery(className: ScheduleClass)
         query.whereKey("sch_id", equalTo: sch_id)
-        query.includeKey(key)
+//        query.includeKey(key)
         
         query.getFirstObjectInBackgroundWithBlock { (schedule: PFObject?, error: NSError?) in
             if error == nil {

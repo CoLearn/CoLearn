@@ -22,7 +22,6 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
         self.title = "Schedule"
         self.schedulesTableView.reloadData()
         
-        print("Inside viewDidLoad of schedules")
         scheduledMeetings.append(Meeting(language: "Spanish" , mtime: "Apr 1st, 2016 @7:30am", instructor: "Rahul Vasantham", learner: "Caleb Ripley", requestNote: "I wish to learn spanish please spare some time"))
         scheduledMeetings.append(Meeting(language: "German" , mtime: " Jun 23rd, 2016 @6pm", instructor: "Rahul Vasantham", learner: "Timothy Lee", requestNote: "I want to learn german"))
         scheduledMeetings.append(Meeting(language: "Italian" , mtime: "Sept 19th, 2016 @1pm", instructor: "Rahul Vasantham", learner: "Charlie Hieger", requestNote: "Can you help me in learning Italian? I won't take much of your time Rahul Sir. Let me know please."))
@@ -38,8 +37,7 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
 
     @IBAction func onClick(sender: AnyObject) {
         
-        CoLearnClient.getUserInfoFromFacebook({ (user: User?) in
-            print(user?.toString())
+        FacebookSDK.getUserInfoFromFacebook({ (user: User?) in
             if let user = user {
                 CoLearnClient.postUserInfo(user, withCompletion: { (status: Bool, error: NSError?) in
                     if status {
