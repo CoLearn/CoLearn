@@ -50,7 +50,7 @@ class ScheduleTableViewCell: UITableViewCell {
             
             instructorLabel.text = schedule?.instructor_id
             CoLearnClient.getUserDataFromDB((schedule?.instructor_id)!, success: { (user: PFObject?) -> () in
-                print(user)
+                //print(user)
                 self.instructorLabel.text = user!["name"] as? String
                 }) { (error: NSError?) -> () in
                     print("Error getting the user info from db \(error?.localizedDescription)")
@@ -58,7 +58,7 @@ class ScheduleTableViewCell: UITableViewCell {
             
             learnerLabel.text = schedule?.user_id
             CoLearnClient.getUserDataFromDB((schedule?.user_id)!, success: { (user: PFObject?) -> () in
-                print(user)
+                //print(user)
                 self.learnerLabel.text = user!["name"] as? String
                 }) { (error: NSError?) -> () in
                     print("Error getting the user info from db \(error?.localizedDescription)")

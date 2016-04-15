@@ -27,6 +27,16 @@ class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableVie
         self.approvalsTableView.rowHeight = UITableViewAutomaticDimension
         self.approvalsTableView.estimatedRowHeight = 120
         self.populateApprovalsTable()
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "onRefreshAction:", forControlEvents: UIControlEvents.ValueChanged)
+        self.approvalsTableView.insertSubview(refreshControl, atIndex: 0)
+    }
+    
+    func onRefreshAction(refreshControl: UIRefreshControl){
+        self.populateApprovalsTable()
+        self.approvalsTableView.reloadData()
+        refreshControl.endRefreshing()
     }
     
     func populateApprovalsTable(){
@@ -93,8 +103,16 @@ class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableVie
                             }
                             print("status: \(status.getName())")
                             
-                            self.approvalMeetings.append(Schedule(user_id: userId, instructor_id: instructorID, lang: language, time: time, timezone: timezone!, requestNote: reqNote, responseNote: resNote, scheduleStatus: status))
+                            var schedule_id = "unknown"
+                            if let sch_id = s.objectId{
+                                schedule_id = sch_id
+                            }else{
+                                print("Error in getting schedule id")
+                            }
+                            self.approvalMeetings.append(Schedule(sch_id: schedule_id, user_id: userId, instructor_id: instructorID, lang: language, time: time, timezone: timezone!, requestNote: reqNote, responseNote: resNote, scheduleStatus: status))
                             self.approvalsTableView.reloadData()
+                            
+                            
                         }
                     }
                     }) { (error: NSError?) in
@@ -137,14 +155,34 @@ class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableVie
     func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerLeftUtilityButtonWithIndex index: Int) {
         
         let cellIndex = self.approvalsTableView.indexPathForCell(cell)
-        self.approvalMeetings.removeAtIndex((cellIndex?.row)!)
-        self.approvalsTableView.deleteRowsAtIndexPaths([cellIndex!], withRowAnimation: UITableViewRowAnimation.Fade)
+        
+        
+        
+        CoLearnClient.updateScheduleStatus(self.approvalMeetings[(cellIndex?.row)!].sch_id!, newStatus: ScheduleStatus.status.REJECTED) { (Bool, error: NSError?) -> Void in
+            if (Bool && (error == nil)){
+                self.approvalsTableView.deleteRowsAtIndexPaths([cellIndex!], withRowAnimation: UITableViewRowAnimation.Fade)
+                self.approvalMeetings.removeAtIndex((cellIndex?.row)!)
+                self.approvalsTableView.reloadData()
+            }else{
+                print("Error while updating the schedule status")
+            }
+        }
     }
     
     func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerRightUtilityButtonWithIndex index: Int) {
         let cellIndex = self.approvalsTableView.indexPathForCell(cell)
-        self.approvalMeetings.removeAtIndex((cellIndex?.row)!)
-        self.approvalsTableView.deleteRowsAtIndexPaths([cellIndex!], withRowAnimation: UITableViewRowAnimation.Fade)
+        //self.approvalMeetings.removeAtIndex((cellIndex?.row)!)
+        
+        
+        CoLearnClient.updateScheduleStatus(self.approvalMeetings[(cellIndex?.row)!].sch_id!, newStatus: ScheduleStatus.status.APPROVED) { (Bool, error: NSError?) -> Void in
+            if (Bool && (error == nil)){
+                self.approvalsTableView.deleteRowsAtIndexPaths([cellIndex!], withRowAnimation: UITableViewRowAnimation.Fade)
+                self.approvalMeetings.removeAtIndex((cellIndex?.row)!)
+                self.approvalsTableView.reloadData()
+            }else{
+                print("Error while updating the schedule status")
+            }
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

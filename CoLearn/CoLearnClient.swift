@@ -262,10 +262,7 @@ class CoLearnClient: NSObject {
         post["user_id"] = schedule.user_id
         post["instructor_id"] = schedule.instructor_id
         post["language"] = schedule.language.getName()
-        
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        post["time"] = formatter.stringFromDate(schedule.time)
+        post["time"] = schedule.time
         post["timezone"] = schedule.timezone.abbreviation
         post["request_note"] = schedule.requestNote
         post["response_note"] = schedule.responseNote
@@ -287,7 +284,8 @@ class CoLearnClient: NSObject {
         
         let queryArray = [learnerQuery, instructorQuery]
         let mainQuery = PFQuery.orQueryWithSubqueries(queryArray)
-
+        //mainQuery.addAscendingOrder()
+        mainQuery.orderByAscending("time")
         mainQuery.findObjectsInBackgroundWithBlock { (schedulesInfo: [PFObject]?, error: NSError?) in
             if error != nil {
                 failure(error)
@@ -317,10 +315,11 @@ class CoLearnClient: NSObject {
     // Updating the schedule of the current user
     class func updateScheduleStatus(sch_id : String, newStatus: ScheduleStatus.status, withCompletion completion: PFBooleanResultBlock?) {
         
-//        let key = "status"
+//      let key = "status"
         let query = PFQuery(className: ScheduleClass)
-        query.whereKey("sch_id", equalTo: sch_id)
-//        query.includeKey(key)
+        query.whereKey("_id", equalTo: sch_id)
+        print(sch_id)
+//      query.includeKey(key)
         
         query.getFirstObjectInBackgroundWithBlock { (schedule: PFObject?, error: NSError?) in
             if error == nil {

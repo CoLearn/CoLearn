@@ -64,32 +64,19 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
                             }
                             
                             var time = NSDate()
-                            let formatter = NSDateFormatter()
-                            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
                             
-                            if let dateString = s["time"] as? String{
-                                //print("s[\"time\"] successfully converted to string")
-                                if let d = formatter.dateFromString(dateString){
-                                    time = d
-                                }else{
-                                    print("formatter error")
-                                }
+                            if let datetime = (s["time"]) as? NSDate{
+                                print("Conversion to nsdate successful: \(datetime)")
+                                time = datetime
                             }else{
-                                print("error while converting s[\"time\"] to string")
+                                print("Conversion to nsdate failed")
                             }
                             
-                            
-                            print("received time: \(s["time"])")
-                            print("formatted time: \(time)")
-                            
                             let timezone = NSTimeZone(name: s["timezone"] as! String)
-                            print("timezone: \(timezone)")
                             
                             let reqNote = s["request_note"] as! String
-                            print("reqNote: \(reqNote)")
                             
                             let resNote = s["response_note"] as! String
-                            print("resNote: \(resNote)")
                             
                             let status: ScheduleStatus.status
                             switch (s["status"] as! String){
@@ -125,19 +112,83 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
         var scheduleTime: NSDate
         let formatter = NSDateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        scheduleTime = formatter.dateFromString("2016-05-14T14:30:00+0000")!
+        scheduleTime = formatter.dateFromString("2016-12-24T05:30:00+0000")!
         
-        let s = Schedule(user_id: "1265123510169659", instructor_id: "10153818548450873", lang: Languages.LangType.ENGLISH, time: scheduleTime, timezone: NSTimeZone.localTimeZone(), requestNote: "Need help for GRE and TOEFL exams. Speaking to a native speaker would create a major impact.", responseNote: "", scheduleStatus: ScheduleStatus.status.PENDING)
+        var s = Schedule(user_id: "1265123510169659", instructor_id: "123042818089530", lang: Languages.LangType.CHINESE, time: scheduleTime, timezone: NSTimeZone.localTimeZone(), requestNote: "I'm temporarily relocating to China. I tried learning chinese on my own but it seems i'm not heading correct", responseNote: "", scheduleStatus: ScheduleStatus.status.PENDING)
         
         CoLearnClient.addASchedule(s) { (b: Bool, error: NSError?) -> Void in
             if let e = error{
                 print("Error in adding schedule \(e.localizedDescription)")
             }
-            
-            if b{
-                print("Boolean of completion is true")
-            }else{
-                print("Boolean of completion is false")
+        }
+        
+        scheduleTime = formatter.dateFromString("2016-11-02T09:15:00+0000")!
+        
+        s = Schedule(user_id: "1265123510169659", instructor_id: "10153818548450873", lang: Languages.LangType.SPANISH, time: scheduleTime, timezone: NSTimeZone.localTimeZone(), requestNote: "Curious to learn a new language", responseNote: "", scheduleStatus: ScheduleStatus.status.PENDING)
+        
+        CoLearnClient.addASchedule(s) { (b: Bool, error: NSError?) -> Void in
+            if let e = error{
+                print("Error in adding schedule \(e.localizedDescription)")
+            }
+        }
+        
+        scheduleTime = formatter.dateFromString("2016-06-13T12:00:00+0000")!
+        
+        s = Schedule(user_id: "1265123510169659", instructor_id: "123042818089530", lang: Languages.LangType.FRENCH, time: scheduleTime, timezone: NSTimeZone.localTimeZone(), requestNote: "Have taken french as foreign language in the university.", responseNote: "", scheduleStatus: ScheduleStatus.status.PENDING)
+        
+        CoLearnClient.addASchedule(s) { (b: Bool, error: NSError?) -> Void in
+            if let e = error{
+                print("Error in adding schedule \(e.localizedDescription)")
+            }
+        }
+        
+        scheduleTime = formatter.dateFromString("2016-05-14T14:30:00+0000")!
+        
+        s = Schedule(user_id: "123042818089530", instructor_id: "10153818548450873", lang: Languages.LangType.ENGLISH, time: scheduleTime, timezone: NSTimeZone.localTimeZone(), requestNote: "Feeling bored. Just want to talk to someone.", responseNote: "", scheduleStatus: ScheduleStatus.status.PENDING)
+        
+        CoLearnClient.addASchedule(s) { (b: Bool, error: NSError?) -> Void in
+            if let e = error{
+                print("Error in adding schedule \(e.localizedDescription)")
+            }
+        }
+        
+        scheduleTime = formatter.dateFromString("2016-07-05T18:15:00+0000")!
+        
+        s = Schedule(user_id: "123042818089530", instructor_id: "1265123510169659", lang: Languages.LangType.FRENCH, time: scheduleTime, timezone: NSTimeZone.localTimeZone(), requestNote: "I'm doing a play in french.", responseNote: "", scheduleStatus: ScheduleStatus.status.PENDING)
+        
+        CoLearnClient.addASchedule(s) { (b: Bool, error: NSError?) -> Void in
+            if let e = error{
+                print("Error in adding schedule \(e.localizedDescription)")
+            }
+        }
+        
+        scheduleTime = formatter.dateFromString("2016-05-25T17:30:00+0000")!
+        
+        s = Schedule(user_id: "123042818089530", instructor_id: "10153818548450873", lang: Languages.LangType.CHINESE, time: scheduleTime, timezone: NSTimeZone.localTimeZone(), requestNote: "Always wanted to learn chinese", responseNote: "", scheduleStatus: ScheduleStatus.status.PENDING)
+        
+        CoLearnClient.addASchedule(s) { (b: Bool, error: NSError?) -> Void in
+            if let e = error{
+                print("Error in adding schedule \(e.localizedDescription)")
+            }
+        }
+        
+        scheduleTime = formatter.dateFromString("2016-08-30T13:00:00+0000")!
+        
+        s = Schedule(user_id: "10153818548450873", instructor_id: "123042818089530", lang: Languages.LangType.CHINESE, time: scheduleTime, timezone: NSTimeZone.localTimeZone(), requestNote: "hard time understanding slangs", responseNote: "", scheduleStatus: ScheduleStatus.status.PENDING)
+        
+        CoLearnClient.addASchedule(s) { (b: Bool, error: NSError?) -> Void in
+            if let e = error{
+                print("Error in adding schedule \(e.localizedDescription)")
+            }
+        }
+        
+        scheduleTime = formatter.dateFromString("2016-05-10T21:30:00+0000")!
+        
+        s = Schedule(user_id: "10153818548450873", instructor_id: "1265123510169659", lang: Languages.LangType.SPANISH, time: scheduleTime, timezone: NSTimeZone.localTimeZone(), requestNote: "Love the football team of spain", responseNote: "", scheduleStatus: ScheduleStatus.status.PENDING)
+        
+        CoLearnClient.addASchedule(s) { (b: Bool, error: NSError?) -> Void in
+            if let e = error{
+                print("Error in adding schedule \(e.localizedDescription)")
             }
         }
     }
@@ -159,7 +210,6 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ScheduleTableViewCell", forIndexPath: indexPath) as? ScheduleTableViewCell
-        //ScheduleTableViewCell()
         cell?.schedule = self.scheduledMeetings[indexPath.row]
         return cell!
     }
@@ -174,6 +224,7 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func onRefreshAction(refreshControl: UIRefreshControl){
+        self.populateScheduleTable()
         self.schedulesTableView.reloadData()
         refreshControl.endRefreshing()
     }
@@ -188,22 +239,3 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
 }
-/*
-extension String
-{
-    func toDateTime() -> NSDate
-    {
-        //Create Date Formatter
-        let dateFormatter = NSDateFormatter()
-        
-        //Specify Format of String to Parse
-        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss.SSSSxxx"
-        
-        //Parse into NSDate
-        let dateFromString : NSDate = dateFormatter.dateFromString(self)!
-        
-        //Return Parsed Date
-        return dateFromString
-    }
-}
-*/
