@@ -6,12 +6,13 @@
 
 import UIKit
 import ParseUI
+import SVProgressHUD
 
 class SchedulesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet var schedulesTableView: UITableView!
     
-    var scheduledMeetings = [Schedule]()
+    static var scheduledMeetings = [Schedule]()
     var currentUserId: String?
 
     override func viewDidLoad() {
@@ -37,6 +38,10 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
     
     
     func populateScheduleTable(){
+        SVProgressHUD.showWithStatus("Loading...")
+        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Black)
+        //SVProgressHUD.showWithStatus("Loading...")
+        
         FacebookSDK.getUserInfoFromFacebook({ (user: User?) in
             if let user = user {
                 currentUser = user
@@ -44,7 +49,7 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
                 
                 CoLearnClient.getSchedules((currentUser?.id)!, success: { (schedules: [PFObject]?) in
                     if let receivedSchedules = schedules{
-                        
+                        SchedulesViewController.scheduledMeetings = []
                         for s in receivedSchedules{
                             
                             let userId = s["user_id"] as! String
@@ -87,16 +92,20 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
                             }
                             print("status: \(status.getName())")
                             
-                            self.scheduledMeetings.append(Schedule(user_id: userId, instructor_id: instructorID, lang: language, time: time, timezone: timezone!, requestNote: reqNote, responseNote: resNote, scheduleStatus: status))
-                            self.schedulesTableView.reloadData()
+                            SchedulesViewController.scheduledMeetings.append(Schedule(user_id: userId, instructor_id: instructorID, lang: language, time: time, timezone: timezone!, requestNote: reqNote, responseNote: resNote, scheduleStatus: status))
                         }
+                        
+                        SVProgressHUD.dismiss()
+                        self.schedulesTableView.reloadData()
                     }
                     }) { (error: NSError?) in
+                        SVProgressHUD.dismiss()
                         print("Error in getting schedules \(error?.localizedDescription)")
                 }
                 
             }
             }) { (error: NSError?) in
+                SVProgressHUD.dismiss()
                 print(error?.localizedDescription)
         }
     }
@@ -210,13 +219,13 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ScheduleTableViewCell", forIndexPath: indexPath) as? ScheduleTableViewCell
-        cell?.schedule = self.scheduledMeetings[indexPath.row]
+        cell?.schedule = SchedulesViewController.scheduledMeetings[indexPath.row]
         return cell!
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.scheduledMeetings.count != 0{
-            return self.scheduledMeetings.count
+        if SchedulesViewController.scheduledMeetings.count != 0{
+            return SchedulesViewController.scheduledMeetings.count
         }else{
             return 0
         }
@@ -229,6 +238,7 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
         refreshControl.endRefreshing()
     }
     
+    /*
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
@@ -237,5 +247,5 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
             let dvc = segue.destinationViewController as! ApprovalsViewController
             //dvc.parentMeetings = self.scheduledMeetings
         }
-    }
+    }*/
 }

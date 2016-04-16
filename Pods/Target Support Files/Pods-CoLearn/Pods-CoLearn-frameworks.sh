@@ -88,6 +88,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-CoLearn/Bolts.framework"
   install_framework "Pods-CoLearn/Parse.framework"
   install_framework "Pods-CoLearn/ParseUI.framework"
+  install_framework "Pods-CoLearn/SVProgressHUD.framework"
   install_framework "Pods-CoLearn/SWTableViewCell.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -95,5 +96,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-CoLearn/Bolts.framework"
   install_framework "Pods-CoLearn/Parse.framework"
   install_framework "Pods-CoLearn/ParseUI.framework"
+  install_framework "Pods-CoLearn/SVProgressHUD.framework"
   install_framework "Pods-CoLearn/SWTableViewCell.framework"
 fi

@@ -9,6 +9,7 @@
 import UIKit
 import SWTableViewCell
 import ParseUI
+import SVProgressHUD
 
 class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SWTableViewCellDelegate {
 
@@ -40,6 +41,8 @@ class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func populateApprovalsTable(){
+        SVProgressHUD.showWithStatus("Loading...")
+        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Clear)
         FacebookSDK.getUserInfoFromFacebook({ (user: User?) in
             if let user = user {
                 currentUser = user
@@ -47,7 +50,7 @@ class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableVie
                 
                 CoLearnClient.getApprovalSchedules((currentUser?.id)!, success: { (schedules: [PFObject]?) in
                     if let receivedSchedules = schedules{
-                        
+                        self.approvalMeetings = []
                         for s in receivedSchedules{
                             print("Received approval schedule \(s)")
                             let userId = s["user_id"] as! String
@@ -110,10 +113,9 @@ class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableVie
                                 print("Error in getting schedule id")
                             }
                             self.approvalMeetings.append(Schedule(sch_id: schedule_id, user_id: userId, instructor_id: instructorID, lang: language, time: time, timezone: timezone!, requestNote: reqNote, responseNote: resNote, scheduleStatus: status))
-                            self.approvalsTableView.reloadData()
-                            
-                            
                         }
+                        SVProgressHUD.dismiss()
+                        self.approvalsTableView.reloadData()
                     }
                     }) { (error: NSError?) in
                         print("Error in getting approval schedules \(error?.localizedDescription)")
@@ -155,13 +157,10 @@ class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableVie
     func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerLeftUtilityButtonWithIndex index: Int) {
         
         let cellIndex = self.approvalsTableView.indexPathForCell(cell)
-        
-        
-        
         CoLearnClient.updateScheduleStatus(self.approvalMeetings[(cellIndex?.row)!].sch_id!, newStatus: ScheduleStatus.status.REJECTED) { (Bool, error: NSError?) -> Void in
             if (Bool && (error == nil)){
-                self.approvalsTableView.deleteRowsAtIndexPaths([cellIndex!], withRowAnimation: UITableViewRowAnimation.Fade)
                 self.approvalMeetings.removeAtIndex((cellIndex?.row)!)
+                self.approvalsTableView.deleteRowsAtIndexPaths([cellIndex!], withRowAnimation: UITableViewRowAnimation.Fade)
                 self.approvalsTableView.reloadData()
             }else{
                 print("Error while updating the schedule status")
@@ -176,8 +175,8 @@ class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableVie
         
         CoLearnClient.updateScheduleStatus(self.approvalMeetings[(cellIndex?.row)!].sch_id!, newStatus: ScheduleStatus.status.APPROVED) { (Bool, error: NSError?) -> Void in
             if (Bool && (error == nil)){
-                self.approvalsTableView.deleteRowsAtIndexPaths([cellIndex!], withRowAnimation: UITableViewRowAnimation.Fade)
                 self.approvalMeetings.removeAtIndex((cellIndex?.row)!)
+                self.approvalsTableView.deleteRowsAtIndexPaths([cellIndex!], withRowAnimation: UITableViewRowAnimation.Fade)
                 self.approvalsTableView.reloadData()
             }else{
                 print("Error while updating the schedule status")

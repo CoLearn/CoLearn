@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A47082B1CC1F922007F008E /* SessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A47082A1CC1F922007F008E /* SessionViewController.swift */; };
 		4A4C218D1CA6D4BE000B94C8 /* Meetings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4C218C1CA6D4BE000B94C8 /* Meetings.swift */; };
 		4A4C218F1CA6D7D6000B94C8 /* ScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4C218E1CA6D7D6000B94C8 /* ScheduleTableViewCell.swift */; };
 		4A4C21911CA75674000B94C8 /* ApprovalsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4C21901CA75674000B94C8 /* ApprovalsTableViewCell.swift */; };
@@ -55,6 +56,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A47082A1CC1F922007F008E /* SessionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionViewController.swift; sourceTree = "<group>"; };
 		4A4C218C1CA6D4BE000B94C8 /* Meetings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meetings.swift; sourceTree = "<group>"; };
 		4A4C218E1CA6D7D6000B94C8 /* ScheduleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewCell.swift; sourceTree = "<group>"; };
 		4A4C21901CA75674000B94C8 /* ApprovalsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApprovalsTableViewCell.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				4A4C21921CA756D4000B94C8 /* ApprovalsViewController.swift */,
 				7CB50E741CAA15D000FC65C3 /* AddScheduleViewController.swift */,
 				8F99109C1CB5C09F008C11D7 /* SettingsViewController.swift */,
+				4A47082A1CC1F922007F008E /* SessionViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -398,6 +401,7 @@
 				7CE03EB81CA74A3500AB61AC /* Constants.swift in Sources */,
 				7CE03EB01CA71B0C00AB61AC /* LanguagesChosen.swift in Sources */,
 				7C5A57A51C912139002F68E3 /* SchedulesViewController.swift in Sources */,
+				4A47082B1CC1F922007F008E /* SessionViewController.swift in Sources */,
 				7CB50E751CAA15D000FC65C3 /* AddScheduleViewController.swift in Sources */,
 				4A4C218D1CA6D4BE000B94C8 /* Meetings.swift in Sources */,
 			);
