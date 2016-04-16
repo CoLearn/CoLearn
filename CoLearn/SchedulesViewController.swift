@@ -123,14 +123,14 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         scheduleTime = formatter.dateFromString("2016-12-24T05:30:00+0000")!
         
-        var s = Schedule(user_id: "1265123510169659", instructor_id: "123042818089530", lang: Languages.LangType.CHINESE, time: scheduleTime, timezone: NSTimeZone.localTimeZone(), requestNote: "I'm temporarily relocating to China. I tried learning chinese on my own but it seems i'm not heading correct", responseNote: "", scheduleStatus: ScheduleStatus.status.PENDING)
+        var s = Schedule(user_id: "1265123510169659", instructor_id: "123042818089530", lang: Languages.LangType.CHINESE, time: NSDate(), timezone: NSTimeZone.localTimeZone(), requestNote: "I'm temporarily relocating to China. I tried learning chinese on my own but it seems i'm not heading correct", responseNote: "", scheduleStatus: ScheduleStatus.status.PENDING)
         
         CoLearnClient.addASchedule(s) { (b: Bool, error: NSError?) -> Void in
             if let e = error{
                 print("Error in adding schedule \(e.localizedDescription)")
             }
         }
-        
+        /*
         scheduleTime = formatter.dateFromString("2016-11-02T09:15:00+0000")!
         
         s = Schedule(user_id: "1265123510169659", instructor_id: "10153818548450873", lang: Languages.LangType.SPANISH, time: scheduleTime, timezone: NSTimeZone.localTimeZone(), requestNote: "Curious to learn a new language", responseNote: "", scheduleStatus: ScheduleStatus.status.PENDING)
@@ -200,6 +200,7 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
                 print("Error in adding schedule \(e.localizedDescription)")
             }
         }
+        */
     }
 
     @IBAction func onClick(sender: AnyObject) {

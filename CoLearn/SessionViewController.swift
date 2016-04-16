@@ -32,6 +32,7 @@ class SessionViewController: UIViewController {
     @IBOutlet weak var callPoster: UIImageView!
     
     var session: Schedule?
+    var phoneNumber: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +40,27 @@ class SessionViewController: UIViewController {
         self.session = SchedulesViewController.scheduledMeetings[0]
         initializeSession()
         self.updateScene()
+        
+        let tapCallPoster = UITapGestureRecognizer(target: self, action: Selector("makeFacetimeCall"))
+        self.callPoster.addGestureRecognizer(tapCallPoster)
+        self.callPoster.userInteractionEnabled = true
+    }
+    
+    func makeFacetimeCall() {
+        print("Facetime called...")
+        if let callingNumber = self.phoneNumber{
+            print("Calling number \(callingNumber)")
+            if let facetimeURL:NSURL = NSURL(string: "facetime://\(callingNumber)") {
+                let application:UIApplication = UIApplication.sharedApplication()
+                if (application.canOpenURL(facetimeURL)) {
+                    print("can open facetime url")
+                    application.openURL(facetimeURL);
+                }else{
+                    print("cannot open facetime url")
+                }
+            }
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,6 +78,7 @@ class SessionViewController: UIViewController {
     }
     
     func updateScene(){
+        self.callPoster.hidden = true
         
         if let language = session?.language.getName(){
             self.languageLabel.text = language
@@ -74,6 +97,7 @@ class SessionViewController: UIViewController {
             self.userRoleLabel.text = "Learner"
             CoLearnClient.getUserDataFromDB((session?.instructor_id)!, success: { (user: PFObject?) -> () in
                     self.attendeeLabel.text = user!["name"] as? String
+                    self.phoneNumber = user!["phoneNumber"] as? String
                 }) { (error: NSError?) -> () in
                     print("Error getting the user info from db \(error?.localizedDescription)")
             }
@@ -83,6 +107,7 @@ class SessionViewController: UIViewController {
             self.userRoleLabel.text = "Instructor"
             CoLearnClient.getUserDataFromDB((session?.user_id)!, success: { (user: PFObject?) -> () in
                 self.attendeeLabel.text = user!["name"] as? String
+                self.phoneNumber = user!["phoneNumber"] as? String
                 }) { (error: NSError?) -> () in
                     print("Error getting the user info from db \(error?.localizedDescription)")
             }
@@ -102,9 +127,7 @@ class SessionViewController: UIViewController {
             self.responseNoteLabel.hidden = true
         }
         
-        self.inTimeLabel.text = NSDate().offsetFrom((session?.time)!)
-            
-        
+        self.inTimeLabel.text = self.offsetFrom((session?.time)!)
     }
     
     func getUserName(userId: String) -> (String){
@@ -128,9 +151,129 @@ class SessionViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
+    func yearsFrom(date:NSDate) -> Int{
+        return NSCalendar.currentCalendar().components(.Year, fromDate: NSDate(), toDate: date, options: []).year
+    }
+    func monthsFrom(date:NSDate) -> Int{
+        return NSCalendar.currentCalendar().components(.Month, fromDate: NSDate(), toDate: date, options: []).month
+    }
+    func weeksFrom(date:NSDate) -> Int{
+        return NSCalendar.currentCalendar().components(.WeekOfYear, fromDate: NSDate(), toDate: date, options: []).weekOfYear
+    }
+    func daysFrom(date:NSDate) -> Int{
+        return NSCalendar.currentCalendar().components(.Day, fromDate: NSDate(), toDate: date, options: []).day
+    }
+    func hoursFrom(date:NSDate) -> Int{
+        return NSCalendar.currentCalendar().components(.Hour, fromDate: NSDate(), toDate: date, options: []).hour
+    }
+    func minutesFrom(date:NSDate) -> Int{
+        return NSCalendar.currentCalendar().components(.Minute, fromDate: NSDate(), toDate: date, options: []).minute
+    }
+    func secondsFrom(date:NSDate) -> Int{
+        return NSCalendar.currentCalendar().components(.Second, fromDate: NSDate(), toDate: date, options: []).second
+    }
+    
+    func offsetFrom(date:NSDate) -> String {
+        //print("offset called")
+        
+        let year = yearsFrom(date)
+        //print(year)
+        if year > 0 {
+            if year==1{
+                return "\(year)yr"
+            }else{
+                return "\(year)yrs"
+            }
+            
+        }
+        
+        let month = monthsFrom(date)
+        //print(month)
+        if month > 0 {
+            if month==1{
+                return "\(month)month"
+            }else{
+                return "\(month)months"
+            }
+            
+        }
+        
+        let week = weeksFrom(date)
+        //print(week)
+        if week > 0 {
+            if week==1{
+                return "\(week)week"
+            }else{
+                return "\(week)weeks"
+            }
+            
+        }
+        
+        let day = daysFrom(date)
+        //print(day)
+        if day > 0 {
+            if day==1{
+                return "\(day)day"
+            }else{
+                return "\(day)days"
+            }
+            
+        }
+        
+        let hour = hoursFrom(date)
+        //print(hour)
+        if hour > 0 {
+            if hour==1{
+                return "\(hour)hour"
+            }else{
+                let hourText = "\(hour)hours \(minutesFrom(date))mins"
+                return hourText
+            }
+            
+        }
+        
+        let min = minutesFrom(date)
+        //print(min)
+        if min > 0 {
+            if min==1{
+                return "\(min)min"
+            }else{
+                let minText = "\(min)mins \(secondsFrom(date))secs"
+                return minText
+            }
+            
+        }
+        
+        let sec = secondsFrom(date)
+        //print(sec)
+        if sec > 0 {
+            if sec==1{
+                return "\(sec)sec"
+            }else{
+                return "\(sec)secs"
+            }
+            
+        }
+        
+        let callMinutesLapse = NSCalendar.currentCalendar().components(.Minute, fromDate: date, toDate: NSDate(), options: []).minute
+        print("Lapse minutes \(callMinutesLapse)")
+        let callSecondsLapse = NSCalendar.currentCalendar().components(.Second, fromDate: date, toDate: NSDate(), options: []).second
+        print("Lapse seconds \(callSecondsLapse)")
+        
+        if callMinutesLapse <= 60{
+            self.callPoster.hidden = false
+            return "Live now!"
+        }
+        
+        return ""
+    }
 
 }
 
+
+/*
 extension NSDate {
     func yearsFrom(date:NSDate) -> Int{
         return NSCalendar.currentCalendar().components(.Year, fromDate: date, toDate: self, options: []).year
@@ -153,15 +296,53 @@ extension NSDate {
     func secondsFrom(date:NSDate) -> Int{
         return NSCalendar.currentCalendar().components(.Second, fromDate: date, toDate: self, options: []).second
     }
+    
     func offsetFrom(date:NSDate) -> String {
+        print("offset called")
         
-        if yearsFrom(date)   > 0 { return "\(yearsFrom(date))y"   }
-        if monthsFrom(date)  > 0 { return "\(monthsFrom(date))M"  }
-        if weeksFrom(date)   > 0 { return "\(weeksFrom(date))w"   }
-        if daysFrom(date)    > 0 { return "\(daysFrom(date))d"    }
-        if hoursFrom(date)   > 0 { return "\(hoursFrom(date))h"   }
-        if minutesFrom(date) > 0 { return "\(minutesFrom(date))m" }
-        if secondsFrom(date) > 0 { return "\(secondsFrom(date))s" }
-        return ""
+        let year = "\(yearsFrom(date))y"
+        print(year)
+        if yearsFrom(date)   > 0 {
+            return year
+        }
+        
+        let month = "\(monthsFrom(date))M"
+        print(month)
+        if monthsFrom(date)  > 0 {
+            return month
+        }
+        
+        let week = "\(weeksFrom(date))w"
+        print(week)
+        if weeksFrom(date)   > 0 {
+            return week
+        }
+        
+        let day = "\(daysFrom(date))d"
+        print(day)
+        if daysFrom(date)    > 0 {
+            return day
+        }
+        
+        let hour = "\(hoursFrom(date))h"
+        print(hour)
+        if hoursFrom(date)   > 0 {
+            return hour
+        }
+        
+        let min = "\(minutesFrom(date))m"
+        print(min)
+        if minutesFrom(date) > 0 {
+            return min
+        }
+        
+        let sec = "\(secondsFrom(date))s"
+        print(sec)
+        if secondsFrom(date) > 0 {
+            return sec
+        }
+        
+        return "unknown"
     }
 }
+*/
