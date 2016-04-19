@@ -26,6 +26,7 @@ class ScheduleTableViewCell: UITableViewCell {
     
     @IBOutlet weak var statusPoster: UIImageView!
     
+    @IBOutlet weak var responseNoteLabel: UILabel!
     
     var schedule: Schedule?{
         didSet{
@@ -48,23 +49,43 @@ class ScheduleTableViewCell: UITableViewCell {
             dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
             meetingDatatime.text = dateFormatter.stringFromDate((schedule?.time)!)
             
-            instructorLabel.text = schedule?.instructor_id
+            //instructorLabel.text = schedule?.instructor_id
             CoLearnClient.getUserDataFromDB((schedule?.instructor_id)!, success: { (user: PFObject?) -> () in
                 //print(user)
-                self.instructorLabel.text = user!["name"] as? String
+                
+                if let instructorName = user!["name"] as? String{
+                    self.instructorLabel.text = instructorName
+                    
+                    if let response = self.schedule?.responseNote{
+                        if response != "" {
+                            self.responseNoteLabel.text = "\(instructorName): \(response)"
+                        }else{
+                            self.responseNoteLabel.hidden = true
+                        }
+                    }
+                }
                 }) { (error: NSError?) -> () in
                     print("Error getting the user info from db \(error?.localizedDescription)")
             }
             
-            learnerLabel.text = schedule?.user_id
+            //learnerLabel.text = schedule?.user_id
             CoLearnClient.getUserDataFromDB((schedule?.user_id)!, success: { (user: PFObject?) -> () in
                 //print(user)
-                self.learnerLabel.text = user!["name"] as? String
+                if let learnerName = user!["name"] as? String{
+                    self.learnerLabel.text = learnerName
+                    
+                    if let request = self.schedule?.requestNote{
+                        if request != "" {
+                            self.requestNoteLabel.text = "\(learnerName): \(request)"
+                        }else{
+                            self.requestNoteLabel.hidden = true
+                        }
+                    }
+                    
+                }
                 }) { (error: NSError?) -> () in
                     print("Error getting the user info from db \(error?.localizedDescription)")
             }
-            
-            requestNoteLabel.text = schedule?.requestNote
             
             if let staus = schedule?.scheduleStatus.getName(){
                 switch staus{

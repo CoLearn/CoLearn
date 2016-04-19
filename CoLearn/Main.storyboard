@@ -338,16 +338,16 @@
         <scene sceneID="Zvv-8d-HJE">
             <objects>
                 <viewController storyboardIdentifier="SchedulesViewController" id="lDn-oL-bLI" customClass="SchedulesViewController" customModule="CoLearn" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="101" sectionHeaderHeight="28" sectionFooterHeight="28" id="mNg-bl-hBT">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="130" sectionHeaderHeight="28" sectionFooterHeight="28" id="mNg-bl-hBT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ScheduleTableViewCell" rowHeight="101" id="NvG-qj-trv" customClass="ScheduleTableViewCell" customModule="CoLearn" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="320" height="101"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ScheduleTableViewCell" rowHeight="130" id="NvG-qj-trv" customClass="ScheduleTableViewCell" customModule="CoLearn" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="320" height="130"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NvG-qj-trv" id="lbo-Tl-iwd">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="129"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spanish" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RYE-Pr-aIk">
@@ -393,12 +393,6 @@
                                                 <constraint firstAttribute="height" constant="25" id="4rU-sj-b6T"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Can you help me to learn?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wgC-iK-78E">
-                                            <rect key="frame" x="8" y="77" width="147" height="15"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DUa-Rn-lIo">
                                             <rect key="frame" x="292" y="34" width="20" height="19"/>
                                             <constraints>
@@ -406,13 +400,28 @@
                                                 <constraint firstAttribute="height" constant="19" id="orB-Hh-sS1"/>
                                             </constraints>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Can you help me to learn?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i2q-wd-Cyt">
+                                            <rect key="frame" x="8" y="100" width="147" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Can you help me to learn?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wgC-iK-78E">
+                                            <rect key="frame" x="8" y="77" width="147" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="aff-gZ-2BS" firstAttribute="top" secondItem="wJM-V3-z7D" secondAttribute="bottom" constant="2" id="4Xx-ua-zi4"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="i2q-wd-Cyt" secondAttribute="trailing" constant="9" id="5TL-SO-oPA"/>
                                         <constraint firstItem="wgC-iK-78E" firstAttribute="leading" secondItem="lbo-Tl-iwd" secondAttribute="leading" constant="8" id="694-YE-vMo"/>
                                         <constraint firstItem="wgC-iK-78E" firstAttribute="top" secondItem="Qfc-bl-PAi" secondAttribute="bottom" constant="5" id="8Cm-di-Ajd"/>
                                         <constraint firstItem="x8X-RL-r8Y" firstAttribute="leading" secondItem="aff-gZ-2BS" secondAttribute="trailing" constant="13" id="8ju-dM-QYK"/>
+                                        <constraint firstItem="i2q-wd-Cyt" firstAttribute="leading" secondItem="lbo-Tl-iwd" secondAttribute="leading" constant="8" id="8xj-AS-hLd"/>
                                         <constraint firstItem="DUa-Rn-lIo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="x8X-RL-r8Y" secondAttribute="trailing" constant="9" id="AzE-cl-oUc"/>
+                                        <constraint firstAttribute="bottom" secondItem="i2q-wd-Cyt" secondAttribute="bottom" constant="14" id="CfP-CP-kVJ"/>
                                         <constraint firstItem="Qfc-bl-PAi" firstAttribute="centerY" secondItem="7hD-JZ-9uz" secondAttribute="centerY" id="Jpx-lv-t5q"/>
                                         <constraint firstItem="wJM-V3-z7D" firstAttribute="top" secondItem="lbo-Tl-iwd" secondAttribute="top" constant="8" id="K2h-6S-frC"/>
                                         <constraint firstItem="RYE-Pr-aIk" firstAttribute="top" secondItem="lbo-Tl-iwd" secondAttribute="top" constant="9" id="MQr-oB-l2I"/>
@@ -427,8 +436,8 @@
                                         <constraint firstAttribute="trailing" secondItem="DUa-Rn-lIo" secondAttribute="trailing" constant="8" id="mIf-dO-FaW"/>
                                         <constraint firstItem="RYE-Pr-aIk" firstAttribute="leading" secondItem="wJM-V3-z7D" secondAttribute="trailing" constant="3" id="nom-gf-ih3"/>
                                         <constraint firstItem="7hD-JZ-9uz" firstAttribute="leading" secondItem="lbo-Tl-iwd" secondAttribute="leading" constant="8" id="qVT-it-sPS"/>
+                                        <constraint firstItem="i2q-wd-Cyt" firstAttribute="top" secondItem="wgC-iK-78E" secondAttribute="bottom" constant="8" id="rZB-DP-EMr"/>
                                         <constraint firstItem="7hD-JZ-9uz" firstAttribute="top" secondItem="aff-gZ-2BS" secondAttribute="bottom" constant="6" id="rv8-Gg-dVX"/>
-                                        <constraint firstAttribute="bottom" secondItem="wgC-iK-78E" secondAttribute="bottom" constant="8" id="tDQ-BO-Hkw"/>
                                         <constraint firstItem="DUa-Rn-lIo" firstAttribute="top" secondItem="WU7-qL-3HD" secondAttribute="bottom" constant="6" id="vsu-sO-OWP"/>
                                         <constraint firstItem="x8X-RL-r8Y" firstAttribute="centerY" secondItem="aff-gZ-2BS" secondAttribute="centerY" id="zhD-Q4-PEM"/>
                                     </constraints>
@@ -440,6 +449,7 @@
                                     <outlet property="learnerLabel" destination="Qfc-bl-PAi" id="WEc-bl-FrO"/>
                                     <outlet property="meetingDatatime" destination="WU7-qL-3HD" id="hga-kg-XYn"/>
                                     <outlet property="requestNoteLabel" destination="wgC-iK-78E" id="lcS-ol-Kfh"/>
+                                    <outlet property="responseNoteLabel" destination="i2q-wd-Cyt" id="mOx-I3-ZSa"/>
                                     <outlet property="statusPoster" destination="DUa-Rn-lIo" id="inD-d5-lni"/>
                                 </connections>
                             </tableViewCell>
