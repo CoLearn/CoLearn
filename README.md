@@ -13,7 +13,7 @@ Basic functionality:
 - [ ] Scheduling a session - [Through a schedule page, it is done by the learner and the instructor has the choice to accept or reject them (with a message) Need to take care of the time zones here]
 - [X] Integration with 3rd party - [Authentication and video/audio chat]
 - [X] Video Chat/ Audio Chat - [Ability to video or audio chat for learning sessions]
-- [ ] Rescheduling/Cancellation resulting into losing few credits
+- [ ] Rescheduling/Cancellation resulting into losing few credits.
 - [X] Search by instructor, topic, Region - [User has ability to search based on other user info to find a compatible teacher/learner]
 - [ ] Rewards - [Credits are gained by teaching and used by learning]
 
