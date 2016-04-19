@@ -35,6 +35,10 @@
 		7C5A57C01C9129EA002F68E3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5A57BF1C9129EA002F68E3 /* SystemConfiguration.framework */; };
 		7C5A57C21C9129F3002F68E3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5A57C11C9129F3002F68E3 /* libz.tbd */; };
 		7C5A57C41C9129FD002F68E3 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5A57C31C9129FD002F68E3 /* libsqlite3.tbd */; };
+		7C5BE7801CB5EFB90080499E /* SearchResultsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5BE77F1CB5EFB90080499E /* SearchResultsObject.swift */; };
+		7C5BE7821CB603C50080499E /* ParseDBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5BE7811CB603C50080499E /* ParseDBUser.swift */; };
+		7CA04BFB1CACBB0800C9EA4F /* SearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA04BFA1CACBB0800C9EA4F /* SearchResultsTableViewController.swift */; };
+		7CA04BFD1CACBB4600C9EA4F /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA04BFC1CACBB4600C9EA4F /* SearchTableViewCell.swift */; };
 		7CB50E751CAA15D000FC65C3 /* AddScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB50E741CAA15D000FC65C3 /* AddScheduleViewController.swift */; };
 		7CC1A7FF1C9A3FD300D26790 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CC1A7FE1C9A3FD300D26790 /* ParseFacebookUtils.framework */; };
 		7CCCCE521C9A3980009400BA /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CCCCE4E1C9A3980009400BA /* FBSDKCoreKit.framework */; };
@@ -86,6 +90,10 @@
 		7C5A57BF1C9129EA002F68E3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		7C5A57C11C9129F3002F68E3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		7C5A57C31C9129FD002F68E3 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		7C5BE77F1CB5EFB90080499E /* SearchResultsObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsObject.swift; sourceTree = "<group>"; };
+		7C5BE7811CB603C50080499E /* ParseDBUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseDBUser.swift; sourceTree = "<group>"; };
+		7CA04BFA1CACBB0800C9EA4F /* SearchResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewController.swift; sourceTree = "<group>"; };
+		7CA04BFC1CACBB4600C9EA4F /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		7CB50E741CAA15D000FC65C3 /* AddScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddScheduleViewController.swift; sourceTree = "<group>"; };
 		7CC1A7FE1C9A3FD300D26790 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		7CCCCE4E1C9A3980009400BA /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
@@ -208,6 +216,7 @@
 				7CB50E741CAA15D000FC65C3 /* AddScheduleViewController.swift */,
 				8F99109C1CB5C09F008C11D7 /* SettingsViewController.swift */,
 				4A47082A1CC1F922007F008E /* SessionViewController.swift */,
+				7CA04BFA1CACBB0800C9EA4F /* SearchResultsTableViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -225,6 +234,8 @@
 				7CE03EB71CA74A3500AB61AC /* Constants.swift */,
 				4A4C218C1CA6D4BE000B94C8 /* Meetings.swift */,
 				8F99109A1CB34E9A008C11D7 /* FacebookSDK.swift */,
+				7C5BE77F1CB5EFB90080499E /* SearchResultsObject.swift */,
+				7C5BE7811CB603C50080499E /* ParseDBUser.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -235,6 +246,7 @@
 				8F0229301CA39ECA0075A8DD /* LanguageCell.swift */,
 				4A4C218E1CA6D7D6000B94C8 /* ScheduleTableViewCell.swift */,
 				4A4C21901CA75674000B94C8 /* ApprovalsTableViewCell.swift */,
+				7CA04BFC1CACBB4600C9EA4F /* SearchTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -389,12 +401,16 @@
 				4A4C21931CA756D4000B94C8 /* ApprovalsViewController.swift in Sources */,
 				7C5A57A31C912139002F68E3 /* LoginViewController.swift in Sources */,
 				7CE03EB61CA73A6E00AB61AC /* ScheduleStatus.swift in Sources */,
+				7CA04BFD1CACBB4600C9EA4F /* SearchTableViewCell.swift in Sources */,
 				7CE03EAA1CA6FEB200AB61AC /* Location.swift in Sources */,
 				7C5A57A41C912139002F68E3 /* UserViewController.swift in Sources */,
 				8F0229311CA39ECA0075A8DD /* LanguageCell.swift in Sources */,
 				7CE03EAE1CA719DA00AB61AC /* Languages.swift in Sources */,
+				7C5BE7801CB5EFB90080499E /* SearchResultsObject.swift in Sources */,
 				7CE03EB41CA739DE00AB61AC /* Schedule.swift in Sources */,
 				7CE03EAC1CA7025D00AB61AC /* User.swift in Sources */,
+				7CA04BFB1CACBB0800C9EA4F /* SearchResultsTableViewController.swift in Sources */,
+				7C5BE7821CB603C50080499E /* ParseDBUser.swift in Sources */,
 				8F99109B1CB34E9A008C11D7 /* FacebookSDK.swift in Sources */,
 				7C0B88151C7E96E3003461FE /* AppDelegate.swift in Sources */,
 				7CE03EA81CA6FD6000AB61AC /* CoLearnClient.swift in Sources */,

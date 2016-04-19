@@ -107,6 +107,29 @@ class CoLearnClient: NSObject {
         }
     }
     
+    // Get the UserInfo of Multiple users
+    class func getAllUserDataFromDB(ids: [String], success: ([PFObject]?) -> (), failure: (NSError?) -> ()) {
+        
+        let query = PFQuery(className: UserClass)
+        query.whereKey("user_id", containedIn: ids)
+        
+        query.findObjectsInBackgroundWithBlock { (userInfo: [PFObject]?, error: NSError?) in
+            if error != nil {
+                failure(error)
+            } else {
+                success(userInfo)
+            }
+        }
+        
+//        query.getFirstObjectInBackgroundWithBlock { (userInfo: PFObject?, error: NSError?) in
+//            if error != nil {
+//                failure(error)
+//            } else {
+//                success(userInfo)
+//            }
+//        }
+    }
+    
     // Update the User Information on DB.
     class func updateUserDataOnDB(user: User, status: (NSError?) -> (), withCompletion completion: PFBooleanResultBlock?) {
         
@@ -158,6 +181,22 @@ class CoLearnClient: NSObject {
         }
 
     }
+    
+    class func getUsersWithFollowingIDs(ids: [String], success: ([PFObject]?) -> (), failure: (NSError?) -> ()) {
+        
+        let keys = ["phoneNumber","about","country","state","timezone","city","author"]
+        let query = PFQuery(className: UserClass)
+        query.includeKeys(keys)
+        query.whereKey("user_id", containedIn: ids)
+        
+        query.findObjectsInBackgroundWithBlock { (userInfo: [PFObject]?, error: NSError?) in
+            if error != nil {
+                failure(error)
+            } else {
+                success(userInfo)
+            }
+        }
+    }
      /*------------------------------ User Information - Start ----------------------------------------*/
     
     /* ---------------------- Post the Languages chosen to Teach to DB - Start ----------------------------------*/
@@ -171,7 +210,7 @@ class CoLearnClient: NSObject {
     }
     
     // All the users that can teach a specific langauge
-    private class func getUsersCanTeachForALangauge(langType: Languages.LangType, success: ([PFObject]?) -> (), failure: (NSError?) -> ()){
+    class func getUsersCanTeachForALangauge(langType: Languages.LangType, success: ([PFObject]?) -> (), failure: (NSError?) -> ()){
         
         // Query
         let query = PFQuery(className: LangCanTeachClass)
