@@ -2,7 +2,7 @@
 //  SessionViewController.swift
 //  CoLearn
 //
-//  Created by Caleb Ripley on 4/16/16.
+//  Created by Caleb Ripley on 4/18/16.
 //  Copyright © 2016 CoLearn. All rights reserved.
 //
 
