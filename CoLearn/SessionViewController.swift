@@ -189,9 +189,9 @@ class SessionViewController: UIViewController {
         //print(year)
         if year > 0 {
             if year==1{
-                return "\(year)yr"
+                return "\(year) yr"
             }else{
-                return "\(year)yrs"
+                return "\(year) yrs"
             }
             
         }
@@ -200,9 +200,9 @@ class SessionViewController: UIViewController {
         //print(month)
         if month > 0 {
             if month==1{
-                return "\(month)month"
+                return "\(month) month"
             }else{
-                return "\(month)months"
+                return "\(month) months"
             }
             
         }
@@ -211,9 +211,9 @@ class SessionViewController: UIViewController {
         //print(week)
         if week > 0 {
             if week==1{
-                return "\(week)week"
+                return "\(week) week"
             }else{
-                return "\(week)weeks"
+                return "\(week) weeks"
             }
             
         }
@@ -222,9 +222,9 @@ class SessionViewController: UIViewController {
         //print(day)
         if day > 0 {
             if day==1{
-                return "\(day)day"
+                return "\(day) day"
             }else{
-                return "\(day)days"
+                return "\(day) days"
             }
             
         }
@@ -233,9 +233,9 @@ class SessionViewController: UIViewController {
         //print(hour)
         if hour > 0 {
             if hour==1{
-                return "\(hour)hour"
+                return "\(hour) hour"
             }else{
-                let hourText = "\(hour)hours \(minutesFrom(date))mins"
+                let hourText = "\(hour) hours \(minutesFrom(date)) mins"
                 return hourText
             }
             
@@ -245,9 +245,9 @@ class SessionViewController: UIViewController {
         //print(min)
         if min > 0 {
             if min==1{
-                return "\(min)min"
+                return "\(min) min"
             }else{
-                let minText = "\(min)mins \(secondsFrom(date))secs"
+                let minText = "\(min) mins \(secondsFrom(date)) secs"
                 return minText
             }
             
@@ -257,17 +257,15 @@ class SessionViewController: UIViewController {
         //print(sec)
         if sec > 0 {
             if sec==1{
-                return "\(sec)sec"
+                return "\(sec) sec"
             }else{
-                return "\(sec)secs"
+                return "\(sec) secs"
             }
             
         }
         
         let callMinutesLapse = NSCalendar.currentCalendar().components(.Minute, fromDate: date, toDate: NSDate(), options: []).minute
         //print("Lapse minutes \(callMinutesLapse)")
-        let callSecondsLapse = NSCalendar.currentCalendar().components(.Second, fromDate: date, toDate: NSDate(), options: []).second
-        //print("Lapse seconds \(callSecondsLapse)")
         
         if callMinutesLapse <= 60{
             self.callPoster.hidden = false
@@ -278,78 +276,3 @@ class SessionViewController: UIViewController {
     }
 
 }
-
-
-/*
-extension NSDate {
-    func yearsFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.Year, fromDate: date, toDate: self, options: []).year
-    }
-    func monthsFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.Month, fromDate: date, toDate: self, options: []).month
-    }
-    func weeksFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.WeekOfYear, fromDate: date, toDate: self, options: []).weekOfYear
-    }
-    func daysFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.Day, fromDate: date, toDate: self, options: []).day
-    }
-    func hoursFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.Hour, fromDate: date, toDate: self, options: []).hour
-    }
-    func minutesFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.Minute, fromDate: date, toDate: self, options: []).minute
-    }
-    func secondsFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.Second, fromDate: date, toDate: self, options: []).second
-    }
-    
-    func offsetFrom(date:NSDate) -> String {
-        print("offset called")
-        
-        let year = "\(yearsFrom(date))y"
-        print(year)
-        if yearsFrom(date)   > 0 {
-            return year
-        }
-        
-        let month = "\(monthsFrom(date))M"
-        print(month)
-        if monthsFrom(date)  > 0 {
-            return month
-        }
-        
-        let week = "\(weeksFrom(date))w"
-        print(week)
-        if weeksFrom(date)   > 0 {
-            return week
-        }
-        
-        let day = "\(daysFrom(date))d"
-        print(day)
-        if daysFrom(date)    > 0 {
-            return day
-        }
-        
-        let hour = "\(hoursFrom(date))h"
-        print(hour)
-        if hoursFrom(date)   > 0 {
-            return hour
-        }
-        
-        let min = "\(minutesFrom(date))m"
-        print(min)
-        if minutesFrom(date) > 0 {
-            return min
-        }
-        
-        let sec = "\(secondsFrom(date))s"
-        print(sec)
-        if secondsFrom(date) > 0 {
-            return sec
-        }
-        
-        return "unknown"
-    }
-}
-*/
