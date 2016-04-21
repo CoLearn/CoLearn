@@ -47,19 +47,22 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
         let userObj = self.usersCanTeachTheLanguage![indexPath.row]
         cell.nameLabel.text = userObj.fullName!
         cell.locationLabel.text = userObj.location
-        // Configure the cell...
+        cell.tag = indexPath.row
 
         return cell
     }
-
-    /*
-    // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "RequestSessionSegue" {
+            let cell = sender as! UITableViewCell
+            let indexPath = searchResultsTableView.indexPathForCell(cell)
+            let requestViewController = segue.destinationViewController as! RequestViewController
+            requestViewController.user = usersCanTeachTheLanguage![(indexPath?.row)!]
+            requestViewController.langType = self.langType
+        }
     }
-    */
+    
+    
 
 }
