@@ -185,25 +185,40 @@ class CoLearnClient: NSObject {
         post.saveInBackgroundWithBlock(completion)
     }
     
+    class func removeLanguagesToTeach(langToTeach: Languages.LangType, user_id: String, withCompletion completion: PFBooleanResultBlock?) {
+        
+        let query = PFQuery(className: LangCanTeachClass)
+        query.whereKey("lang", equalTo: langToTeach.getName())
+        query.whereKey("user_id", equalTo: user_id)
+        
+        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) in
+            if error == nil {
+                for object in objects! {
+                    object.deleteInBackgroundWithBlock(completion)
+                }
+            } else {
+                print("Error finding object to remove: \(error?.localizedDescription)")
+            }
+        }
+    }
+    
     // All the users that can teach a specific langauge
     class func getUsersCanTeachForALangauge(langType: Languages.LangType, success: ([PFObject]?) -> (), failure: (NSError?) -> ()){
         
-        print("getUsersCanTeachForALangauge-Start")
         // Query
         let query = PFQuery(className: LangCanTeachClass)
-//        query.includeKey("user_id")
-//        let langName = langType.getName()
+
         query.whereKey("lang", equalTo: langType.getName())
         
         query.findObjectsInBackgroundWithBlock { (posts: [PFObject]?, error: NSError?) in
             if error != nil {
                 failure(error)
             } else {
-                print(posts)
+
                 success(posts)
             }
         }
-        print("getUsersCanTeachForALangauge-End")
+
     }
     
     // Languages a User can Teach
@@ -241,7 +256,7 @@ class CoLearnClient: NSObject {
         
         //Query
         let query = PFQuery(className: LangToLearnClass)
-//        query.includeKey("user_id")
+
         query.whereKey("lang", equalTo: langType.getName())
         
         query.findObjectsInBackgroundWithBlock { (posts: [PFObject]?, error: NSError?) in

@@ -77,7 +77,6 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
                             var time = NSDate()
                             
                             if let datetime = (s["time"]) as? NSDate{
-                                // print("Conversion to nsdate successful: \(datetime)")
                                 time = datetime
                             }else{
                                 print("Conversion to nsdate failed")
@@ -96,7 +95,6 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
                             case Constants.REJECTED: status = ScheduleStatus.status.REJECTED
                             default: status = ScheduleStatus.status.PENDING
                             }
-                            // print("status: \(status.getName())")
                             
                             var schId = ""
                             if let schedule_id = s.objectId{
@@ -142,7 +140,6 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
         //scheduleTime = formatter.dateFromString("2016-12-24T05:30:00+0000")!
         
         let s = Schedule(user_id: "10153818548450873", instructor_id: "1265123510169659", lang: Languages.LangType.SPANISH, time: NSDate(), timezone: NSTimeZone.localTimeZone(), requestNote: "I want to experience the tomatino festival", responseNote: "", scheduleStatus: ScheduleStatus.status.PENDING)
-        
         CoLearnClient.addASchedule(s) { (b: Bool, error: NSError?) -> Void in
             if let e = error{
                 print("Error in adding schedule \(e.localizedDescription)")

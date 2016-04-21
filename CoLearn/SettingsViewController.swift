@@ -23,20 +23,24 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         setTextFields()
-        disableTextFields()
+        setSwitches()
         //hideKeyboardOnTapOutside()
         
         self.aboutMeTextField.delegate = self
         self.nameTextField.delegate = self
         self.locationTextField.delegate = self
         self.phoneNumberTextField.delegate = self
-        
-        // Do any additional setup after loading the view.
+    
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -45,33 +49,14 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func onSave(sender: AnyObject) {
-        disableTextFields()
         saveEditedData()
         updateEditedData()
         self.dismissViewControllerAnimated(true, completion: {})
     }
 
     @IBAction func onBack(sender: AnyObject) {
-        disableTextFields()
+        //dismissKeyboard()
         self.dismissViewControllerAnimated(true, completion: {})
-    }
-
-    @IBAction func onEditTextFields(sender: AnyObject) {
-        enableTextFields()
-    }
-    
-    func disableTextFields() {
-        phoneNumberTextField.userInteractionEnabled = false
-        aboutMeTextField.userInteractionEnabled = false
-        nameTextField.userInteractionEnabled = false
-        locationTextField.userInteractionEnabled = false
-    }
-    
-    func enableTextFields () {
-        nameTextField.userInteractionEnabled = true
-        phoneNumberTextField.userInteractionEnabled = true
-        aboutMeTextField.userInteractionEnabled = true
-        locationTextField.userInteractionEnabled = true
     }
     
     func setTextFields() {
@@ -81,11 +66,108 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         locationTextField.text = currentUser?.location?.loc
     }
     
+    func setSwitches() {
+        // For languages user can teach
+        if let languages = currentUser?.languagesCanTeach?.languages {
+            for langObject in languages {
+                if (langObject.getName() == Constants.ENGLISH) {
+                    englishTeachSwitch.on = true
+                } else if (langObject.getName() == Constants.SPANISH) {
+                    spanishTeachSwitch.on = true
+                } else if (langObject.getName() == Constants.FRENCH) {
+                    frenchTeachSwitch.on = true
+                } else if (langObject.getName() == Constants.CHINESE) {
+                    chineseTeachSwitch.on = true
+                }
+            }
+        }
+        
+        // For languages user wants to learn
+    }
+    
     func saveEditedData() {
+        // Saving basic user properties
         currentUser?.fullName = nameTextField.text
         currentUser?.phoneNumber = phoneNumberTextField.text
         currentUser?.about = aboutMeTextField.text
         currentUser?.location?.loc = locationTextField.text
+        
+        // Saving languages a user can teach
+        if (currentUser?.languagesCanTeach?.languages != nil) {
+            
+            // ENGLISH
+            if (englishTeachSwitch.on == true && currentUser?.languagesCanTeach?.hasLanguage(Languages.LangType.ENGLISH) == false) {
+                CoLearnClient.postLanguagesToTeach(Languages.LangType.ENGLISH, user_id: (currentUser?.id)!, withCompletion: { (status: Bool, error: NSError?) in
+                    if error == nil {
+                        currentUser?.languagesCanTeach?.addLanguage(Languages.LangType.ENGLISH)
+                    } else {
+                        print("Error posting language to teach: \(error?.localizedDescription)")
+                    }
+                })
+            } else if (englishTeachSwitch.on == false && currentUser?.languagesCanTeach?.hasLanguage(Languages.LangType.ENGLISH) == true) {
+                CoLearnClient.removeLanguagesToTeach(Languages.LangType.ENGLISH, user_id: (currentUser?.id)!, withCompletion: { (status: Bool, error: NSError?) in
+                    if (error == nil) {
+                        currentUser?.languagesCanTeach?.removeLanguage(Languages.LangType.ENGLISH)
+                    } else {
+                        print("Error removing language to teach: \(error?.localizedDescription)")
+                    }
+                })
+                
+            }   // FRENCH
+            if (frenchTeachSwitch.on == true && currentUser?.languagesCanTeach?.hasLanguage(Languages.LangType.FRENCH) == false) {
+                CoLearnClient.postLanguagesToTeach(Languages.LangType.FRENCH, user_id: (currentUser?.id)!, withCompletion: { (status: Bool, error: NSError?) in
+                    if error == nil {
+                        currentUser?.languagesCanTeach?.addLanguage(Languages.LangType.FRENCH)
+                    } else {
+                        print("Error posting language to teach: \(error?.localizedDescription)")
+                    }
+                })
+            } else if (frenchTeachSwitch.on == false && currentUser?.languagesCanTeach?.hasLanguage(Languages.LangType.FRENCH) == true) {
+                CoLearnClient.removeLanguagesToTeach(Languages.LangType.FRENCH, user_id: (currentUser?.id)!, withCompletion: { (status: Bool, error: NSError?) in
+                    if (error == nil) {
+                        currentUser?.languagesCanTeach?.removeLanguage(Languages.LangType.FRENCH)
+                    } else {
+                        print("Error removing language to teach: \(error?.localizedDescription)")
+                    }
+                })
+                
+            }    // SPANISH
+            if (spanishTeachSwitch.on == true && currentUser?.languagesCanTeach?.hasLanguage(Languages.LangType.SPANISH) == false) {
+                CoLearnClient.postLanguagesToTeach(Languages.LangType.SPANISH, user_id: (currentUser?.id)!, withCompletion: { (status: Bool, error: NSError?) in
+                    if error == nil {
+                        currentUser?.languagesCanTeach?.addLanguage(Languages.LangType.SPANISH)
+                    } else {
+                        print("Error posting language to teach: \(error?.localizedDescription)")
+                    }
+                })
+            } else if (spanishTeachSwitch.on == false && currentUser?.languagesCanTeach?.hasLanguage(Languages.LangType.SPANISH) == true) {
+                CoLearnClient.removeLanguagesToTeach(Languages.LangType.SPANISH, user_id: (currentUser?.id)!, withCompletion: { (status: Bool, error: NSError?) in
+                    if (error == nil) {
+                        currentUser?.languagesCanTeach?.removeLanguage(Languages.LangType.SPANISH)
+                    } else {
+                        print("Error removing language to teach: \(error?.localizedDescription)")
+                    }
+                })
+                
+            }    // CHINESE
+            if (chineseTeachSwitch.on == true && currentUser?.languagesCanTeach?.hasLanguage(Languages.LangType.CHINESE) == false) {
+                CoLearnClient.postLanguagesToTeach(Languages.LangType.CHINESE, user_id: (currentUser?.id)!, withCompletion: { (status: Bool, error: NSError?) in
+                    if error == nil {
+                        currentUser?.languagesCanTeach?.addLanguage(Languages.LangType.CHINESE)
+                    } else {
+                        print("Error posting language to teach: \(error?.localizedDescription)")
+                    }
+                })
+            } else if (chineseTeachSwitch.on == false && currentUser?.languagesCanTeach?.hasLanguage(Languages.LangType.CHINESE) == true) {
+                CoLearnClient.removeLanguagesToTeach(Languages.LangType.CHINESE, user_id: (currentUser?.id)!, withCompletion: { (status: Bool, error: NSError?) in
+                    if (error == nil) {
+                        currentUser?.languagesCanTeach?.removeLanguage(Languages.LangType.CHINESE)
+                    } else {
+                        print("Error removing language to teach: \(error?.localizedDescription)")
+                    }
+                })
+            }
+        }
     }
     
     func updateEditedData() {
@@ -96,37 +178,6 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
             } else {
                 print(error?.localizedDescription)
             }
-        }
-    }
-    
-    @IBAction func onSwitchTeachEnglish(sender: AnyObject) {
-        if (englishTeachSwitch.on == true) {
-            currentUser?.languagesCanTeach?.addLanguage(Languages.LangType.ENGLISH)
-
-            for langType in (currentUser?.languagesCanTeach?.languages)! {
-                CoLearnClient.postLanguagesToTeach(langType, user_id: (currentUser?.id)!) { (status: Bool, error: NSError?) in
-                }
-            }
-        } else {
-            // remove language from the object and make API call here
-        }
-    }
-    
-    @IBAction func onSwitchTeachSpanish(sender: AnyObject) {
-        if (spanishTeachSwitch.on == true) {
-            currentUser?.languagesCanTeach?.addLanguage(Languages.LangType.SPANISH)
-        }
-    }
-    
-    @IBAction func onSwitchTeachFrench(sender: AnyObject) {
-        if (frenchTeachSwitch.on == true) {
-            currentUser?.languagesCanTeach?.addLanguage(Languages.LangType.FRENCH)
-        }
-    }
-    
-    @IBAction func onSwitchTeachChinese(sender: AnyObject) {
-        if (chineseTeachSwitch.on == true) {
-            currentUser?.languagesCanTeach?.addLanguage(Languages.LangType.CHINESE)
         }
     }
     

@@ -51,7 +51,7 @@ class AddScheduleViewController: UIViewController {
     
     // Get the Instructors Info for multiple users.
     private func getUserInfoForALanguage(langType: Languages.LangType) {
-        print("getUserInfoForALanguage-Start")
+        
         CoLearnClient.getUsersCanTeachForALangauge(langType, success: { (users: [PFObject]?) in
             
             if let users = users {
@@ -85,7 +85,7 @@ class AddScheduleViewController: UIViewController {
             }, failure: { (error: NSError?) in
                 print("Error: \(error?.localizedDescription)")
         })
-        print("getUserInfoForALanguage-End")
+        
     }
     
     // MARK: - Navigation
@@ -93,13 +93,13 @@ class AddScheduleViewController: UIViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Pass the User information to the Next View Controller.
-        print("Segue :: Start")
+        
         if segue.identifier == "SearchUserByLanguage" {
             let searchResultsViewController = segue.destinationViewController as! SearchResultsViewController
             searchResultsViewController.langType = self.langType
             searchResultsViewController.usersCanTeachTheLanguage = self.usersCanTeachTheLanguage
         }
-        print("Segue :: End")
+        
     }
     
 }

@@ -34,11 +34,11 @@ class MainPageViewController: UITabBarController {
     }
 
 }
-/*
 
+/*
 extension UIViewController {
     func hideKeyboardOnTapOutside() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector (UIViewController.dismissKeyboard))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
     
