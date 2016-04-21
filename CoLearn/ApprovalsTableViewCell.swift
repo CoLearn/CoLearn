@@ -26,6 +26,8 @@ class ApprovalsTableViewCell: SWTableViewCell{
     
     @IBOutlet weak var flagPosterView: UIImageView!
     
+    @IBOutlet weak var responseNoteTextField: UITextField!
+    
     var index: Int?
     
     var pendingApprovalMeeting: Schedule?{

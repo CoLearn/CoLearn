@@ -41,13 +41,20 @@ class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func populateApprovalsTable(){
+
+        for s in SchedulesViewController.scheduledMeetings{
+            if (s.instructor_id == currentUser!.id && s.scheduleStatus.getName() == Constants.PENDING){
+                self.approvalMeetings.append(s)
+            }
+        }
+        /*
         SVProgressHUD.showWithStatus("Loading...")
         SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Clear)
         FacebookSDK.getUserInfoFromFacebook({ (user: User?) in
             if let user = user {
                 currentUser = user
                 //print(currentUser?.id)
-                
+        
                 CoLearnClient.getApprovalSchedules((currentUser?.id)!, success: { (schedules: [PFObject]?) in
                     if let receivedSchedules = schedules{
                         self.approvalMeetings = []
@@ -120,11 +127,11 @@ class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableVie
                     }) { (error: NSError?) in
                         print("Error in getting approval schedules \(error?.localizedDescription)")
                 }
-                
+
             }
             }) { (error: NSError?) in
                 print(error?.localizedDescription)
-        }
+        }*/
     }
 
     override func didReceiveMemoryWarning() {
@@ -157,31 +164,63 @@ class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableVie
     func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerLeftUtilityButtonWithIndex index: Int) {
         
         let cellIndex = self.approvalsTableView.indexPathForCell(cell)
-        CoLearnClient.updateScheduleStatus(self.approvalMeetings[(cellIndex?.row)!].sch_id!, newStatus: ScheduleStatus.status.REJECTED) { (Bool, error: NSError?) -> Void in
-            if (Bool && (error == nil)){
-                self.approvalMeetings.removeAtIndex((cellIndex?.row)!)
-                self.approvalsTableView.deleteRowsAtIndexPaths([cellIndex!], withRowAnimation: UITableViewRowAnimation.Fade)
-                self.approvalsTableView.reloadData()
-            }else{
-                print("Error while updating the schedule status")
+        
+        let tableCell = self.approvalsTableView.cellForRowAtIndexPath(cellIndex!) as? ApprovalsTableViewCell
+        
+        var user_reponse = ""
+        if let respone  = tableCell?.responseNoteTextField.text{
+            print("User respone: \(respone)")
+            user_reponse = respone
+        }else{
+            print("No user response")
+        }
+        
+        if let schedueId = self.approvalMeetings[(cellIndex?.row)!].sch_id{
+            CoLearnClient.updateScheduleStatus(schedueId, newStatus: ScheduleStatus.status.REJECTED, responseNote: user_reponse) { (Bool, error: NSError?) -> Void in
+                if (Bool && (error == nil)){
+                    self.approvalMeetings[(cellIndex?.row)!].scheduleStatus = ScheduleStatus.status.REJECTED
+                    self.approvalMeetings[(cellIndex?.row)!].responseNote = user_reponse
+                    self.approvalMeetings.removeAtIndex((cellIndex?.row)!)
+                    self.approvalsTableView.deleteRowsAtIndexPaths([cellIndex!], withRowAnimation: UITableViewRowAnimation.Fade)
+                    self.approvalsTableView.reloadData()
+                }else{
+                    print("Error while updating the schedule status")
+                }
             }
+        }else{
+            print("Can't update. No schedule id")
         }
     }
     
     func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerRightUtilityButtonWithIndex index: Int) {
         let cellIndex = self.approvalsTableView.indexPathForCell(cell)
-        //self.approvalMeetings.removeAtIndex((cellIndex?.row)!)
         
+        let tableCell = self.approvalsTableView.cellForRowAtIndexPath(cellIndex!) as? ApprovalsTableViewCell
         
-        CoLearnClient.updateScheduleStatus(self.approvalMeetings[(cellIndex?.row)!].sch_id!, newStatus: ScheduleStatus.status.APPROVED) { (Bool, error: NSError?) -> Void in
-            if (Bool && (error == nil)){
-                self.approvalMeetings.removeAtIndex((cellIndex?.row)!)
-                self.approvalsTableView.deleteRowsAtIndexPaths([cellIndex!], withRowAnimation: UITableViewRowAnimation.Fade)
-                self.approvalsTableView.reloadData()
-            }else{
-                print("Error while updating the schedule status")
-            }
+        var user_reponse = ""
+        if let respone  = tableCell?.responseNoteTextField.text{
+            print("User respone: \(respone)")
+            user_reponse = respone
+        }else{
+            print("No user response")
         }
+        
+        if let schedueId = self.approvalMeetings[(cellIndex?.row)!].sch_id{
+            CoLearnClient.updateScheduleStatus(schedueId, newStatus: ScheduleStatus.status.APPROVED, responseNote: user_reponse) { (Bool, error: NSError?) -> Void in
+                if (Bool && (error == nil)){
+                    self.approvalMeetings[(cellIndex?.row)!].scheduleStatus = ScheduleStatus.status.APPROVED
+                    self.approvalMeetings[(cellIndex?.row)!].responseNote = user_reponse
+                    self.approvalMeetings.removeAtIndex((cellIndex?.row)!)
+                    self.approvalsTableView.deleteRowsAtIndexPaths([cellIndex!], withRowAnimation: UITableViewRowAnimation.Fade)
+                    self.approvalsTableView.reloadData()
+                }else{
+                    print("Error while updating the schedule status")
+                }
+            }
+        }else{
+            print("Can't update. No schedule id")
+        }
+        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

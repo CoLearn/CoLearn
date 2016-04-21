@@ -332,7 +332,7 @@ class CoLearnClient: NSObject {
 
     
     // Updating the schedule of the current user
-    class func updateScheduleStatus(sch_id : String, newStatus: ScheduleStatus.status, withCompletion completion: PFBooleanResultBlock?) {
+    class func updateScheduleStatus(sch_id : String, newStatus: ScheduleStatus.status, responseNote: String, withCompletion completion: PFBooleanResultBlock?) {
         
 //      let key = "status"
         let query = PFQuery(className: ScheduleClass)
@@ -344,6 +344,7 @@ class CoLearnClient: NSObject {
             if error == nil {
                 if let schedule = schedule {
                     schedule["status"] = newStatus.getName()
+                    schedule["response_note"] = responseNote
                     schedule.saveInBackgroundWithBlock(completion)
                 } else {
                     print("Unable to update the Schedule \(sch_id)")
