@@ -10,7 +10,7 @@ Basic functionality:
 - [X] Authentication - [3rd party authentication with Facebook]
 - [X] User Roles - [Instructor, Learner]
 - [X] User Profile - [From Facebook, and restricted share]
-- [ ] Scheduling a session - [Through a schedule page, it is done by the learner and the instructor has the choice to accept or reject them (with a message) Need to take care of the time zones here]
+- [X] Scheduling a session - [Through a schedule page, it is done by the learner and the instructor has the choice to accept or reject them (with a message) Need to take care of the time zones here]
 - [X] Integration with 3rd party - [Authentication and video/audio chat]
 - [X] Video Chat/ Audio Chat - [Ability to video or audio chat for learning sessions]
 - [ ] Rescheduling/Cancellation resulting into losing few credits.

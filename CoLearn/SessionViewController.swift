@@ -49,8 +49,13 @@ class SessionViewController: UIViewController {
     func makeFacetimeCall() {
         print("Facetime called...")
         if let callingNumber = self.phoneNumber{
-            print("Calling number \(callingNumber)")
-            if let facetimeURL:NSURL = NSURL(string: "facetime://\(callingNumber)") {
+            let trimmedNumber = callingNumber.stringByReplacingOccurrencesOfString(" ", withString: "")
+            print("Calling number \(trimmedNumber)")
+            
+            let facetimeUrlString = "facetime://\(trimmedNumber)"
+            
+            print(facetimeUrlString)
+            if let facetimeURL = NSURL(string: facetimeUrlString) {
                 let application:UIApplication = UIApplication.sharedApplication()
                 if (application.canOpenURL(facetimeURL)) {
                     print("can open facetime url")
@@ -58,6 +63,8 @@ class SessionViewController: UIViewController {
                 }else{
                     print("cannot open facetime url")
                 }
+            }else{
+                print("Error in forming facetime url")
             }
         }
         
