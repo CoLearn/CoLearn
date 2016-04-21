@@ -25,7 +25,7 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
         self.schedulesTableView.rowHeight = UITableViewAutomaticDimension
         self.schedulesTableView.estimatedRowHeight = 120
         
-        self.createSchedules()
+        //self.createSchedules()
         
         self.schedulesTableView.dataSource = self
         self.schedulesTableView.delegate = self
