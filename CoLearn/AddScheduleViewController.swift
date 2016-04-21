@@ -51,13 +51,17 @@ class AddScheduleViewController: UIViewController {
     
     // Get the Instructors Info for multiple users.
     private func getUserInfoForALanguage(langType: Languages.LangType) {
-        CoLearnClient.getUsersCanTeachForALangauge(Languages.LangType.ENGLISH, success: { (users: [PFObject]?) in
+        print("getUserInfoForALanguage-Start")
+        CoLearnClient.getUsersCanTeachForALangauge(langType, success: { (users: [PFObject]?) in
             
             if let users = users {
                 var ids = [String]()
                 for user in users {
                     ids.append(user["user_id"] as! String)
                 }
+                print("getUserInfoForALanguage-userId's: ")
+                print("Count: \(ids.count)")
+                self.usersCanTeachTheLanguage.removeAll()
                 if ids.count > 0 {
                     CoLearnClient.getAllUserDataFromDB(ids, success: { (usersData: [PFObject]?) in
                         if let usersData = usersData {
@@ -65,18 +69,23 @@ class AddScheduleViewController: UIViewController {
                                 let user = ParseDBUser()
                                 user.userInfo = userData
                                 self.usersCanTeachTheLanguage.append(user)
+                                // Move to Table View To display the results
+                                self.performSegueWithIdentifier("SearchUserByLanguage", sender: self)
                             }
+                        } else {
+                            print("User Data can't be retrieved")
                         }
-                        // Move to Table View To display the results
-                        self.performSegueWithIdentifier("SearchUserByLanguage", sender: self)
                     }, failure: { (error: NSError?) in
-                        print(error?.localizedDescription)
+                        print("Error: \(error?.localizedDescription)")
                     })
+                } else {
+                    print("No Users found for the language Chosen!!")
                 }
             }
             }, failure: { (error: NSError?) in
-                print(error?.localizedDescription)
+                print("Error: \(error?.localizedDescription)")
         })
+        print("getUserInfoForALanguage-End")
     }
     
     // MARK: - Navigation
@@ -84,12 +93,13 @@ class AddScheduleViewController: UIViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Pass the User information to the Next View Controller.
-        print("Segue :: SearchUserByLanguage")
+        print("Segue :: Start")
         if segue.identifier == "SearchUserByLanguage" {
-            let searchResultsTableViewController = segue.destinationViewController as! SearchResultsTableViewController
-            searchResultsTableViewController.langType = self.langType
-            searchResultsTableViewController.usersCanTeachTheLanguage = self.usersCanTeachTheLanguage
+            let searchResultsViewController = segue.destinationViewController as! SearchResultsViewController
+            searchResultsViewController.langType = self.langType
+            searchResultsViewController.usersCanTeachTheLanguage = self.usersCanTeachTheLanguage
         }
+        print("Segue :: End")
     }
     
 }

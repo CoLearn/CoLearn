@@ -21,19 +21,6 @@ class CoLearnClient: NSObject {
     static let LangToLearnClass = "LanguagesToLearn"
     static var sharedInstance: CoLearnClient?
     
-    //static var currentUserId: String?
-    
-//    static let teachSpanishClass = "teachSpanish"
-//    static let teachEnglishClass = "teachEnglish"
-//    static let teachFrenchClass = "teachFrench"
-//    static let teachChineseClass = "teachChinese"
-//    static let learnSpanishClass = "learnSpanish"
-//    static let learnEnglishClass = "learnEnglish"
-//    static let learnFrenchClass = "learnFrench"
-//    static let learnChineseClass = "learnChinese"
-
-//    static let LanguagesToLearnClass = "langtolearn"
-    
     override init(){
         super.init()
         CoLearnClient.sharedInstance = self
@@ -121,23 +108,12 @@ class CoLearnClient: NSObject {
             }
         }
         
-//        query.getFirstObjectInBackgroundWithBlock { (userInfo: PFObject?, error: NSError?) in
-//            if error != nil {
-//                failure(error)
-//            } else {
-//                success(userInfo)
-//            }
-//        }
     }
     
     // Update the User Information on DB.
     class func updateUserDataOnDB(user: User, status: (NSError?) -> (), withCompletion completion: PFBooleanResultBlock?) {
         
-//        let keys = ["phoneNumber","about","country","state","timezone","city","author"]
         let query = PFQuery(className: UserClass)
-//        query.includeKey("phoneNumber")
-//        query.includeKey("name")
-//        query.includeKey("about")
         query.whereKey("user_id", equalTo: user.id)
         
         query.getFirstObjectInBackgroundWithBlock { (userInfo: PFObject?, error: NSError?) in
@@ -212,18 +188,22 @@ class CoLearnClient: NSObject {
     // All the users that can teach a specific langauge
     class func getUsersCanTeachForALangauge(langType: Languages.LangType, success: ([PFObject]?) -> (), failure: (NSError?) -> ()){
         
+        print("getUsersCanTeachForALangauge-Start")
         // Query
         let query = PFQuery(className: LangCanTeachClass)
-        query.includeKey("user_id")
+//        query.includeKey("user_id")
+//        let langName = langType.getName()
         query.whereKey("lang", equalTo: langType.getName())
         
         query.findObjectsInBackgroundWithBlock { (posts: [PFObject]?, error: NSError?) in
             if error != nil {
                 failure(error)
             } else {
+                print(posts)
                 success(posts)
             }
         }
+        print("getUsersCanTeachForALangauge-End")
     }
     
     // Languages a User can Teach
@@ -231,7 +211,7 @@ class CoLearnClient: NSObject {
         
         //Query
         let query = PFQuery(className: LangCanTeachClass)
-        query.includeKey("lang")
+//        query.includeKey("lang")
         query.whereKey("user_id", equalTo: user_id)
         
         query.findObjectsInBackgroundWithBlock { (posts: [PFObject]?, error: NSError?) in
@@ -261,7 +241,7 @@ class CoLearnClient: NSObject {
         
         //Query
         let query = PFQuery(className: LangToLearnClass)
-        query.includeKey("user_id")
+//        query.includeKey("user_id")
         query.whereKey("lang", equalTo: langType.getName())
         
         query.findObjectsInBackgroundWithBlock { (posts: [PFObject]?, error: NSError?) in
