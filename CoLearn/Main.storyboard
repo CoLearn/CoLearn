@@ -653,18 +653,25 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="English" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDd-Qk-RKV">
-                                <rect key="frame" x="94" y="107" width="90" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="English" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDd-Qk-RKV">
+                                <rect key="frame" x="115" y="107" width="90" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="OZL-bd-hGT"/>
+                                    <constraint firstAttribute="width" constant="90" id="jvQ-fF-HGI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" red="0.33167536130000003" green="0.6545592227" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="FNh-xS-XM9" firstAttribute="leading" secondItem="HBt-Ia-Zqc" secondAttribute="leading" id="BVB-I9-kiW"/>
+                            <constraint firstItem="kDd-Qk-RKV" firstAttribute="top" secondItem="WU4-gE-mdS" secondAttribute="bottom" constant="43" id="PQz-2J-Vav"/>
+                            <constraint firstItem="kDd-Qk-RKV" firstAttribute="centerX" secondItem="HBt-Ia-Zqc" secondAttribute="centerX" id="SbN-lt-qaS"/>
                             <constraint firstItem="qtz-Bb-LTL" firstAttribute="top" secondItem="FNh-xS-XM9" secondAttribute="bottom" id="dOv-wP-LYs"/>
                             <constraint firstAttribute="trailing" secondItem="FNh-xS-XM9" secondAttribute="trailing" id="fUu-cb-6cA"/>
+                            <constraint firstItem="kDd-Qk-RKV" firstAttribute="centerX" secondItem="HBt-Ia-Zqc" secondAttribute="centerX" id="u93-cg-iTN"/>
                             <constraint firstItem="FNh-xS-XM9" firstAttribute="top" secondItem="WU4-gE-mdS" secondAttribute="bottom" id="vhA-t3-Dw3"/>
                         </constraints>
                     </view>
