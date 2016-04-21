@@ -45,18 +45,25 @@ class User: NSObject {
                 if let phoneNum = userInfo!["phoneNumber"] {
                     currentUser!.phoneNumber = phoneNum as? String
                 }
+                currentUser?.rewards = ""
 
                 }, failure: { (error: NSError?) in
                     print(error?.localizedDescription)
             })
-           
         }
-    
+        
+        CoLearnClient.getLanguagesCanTeachByAnUser((currentUser?.id)!, success: { (languages: [PFObject]?) in
+            currentUser?.teachLang = languages
+        }) { (error: NSError?) in
+                print("Error getting languages user can teach: \(error?.localizedDescription)")
+        }
+        
     return user
     }
     
     var learnLang: [PFObject]? {
         didSet {
+            languagesToLearn = LanguagesChosen()
             for lanObject in learnLang! {
                 switch lanObject["lang"] as! String {
                 case "English":
@@ -75,6 +82,7 @@ class User: NSObject {
     
     var teachLang: [PFObject]? {
         didSet {
+            languagesCanTeach = LanguagesChosen()
             for lanObject in teachLang! {
                 switch lanObject["lang"] as! String {
                 case "English":
@@ -87,7 +95,6 @@ class User: NSObject {
                     languagesCanTeach?.addLanguage(Languages.LangType.CHINESE)
                 default: ()
                 }
-                
             }
         }
     }

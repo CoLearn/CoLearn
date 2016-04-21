@@ -265,9 +265,9 @@ class SessionViewController: UIViewController {
         }
         
         let callMinutesLapse = NSCalendar.currentCalendar().components(.Minute, fromDate: date, toDate: NSDate(), options: []).minute
-        print("Lapse minutes \(callMinutesLapse)")
+        //print("Lapse minutes \(callMinutesLapse)")
         let callSecondsLapse = NSCalendar.currentCalendar().components(.Second, fromDate: date, toDate: NSDate(), options: []).second
-        print("Lapse seconds \(callSecondsLapse)")
+        //print("Lapse seconds \(callSecondsLapse)")
         
         if callMinutesLapse <= 60{
             self.callPoster.hidden = false

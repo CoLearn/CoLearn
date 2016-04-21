@@ -34,7 +34,7 @@ class MainPageViewController: UITabBarController {
     }
 
 }
-/*
+
 
 extension UIViewController {
     func hideKeyboardOnTapOutside() {
@@ -46,4 +46,4 @@ extension UIViewController {
         view.endEditing(true)
     }
 }
-*/
+

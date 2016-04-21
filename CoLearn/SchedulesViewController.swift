@@ -71,7 +71,7 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
                             var time = NSDate()
                             
                             if let datetime = (s["time"]) as? NSDate{
-                                print("Conversion to nsdate successful: \(datetime)")
+                                //print("Conversion to nsdate successful: \(datetime)")
                                 time = datetime
                             }else{
                                 print("Conversion to nsdate failed")
@@ -90,7 +90,7 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
                             case Constants.REJECTED: status = ScheduleStatus.status.REJECTED
                             default: status = ScheduleStatus.status.PENDING
                             }
-                            print("status: \(status.getName())")
+                            //print("status: \(status.getName())")
                             
                             SchedulesViewController.scheduledMeetings.append(Schedule(user_id: userId, instructor_id: instructorID, lang: language, time: time, timezone: timezone!, requestNote: reqNote, responseNote: resNote, scheduleStatus: status))
                         }
@@ -123,7 +123,7 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         scheduleTime = formatter.dateFromString("2016-12-24T05:30:00+0000")!
         
-        var s = Schedule(user_id: "1265123510169659", instructor_id: "123042818089530", lang: Languages.LangType.CHINESE, time: NSDate(), timezone: NSTimeZone.localTimeZone(), requestNote: "I'm temporarily relocating to China. I tried learning chinese on my own but it seems i'm not heading correct", responseNote: "", scheduleStatus: ScheduleStatus.status.PENDING)
+        var s = Schedule(user_id: "123042818089530", instructor_id: "10153818548450873", lang: Languages.LangType.CHINESE, time: NSDate(), timezone: NSTimeZone.localTimeZone(), requestNote: "I'm temporarily relocating to China. I tried learning chinese on my own but it seems i'm not heading correct", responseNote: "", scheduleStatus: ScheduleStatus.status.PENDING)
         
         CoLearnClient.addASchedule(s) { (b: Bool, error: NSError?) -> Void in
             if let e = error{

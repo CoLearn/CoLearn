@@ -87,6 +87,9 @@ class FacebookSDK: NSObject {
                     user.coverPictureURL = NSURL(string: coverPhotoUrl)
                 }
             }
+            
+            user.languagesCanTeach = LanguagesChosen()
+            user.languagesToLearn = LanguagesChosen()
         }
         return user
     }
