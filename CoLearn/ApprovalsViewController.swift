@@ -16,12 +16,10 @@ class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet var approvalsTableView: UITableView!
     
     var approvalMeetings:[Schedule] = []
-    //var pendingApprovalMeetings = [Meeting]()
-    //var parentMeetings: [Meeting]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        approvalsTableView.tableFooterView = UIView()
         // Do any additional setup after loading the view.
         self.approvalsTableView.delegate = self
         self.approvalsTableView.dataSource = self
@@ -47,97 +45,12 @@ class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func populateApprovalsTable(){
-
+        self.approvalsTableView.backgroundView?.hidden = true
         for s in SchedulesViewController.scheduledMeetings{
             if (s.instructor_id == currentUser!.id && s.scheduleStatus.getName() == Constants.PENDING){
                 self.approvalMeetings.append(s)
             }
         }
-        /*
-        SVProgressHUD.showWithStatus("Loading...")
-        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Clear)
-        FacebookSDK.getUserInfoFromFacebook({ (user: User?) in
-            if let user = user {
-                currentUser = user
-                //print(currentUser?.id)
-        
-                CoLearnClient.getApprovalSchedules((currentUser?.id)!, success: { (schedules: [PFObject]?) in
-                    if let receivedSchedules = schedules{
-                        self.approvalMeetings = []
-                        for s in receivedSchedules{
-                            print("Received approval schedule \(s)")
-                            let userId = s["user_id"] as! String
-                            //print("userID: \(userId)")
-                            
-                            
-                            let instructorID = s["instructor_id"] as! String
-                            //print("instructorID: \(instructorID)")
-                            
-                            let language: Languages.LangType
-                            switch(s["language"] as! String){
-                            case Constants.ENGLISH: language = Languages.LangType.ENGLISH
-                            case Constants.CHINESE: language = Languages.LangType.CHINESE
-                            case Constants.SPANISH: language = Languages.LangType.SPANISH
-                            case Constants.FRENCH: language = Languages.LangType.FRENCH
-                            default: language = Languages.LangType.ENGLISH
-                            }
-                            
-                            var time = NSDate()
-                            let formatter = NSDateFormatter()
-                            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-                            
-                            if let dateString = s["time"] as? String{
-                                //print("s[\"time\"] successfully converted to string")
-                                if let d = formatter.dateFromString(dateString){
-                                    time = d
-                                }else{
-                                    print("formatter error")
-                                }
-                            }else{
-                                print("error while converting s[\"time\"] to string")
-                            }
-                            
-                            
-                            print("received time: \(s["time"])")
-                            print("formatted time: \(time)")
-                            
-                            let timezone = NSTimeZone(name: s["timezone"] as! String)
-                            print("timezone: \(timezone)")
-                            
-                            let reqNote = s["request_note"] as! String
-                            print("reqNote: \(reqNote)")
-                            
-                            let resNote = s["response_note"] as! String
-                            print("resNote: \(resNote)")
-                            
-                            let status: ScheduleStatus.status
-                            switch (s["status"] as! String){
-                            case Constants.PENDING: status = ScheduleStatus.status.PENDING
-                            case Constants.APPROVED: status = ScheduleStatus.status.APPROVED
-                            case Constants.REJECTED: status = ScheduleStatus.status.REJECTED
-                            default: status = ScheduleStatus.status.PENDING
-                            }
-                            print("status: \(status.getName())")
-                            
-                            var schedule_id = "unknown"
-                            if let sch_id = s.objectId{
-                                schedule_id = sch_id
-                            }else{
-                                print("Error in getting schedule id")
-                            }
-                            self.approvalMeetings.append(Schedule(sch_id: schedule_id, user_id: userId, instructor_id: instructorID, lang: language, time: time, timezone: timezone!, requestNote: reqNote, responseNote: resNote, scheduleStatus: status))
-                        }
-                        SVProgressHUD.dismiss()
-                        self.approvalsTableView.reloadData()
-                    }
-                    }) { (error: NSError?) in
-                        print("Error in getting approval schedules \(error?.localizedDescription)")
-                }
-
-            }
-            }) { (error: NSError?) in
-                print(error?.localizedDescription)
-        }*/
     }
 
     override func didReceiveMemoryWarning() {
@@ -145,12 +58,23 @@ class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableVie
         // Dispose of any resources that can be recreated.
     }
     
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.approvalMeetings.count != 0{
+            return self.approvalMeetings.count
+        }else{
+            self.approvalsTableView.backgroundView?.hidden = false
+            let emptyMessage = UILabel()
+            emptyMessage.text = "You have answered to all requests!"
+            emptyMessage.textAlignment = NSTextAlignment.Center
+            self.approvalsTableView.backgroundView = emptyMessage
+            self.approvalsTableView.separatorStyle = UITableViewCellSeparatorStyle.None
+            return 0
+        }
+    }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ApprovalsTableViewCell", forIndexPath: indexPath) as? ApprovalsTableViewCell
         
-        
-        //ScheduleTableViewCell()
         cell!.delegate = self
         let leftUtilityButtons: NSMutableArray = []
         leftUtilityButtons.sw_addUtilityButtonWithColor(UIColor.redColor(), title: "Decline")
@@ -161,7 +85,6 @@ class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableVie
         cell!.leftUtilityButtons = leftUtilityButtons as [AnyObject]
         cell!.rightUtilityButtons = rightUtilityButtons as [AnyObject]
         
-        //cell?.pendingApprovalMeeting = self.pendingApprovalMeetings[indexPath.row]
         cell?.pendingApprovalMeeting = self.approvalMeetings[indexPath.row]
         cell?.index = indexPath.row
         cell?.feedbackCommentTextField.delegate = self
@@ -228,14 +151,6 @@ class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableVie
             print("Can't update. No schedule id")
         }
         
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.approvalMeetings.count != 0{
-            return self.approvalMeetings.count
-        }else{
-            return 0
-        }
     }
 
     /*

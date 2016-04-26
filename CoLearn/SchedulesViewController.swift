@@ -18,9 +18,16 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         //print("inside schedules view controller view did load")
         self.schedulesTableView.reloadData()
+
+        schedulesTableView.tableFooterView = UIView()
+        
+        // Do any additional setup after loading the view.
+        self.title = "Schedule"
+    
+        // print("inside schedules view controller view did load")
+        
         self.schedulesTableView.rowHeight = UITableViewAutomaticDimension
         self.schedulesTableView.estimatedRowHeight = 120
         
@@ -30,14 +37,21 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
         self.schedulesTableView.delegate = self
         
         self.populateScheduleTable()
+        self.schedulesTableView.reloadData()
+        
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "onRefreshAction:", forControlEvents: UIControlEvents.ValueChanged)
         self.schedulesTableView.insertSubview(refreshControl, atIndex: 0)
     }
     
+    
     override func viewDidAppear(animated: Bool) {
         self.schedulesTableView.reloadData()
+        
+        let requestCount = self.calculatePendingRequests()
+        self.navigationItem.leftBarButtonItem?.title = "Approvals (\(requestCount))"
+        
         if let alert = alert {
             if (alert.message == Constants.requestSent) {
                 self.presentViewController(alert, animated: true, completion: nil)
@@ -58,7 +72,18 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
     @IBAction func unwindToContainerVC(segue: UIStoryboardSegue) {
     }
     
+    func calculatePendingRequests() -> Int{
+        var pendingRequests = [Schedule]()
+        for s in SchedulesViewController.scheduledMeetings{
+            if (s.instructor_id == currentUser!.id && s.scheduleStatus.getName() == Constants.PENDING){
+                pendingRequests.append(s)
+            }
+        }
+        return pendingRequests.count
+    }
+    
     func populateScheduleTable(){
+        self.schedulesTableView.backgroundView?.hidden = true
         SVProgressHUD.showWithStatus("Loading...")
         SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Black)
         //SVProgressHUD.showWithStatus("Loading...")
@@ -126,6 +151,9 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
                             }
                         }
                         
+                        let requestCount = self.calculatePendingRequests()
+                        self.navigationItem.leftBarButtonItem?.title = "Approvals (\(requestCount))"
+                        
                         SVProgressHUD.dismiss()
                         self.schedulesTableView.reloadData()
                     }
@@ -160,77 +188,6 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
                 print("Error in adding schedule \(e.localizedDescription)")
             }
         }
-        /*
-        scheduleTime = formatter.dateFromString("2016-11-02T09:15:00+0000")!
-        
-        s = Schedule(user_id: "1265123510169659", instructor_id: "10153818548450873", lang: Languages.LangType.SPANISH, time: scheduleTime, timezone: NSTimeZone.localTimeZone(), requestNote: "Curious to learn a new language", responseNote: "", scheduleStatus: ScheduleStatus.status.PENDING)
-        
-        CoLearnClient.addASchedule(s) { (b: Bool, error: NSError?) -> Void in
-            if let e = error{
-                print("Error in adding schedule \(e.localizedDescription)")
-            }
-        }
-        
-        scheduleTime = formatter.dateFromString("2016-06-13T12:00:00+0000")!
-        
-        s = Schedule(user_id: "1265123510169659", instructor_id: "123042818089530", lang: Languages.LangType.FRENCH, time: scheduleTime, timezone: NSTimeZone.localTimeZone(), requestNote: "Have taken french as foreign language in the university.", responseNote: "", scheduleStatus: ScheduleStatus.status.PENDING)
-        
-        CoLearnClient.addASchedule(s) { (b: Bool, error: NSError?) -> Void in
-            if let e = error{
-                print("Error in adding schedule \(e.localizedDescription)")
-            }
-        }
-        
-        scheduleTime = formatter.dateFromString("2016-05-14T14:30:00+0000")!
-        
-        s = Schedule(user_id: "123042818089530", instructor_id: "10153818548450873", lang: Languages.LangType.ENGLISH, time: scheduleTime, timezone: NSTimeZone.localTimeZone(), requestNote: "Feeling bored. Just want to talk to someone.", responseNote: "", scheduleStatus: ScheduleStatus.status.PENDING)
-        
-        CoLearnClient.addASchedule(s) { (b: Bool, error: NSError?) -> Void in
-            if let e = error{
-                print("Error in adding schedule \(e.localizedDescription)")
-            }
-        }
-        
-        scheduleTime = formatter.dateFromString("2016-07-05T18:15:00+0000")!
-        
-        s = Schedule(user_id: "123042818089530", instructor_id: "1265123510169659", lang: Languages.LangType.FRENCH, time: scheduleTime, timezone: NSTimeZone.localTimeZone(), requestNote: "I'm doing a play in french.", responseNote: "", scheduleStatus: ScheduleStatus.status.PENDING)
-        
-        CoLearnClient.addASchedule(s) { (b: Bool, error: NSError?) -> Void in
-            if let e = error{
-                print("Error in adding schedule \(e.localizedDescription)")
-            }
-        }
-        
-        scheduleTime = formatter.dateFromString("2016-05-25T17:30:00+0000")!
-        
-        s = Schedule(user_id: "123042818089530", instructor_id: "10153818548450873", lang: Languages.LangType.CHINESE, time: scheduleTime, timezone: NSTimeZone.localTimeZone(), requestNote: "Always wanted to learn chinese", responseNote: "", scheduleStatus: ScheduleStatus.status.PENDING)
-        
-        CoLearnClient.addASchedule(s) { (b: Bool, error: NSError?) -> Void in
-            if let e = error{
-                print("Error in adding schedule \(e.localizedDescription)")
-            }
-        }
-        
-        scheduleTime = formatter.dateFromString("2016-08-30T13:00:00+0000")!
-        
-        s = Schedule(user_id: "10153818548450873", instructor_id: "123042818089530", lang: Languages.LangType.CHINESE, time: scheduleTime, timezone: NSTimeZone.localTimeZone(), requestNote: "hard time understanding slangs", responseNote: "", scheduleStatus: ScheduleStatus.status.PENDING)
-        
-        CoLearnClient.addASchedule(s) { (b: Bool, error: NSError?) -> Void in
-            if let e = error{
-                print("Error in adding schedule \(e.localizedDescription)")
-            }
-        }
-        
-        scheduleTime = formatter.dateFromString("2016-05-10T21:30:00+0000")!
-        
-        s = Schedule(user_id: "10153818548450873", instructor_id: "1265123510169659", lang: Languages.LangType.SPANISH, time: scheduleTime, timezone: NSTimeZone.localTimeZone(), requestNote: "Love the football team of spain", responseNote: "", scheduleStatus: ScheduleStatus.status.PENDING)
-        
-        CoLearnClient.addASchedule(s) { (b: Bool, error: NSError?) -> Void in
-            if let e = error{
-                print("Error in adding schedule \(e.localizedDescription)")
-            }
-        }
-        */
     }
 
     @IBAction func onClick(sender: AnyObject) {
@@ -258,6 +215,12 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
         if SchedulesViewController.scheduledMeetings.count != 0{
             return SchedulesViewController.scheduledMeetings.count
         }else{
+            self.schedulesTableView.backgroundView?.hidden = false
+            let emptyMessage = UILabel()
+            emptyMessage.text = "You have no scheduled appointments. Use Add button to schedule one!"
+            emptyMessage.textAlignment = NSTextAlignment.Center
+            self.schedulesTableView.backgroundView = emptyMessage
+            self.schedulesTableView.separatorStyle = UITableViewCellSeparatorStyle.None
             return 0
         }
 

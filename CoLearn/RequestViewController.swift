@@ -57,6 +57,7 @@ class RequestViewController: UIViewController, UITextFieldDelegate {
     @IBAction func onSendRequest(sender: AnyObject) {
         
         let schedule = Schedule(user_id: (currentUser?.id)!, instructor_id: (user?.userId)! , lang: self.langType!, time: dateTime.date, timezone: NSTimeZone.localTimeZone(), requestNote: requestNoteTextField.text!, responseNote: "", scheduleStatus: ScheduleStatus.status.PENDING)
+
         
         CoLearnClient.addASchedule(schedule) { (status: Bool, error:NSError?) in
             if error != nil {

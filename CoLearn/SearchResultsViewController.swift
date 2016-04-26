@@ -26,6 +26,7 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
+        searchResultsTableView.tableFooterView = UIView()
         self.searchResultsTableView.delegate = self
         self.searchResultsTableView.dataSource = self
         if let language = langType?.getName() {

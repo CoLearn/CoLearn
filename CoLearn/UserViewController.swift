@@ -29,7 +29,9 @@ class UserViewController: UIViewController, FBSDKLoginButtonDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+
+        languageTableView.tableFooterView = UIView()
+
         facebookLogoutButton.delegate = self
         
         languageTableView.dataSource = self
