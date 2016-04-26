@@ -31,11 +31,17 @@ class SessionViewController: UIViewController {
     
     @IBOutlet weak var callPoster: UIImageView!
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    
     var session: Schedule?
     var phoneNumber: String?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         self.title = "Nearest Call"
         self.session = SchedulesViewController.scheduledMeetings[0]
         initializeSession()
@@ -44,7 +50,28 @@ class SessionViewController: UIViewController {
         let tapCallPoster = UITapGestureRecognizer(target: self, action: Selector("makeFacetimeCall"))
         self.callPoster.addGestureRecognizer(tapCallPoster)
         self.callPoster.userInteractionEnabled = true
+        
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "onRefreshAction:", forControlEvents: UIControlEvents.ValueChanged)
+        self.scrollView.insertSubview(refreshControl, atIndex: 0)
+        
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.session = SchedulesViewController.scheduledMeetings[0]
+        initializeSession()
+        self.updateScene()
+    }
+    
+    func onRefreshAction(refreshControl: UIRefreshControl){
+        //self.populateScheduleTable()
+        //self.schedulesTableView.reloadData()
+        initializeSession()
+        self.updateScene()
+        refreshControl.endRefreshing()
+    }
+    
     
     func makeFacetimeCall() {
         print("Facetime called...")
@@ -103,6 +130,7 @@ class SessionViewController: UIViewController {
             //self.attendeeLabel.text = self.getUserName((session?.instructor_id)!)
             self.userRoleLabel.text = "Learner"
             CoLearnClient.getUserDataFromDB((session?.instructor_id)!, success: { (user: PFObject?) -> () in
+                    //print(user)
                     self.attendeeLabel.text = user!["name"] as? String
                     self.phoneNumber = user!["phoneNumber"] as? String
                 }) { (error: NSError?) -> () in
@@ -113,6 +141,7 @@ class SessionViewController: UIViewController {
             //self.attendeeLabel.text = self.getUserName((session?.user_id)!)
             self.userRoleLabel.text = "Instructor"
             CoLearnClient.getUserDataFromDB((session?.user_id)!, success: { (user: PFObject?) -> () in
+                //print(user)
                 self.attendeeLabel.text = user!["name"] as? String
                 self.phoneNumber = user!["phoneNumber"] as? String
                 }) { (error: NSError?) -> () in
@@ -235,7 +264,7 @@ class SessionViewController: UIViewController {
             if hour==1{
                 return "\(hour) hour"
             }else{
-                let hourText = "\(hour) hours \(minutesFrom(date)) mins"
+                let hourText = "\(hour) hours \(minutesFrom(date) % 60) mins"
                 return hourText
             }
             
@@ -247,7 +276,7 @@ class SessionViewController: UIViewController {
             if min==1{
                 return "\(min) min"
             }else{
-                let minText = "\(min) mins \(secondsFrom(date)) secs"
+                let minText = "\(min) mins \(secondsFrom(date) % 60) secs"
                 return minText
             }
             

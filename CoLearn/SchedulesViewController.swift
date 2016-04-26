@@ -17,6 +17,7 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        schedulesTableView.tableFooterView = UIView()
         
         // Do any additional setup after loading the view.
         self.title = "Schedule"

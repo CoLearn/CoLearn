@@ -63,6 +63,7 @@ class ScheduleTableViewCell: UITableViewCell {
                             self.responseNoteLabel.text = "\(instructorName): \(response)"
                         }else{
                             self.responseNoteLabel.hidden = true
+                            self.responseNoteLabel.font = UIFont.systemFontOfSize(0)
                         }
                     }
                 }
@@ -82,6 +83,7 @@ class ScheduleTableViewCell: UITableViewCell {
                             self.requestNoteLabel.text = "\(learnerName): \(request)"
                         }else{
                             self.requestNoteLabel.hidden = true
+                            self.requestNoteLabel.font = UIFont.systemFontOfSize(0)
                         }
                     }
                     

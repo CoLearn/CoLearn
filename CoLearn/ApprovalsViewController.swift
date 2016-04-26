@@ -19,7 +19,7 @@ class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        approvalsTableView.tableFooterView = UIView()
         // Do any additional setup after loading the view.
         self.approvalsTableView.delegate = self
         self.approvalsTableView.dataSource = self
