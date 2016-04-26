@@ -12,9 +12,9 @@ import FBSDKLoginKit
 
 class FacebookSDK: NSObject {
     
-    // Get the User Information from Facebook, using Graph Request.
+    // Get the User Information from Facebook using Graph Request.
     class func getUserInfoFromFacebook(success: (User?) -> (), failure: (NSError?) -> () ) {
-        let params = ["fields": "id, name, first_name, last_name, email, picture, cover, bio, friends, locale, location,  timezone"]
+        let params = ["fields": "id, name, first_name, last_name, email, picture.width(160).height(160), cover, bio, friends, locale, location,  timezone"]
         let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: params)
         graphRequest.startWithCompletionHandler { (connection, result, error) -> Void in
             if error == nil {

@@ -19,7 +19,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gdC-b1-j6A">
                                 <rect key="frame" x="0.0" y="20" width="40" height="511"/>
-                                <color key="backgroundColor" red="0.81413612570000005" green="0.75345416899999995" blue="0.11616973899999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="1k4-Zk-EKP"/>
                                     <constraint firstAttribute="width" constant="40" id="Ifh-Vx-7Po"/>
@@ -27,7 +27,7 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mzb-2S-Pfm">
                                 <rect key="frame" x="0.0" y="530" width="320" height="38"/>
-                                <color key="backgroundColor" red="0.81413612570000005" green="0.75345416899999995" blue="0.11616973899999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="38" id="0d6-OO-SmV"/>
                                     <constraint firstAttribute="height" constant="38" id="ZPo-Wc-AwL"/>
@@ -43,7 +43,7 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="126" id="Kx6-CS-Qg8"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="32"/>
-                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.44313725490196076" green="0.78823529411764703" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>

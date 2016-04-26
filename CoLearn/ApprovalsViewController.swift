@@ -11,7 +11,7 @@ import SWTableViewCell
 import ParseUI
 import SVProgressHUD
 
-class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SWTableViewCellDelegate {
+class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SWTableViewCellDelegate, UITextFieldDelegate {
 
     @IBOutlet var approvalsTableView: UITableView!
     
@@ -32,6 +32,12 @@ class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableVie
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "onRefreshAction:", forControlEvents: UIControlEvents.ValueChanged)
         self.approvalsTableView.insertSubview(refreshControl, atIndex: 0)
+        hideKeyboardOnTapOutside()
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     func onRefreshAction(refreshControl: UIRefreshControl){
@@ -158,6 +164,7 @@ class ApprovalsViewController: UIViewController, UITableViewDelegate, UITableVie
         //cell?.pendingApprovalMeeting = self.pendingApprovalMeetings[indexPath.row]
         cell?.pendingApprovalMeeting = self.approvalMeetings[indexPath.row]
         cell?.index = indexPath.row
+        cell?.feedbackCommentTextField.delegate = self
         return cell!
     }
     

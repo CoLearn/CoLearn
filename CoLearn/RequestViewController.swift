@@ -8,12 +8,12 @@
 
 import UIKit
 
-class RequestViewController: UIViewController {
+class RequestViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var instructorNameLabel: UILabel!
     @IBOutlet weak var languageLabel: UILabel!
     @IBOutlet weak var dateTime: UIDatePicker!
-    @IBOutlet weak var requestNoteLabel: UITextField!
+    @IBOutlet weak var requestNoteTextField: UITextField!
     
     var user: ParseDBUser?
     var langType: Languages.LangType?
@@ -21,10 +21,12 @@ class RequestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //hideKeyboardOnTapOutside()
+        UIApplication.sharedApplication().statusBarStyle = .Default
         
-        instructorNameLabel.text = user?.fullName
-        languageLabel.text = langType?.getName()
+        hideKeyboardOnTapOutside()
+        setViewFields()
+        
+        requestNoteTextField.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,29 +34,58 @@ class RequestViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+    }
+    
+    func setViewFields() {
+        instructorNameLabel.text = user?.fullName
+        languageLabel.text = langType?.getName()
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
+    @IBAction func onBack(sender: AnyObject) {
+        dismissKeyboard()
+        self.dismissViewControllerAnimated(true, completion: {})
+    }
+    
     @IBAction func onSendRequest(sender: AnyObject) {
         
-        let schedule = Schedule(user_id: (currentUser?.id)!, instructor_id: (user?.userId)! , lang: self.langType!, time: dateTime.date, timezone: NSTimeZone.localTimeZone(), requestNote: requestNoteLabel.text!, responseNote: "-", scheduleStatus: ScheduleStatus.status.PENDING)
+        let schedule = Schedule(user_id: (currentUser?.id)!, instructor_id: (user?.userId)! , lang: self.langType!, time: dateTime.date, timezone: NSTimeZone.localTimeZone(), requestNote: requestNoteTextField.text!, responseNote: "", scheduleStatus: ScheduleStatus.status.PENDING)
         
         CoLearnClient.addASchedule(schedule) { (status: Bool, error:NSError?) in
             if error != nil {
                 print("Error: \(error?.localizedDescription)")
+                self.performSegueWithIdentifier("requestFailedSegue", sender: self)
             } else {
                 if status {
-                    print("Success : Session requested!!")
+                    self.performSegueWithIdentifier("unwindToSchedules", sender: self)
                 }
             }
         }
     }
-
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if (segue.identifier == "unwindToSchedules") {
+            let alert = UIAlertController(title: "Success!", message: Constants.requestSent, preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: .Default) { _ in })
+            let schedulesVC = segue.destinationViewController as! SchedulesViewController
+            schedulesVC.alert = alert
+        }
+        if (segue.identifier == "requestFailedSegue") {
+            let alert = UIAlertController(title: "Oops!", message: Constants.tryAgain, preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .Default) { _ in })
+            let searchResultsVC = segue.destinationViewController as! SearchResultsViewController
+            searchResultsVC.alert = alert
+        }
     }
-    */
-
+    
 }

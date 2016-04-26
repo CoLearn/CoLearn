@@ -30,19 +30,19 @@ class AddScheduleViewController: UIViewController {
         
         switch button.tag {
         case 1:
-            print("English") // English
+            //print("English") // English
             self.langType = Languages.LangType.ENGLISH
             getUserInfoForALanguage(self.langType!)
         case 2:
-            print("French")// French
+            //print("French")// French
             self.langType = Languages.LangType.FRENCH
             getUserInfoForALanguage(self.langType!)
         case 3:
-            print("Spanish")// Spanish
+            //print("Spanish")// Spanish
             self.langType = Languages.LangType.SPANISH
             getUserInfoForALanguage(self.langType!)
         case 4:
-            print("Chinese")// Chinese
+            //print("Chinese")// Chinese
             self.langType = Languages.LangType.CHINESE
             getUserInfoForALanguage(self.langType!)
         default: ()
@@ -59,8 +59,8 @@ class AddScheduleViewController: UIViewController {
                 for user in users {
                     ids.append(user["user_id"] as! String)
                 }
-                print("getUserInfoForALanguage-userId's: ")
-                print("Count: \(ids.count)")
+                //print("getUserInfoForALanguage-userId's: ")
+                //print("Count: \(ids.count)")
                 self.usersCanTeachTheLanguage.removeAll()
                 if ids.count > 0 {
                     CoLearnClient.getAllUserDataFromDB(ids, success: { (usersData: [PFObject]?) in
@@ -79,13 +79,19 @@ class AddScheduleViewController: UIViewController {
                         print("Error: \(error?.localizedDescription)")
                     })
                 } else {
-                    print("No Users found for the language Chosen!!")
+                    self.sorryMessage()
                 }
             }
             }, failure: { (error: NSError?) in
                 print("Error: \(error?.localizedDescription)")
         })
         
+    }
+    
+    func sorryMessage() {
+        let alert = UIAlertController(title: "Sorry!", message: Constants.teacherNotFound, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .Default) { _ in })
+        self.presentViewController(alert, animated: true){}
     }
     
     // MARK: - Navigation

@@ -18,7 +18,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-
+        
+        // Set up app appearance
+        UITabBar.appearance().tintColor = UIColor(hex: 0x71C9FF, alpha: 1)
+        UITabBar.appearance().barTintColor = UIColor.blackColor()
+        UINavigationBar.appearance().tintColor = UIColor(hex: 0x71C9FF, alpha: 1)
+        UINavigationBar.appearance().barTintColor = UIColor.blackColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+        
+//        let lightBlur = UIBlurEffect(style: UIBlurEffectStyle.Light)
+//        let blurView = UIVisualEffectView(effect: lightBlur)
+//        blurView.frame = UITabBar.appearance().bounds
+//        UITabBar.appearance().addSubview(blurView)
+//        UINavigationBar.appearance().addSubview(blurView)
+        
+//        let bounds = UINavigationBar.appearance().bounds as CGRect!
+//        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+//        UIVisualEffectView.appearance().frame = bounds
+//        visualEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+//        UINavigationBar.appearance().addSubview(visualEffectView)
+        
+        
         Parse.initializeWithConfiguration(
             ParseClientConfiguration(block: { (configuration:ParseMutableClientConfiguration) -> Void in
                 configuration.applicationId = "CoLearn"
@@ -40,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        return true
     }
     
-    /* After the Authetication, the application is redirected here */
+    /* After the Authentication, the application is redirected here */
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)

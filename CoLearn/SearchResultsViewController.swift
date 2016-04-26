@@ -12,6 +12,7 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
     
     var langType: Languages.LangType?
     var usersCanTeachTheLanguage: [ParseDBUser]?
+    var alert: UIAlertController?
     
     @IBOutlet weak var languageLabel: UILabel!
     @IBOutlet var searchResultsTableView: UITableView!
@@ -29,6 +30,20 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
         self.searchResultsTableView.dataSource = self
         if let language = langType?.getName() {
             self.languageLabel.text = language
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        if let alert = alert {
+            if (alert.message == Constants.tryAgain) {
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        if let alert = alert {
+            alert.message = ""
         }
     }
     
@@ -52,6 +67,12 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
         return cell
     }
     
+    @IBAction func unwindToContainerVCOnFail(segue: UIStoryboardSegue) {
+    }
+    
+    @IBAction func unwindToContainerVCOnBack(segue: UIStoryboardSegue) {
+    }
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "RequestSessionSegue" {
@@ -62,7 +83,4 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
             requestViewController.langType = self.langType
         }
     }
-    
-    
-
 }

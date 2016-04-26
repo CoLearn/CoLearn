@@ -15,7 +15,6 @@
 		7C0B88151C7E96E3003461FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0B88141C7E96E3003461FE /* AppDelegate.swift */; };
 		7C0B881C1C7E96E3003461FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C0B881B1C7E96E3003461FE /* Assets.xcassets */; };
 		7C0B881F1C7E96E3003461FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C0B881D1C7E96E3003461FE /* LaunchScreen.storyboard */; };
-		7C5A57921C911C61002F68E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C5A57911C911C61002F68E3 /* Main.storyboard */; };
 		7C5A57A31C912139002F68E3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5A579F1C912139002F68E3 /* LoginViewController.swift */; };
 		7C5A57A41C912139002F68E3 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5A57A01C912139002F68E3 /* UserViewController.swift */; };
 		7C5A57A51C912139002F68E3 /* SchedulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5A57A11C912139002F68E3 /* SchedulesViewController.swift */; };
@@ -57,6 +56,7 @@
 		8F99109B1CB34E9A008C11D7 /* FacebookSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F99109A1CB34E9A008C11D7 /* FacebookSDK.swift */; };
 		8F99109D1CB5C09F008C11D7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F99109C1CB5C09F008C11D7 /* SettingsViewController.swift */; };
 		8FD8A9041CC8719300CAF08D /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD8A9031CC8719300CAF08D /* RequestViewController.swift */; };
+		8FEA8F591CCB155A005DF755 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FEA8F581CCB155A005DF755 /* Main.storyboard */; };
 		904841FCDA324E95E1470F3D /* Pods_CoLearn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F75D7507031EB77C3AC08C1 /* Pods_CoLearn.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,7 +71,6 @@
 		7C0B881B1C7E96E3003461FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7C0B881E1C7E96E3003461FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7C0B88201C7E96E3003461FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7C5A57911C911C61002F68E3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		7C5A579F1C912139002F68E3 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7C5A57A01C912139002F68E3 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		7C5A57A11C912139002F68E3 /* SchedulesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulesViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +113,7 @@
 		8F99109A1CB34E9A008C11D7 /* FacebookSDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookSDK.swift; sourceTree = "<group>"; };
 		8F99109C1CB5C09F008C11D7 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		8FD8A9031CC8719300CAF08D /* RequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
+		8FEA8F581CCB155A005DF755 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		E29627A7D356DC474F9FCC8A /* Pods-CoLearn.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoLearn.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoLearn/Pods-CoLearn.debug.xcconfig"; sourceTree = "<group>"; };
 		F5EB2390BF70AE421DB5C690 /* Pods-CoLearn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoLearn.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoLearn/Pods-CoLearn.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -200,7 +200,7 @@
 				7C5A57931C911E55002F68E3 /* ViewControllers */,
 				7C0B88141C7E96E3003461FE /* AppDelegate.swift */,
 				7C0B881B1C7E96E3003461FE /* Assets.xcassets */,
-				7C5A57911C911C61002F68E3 /* Main.storyboard */,
+				8FEA8F581CCB155A005DF755 /* Main.storyboard */,
 				7C0B881D1C7E96E3003461FE /* LaunchScreen.storyboard */,
 				7C0B88201C7E96E3003461FE /* Info.plist */,
 			);
@@ -336,7 +336,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C5A57921C911C61002F68E3 /* Main.storyboard in Resources */,
+				8FEA8F591CCB155A005DF755 /* Main.storyboard in Resources */,
 				7C0B881F1C7E96E3003461FE /* LaunchScreen.storyboard in Resources */,
 				7C0B881C1C7E96E3003461FE /* Assets.xcassets in Resources */,
 			);

@@ -22,14 +22,16 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UIApplication.sharedApplication().statusBarStyle = .Default
+        
         setTextFields()
         setSwitches()
-        //hideKeyboardOnTapOutside()
+        hideKeyboardOnTapOutside()
         
-        self.aboutMeTextField.delegate = self
-        self.nameTextField.delegate = self
-        self.locationTextField.delegate = self
-        self.phoneNumberTextField.delegate = self
+        aboutMeTextField.delegate = self
+        nameTextField.delegate = self
+        locationTextField.delegate = self
+        phoneNumberTextField.delegate = self
     
     }
 
@@ -55,7 +57,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func onBack(sender: AnyObject) {
-        //dismissKeyboard()
+        dismissKeyboard()
         self.dismissViewControllerAnimated(true, completion: {})
     }
     
@@ -181,13 +183,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    @IBAction func onTapView(sender: AnyObject) {
-        //dismissKeyboard()
-    }
     
-    
-    
-
     /*
     // MARK: - Navigation
 

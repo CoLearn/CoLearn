@@ -58,7 +58,7 @@ class ScheduleTableViewCell: UITableViewCell {
                     
                     if let response = self.schedule?.responseNote{
                         if response != "" {
-                            print("response in scheduleCell: \(response)")
+                            //print("response in scheduleCell: \(response)")
                             self.responseNoteLabel.hidden = false
                             self.responseNoteLabel.text = "\(instructorName): \(response)"
                         }else{

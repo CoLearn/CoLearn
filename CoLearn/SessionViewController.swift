@@ -36,7 +36,6 @@ class SessionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Nearest Call"
         self.session = SchedulesViewController.scheduledMeetings[0]
         initializeSession()
         self.updateScene()

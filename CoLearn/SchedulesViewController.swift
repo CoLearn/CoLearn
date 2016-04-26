@@ -14,13 +14,12 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
     
     static var scheduledMeetings = [Schedule]()
     var currentUserId: String?
+    var alert: UIAlertController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
-        self.title = "Schedule"
-        print("inside schedules view controller view did load")
+
+        //print("inside schedules view controller view did load")
         self.schedulesTableView.reloadData()
         self.schedulesTableView.rowHeight = UITableViewAutomaticDimension
         self.schedulesTableView.estimatedRowHeight = 120
@@ -38,10 +37,26 @@ class SchedulesViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     override func viewDidAppear(animated: Bool) {
-        print("inside view did appear")
         self.schedulesTableView.reloadData()
+        if let alert = alert {
+            if (alert.message == Constants.requestSent) {
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+        }
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        if let alert = alert {
+             alert.message = ""
+        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+    }
+    
+    @IBAction func unwindToContainerVC(segue: UIStoryboardSegue) {
+    }
     
     func populateScheduleTable(){
         SVProgressHUD.showWithStatus("Loading...")

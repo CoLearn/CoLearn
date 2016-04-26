@@ -18,6 +18,9 @@ class Constants: NSObject {
     static let PENDING = "Pending"
     static let REJECTED = "Rejected"
     static let COMPLETED = "Completed"
+    static let teacherNotFound = "No fellow CoLearners currently teach this language."
+    static let requestSent = "Your request has been sent."
+    static let tryAgain = "Your request failed to send, please try again."
     
     static let USER_OBJECT_NAME = "currentUser"
 }

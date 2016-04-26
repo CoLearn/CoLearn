@@ -17,6 +17,7 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UIApplication.sharedApplication().statusBarStyle = .Default
         facebookLoginButton.delegate = self
         facebookLoginButton.readPermissions = ["email", "user_about_me", "user_hometown", "user_location", "user_status"]
     }
@@ -30,6 +31,5 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate {
             self.performSegueWithIdentifier("loginSegue", sender: nil)
         }
     }
-    
 }
 

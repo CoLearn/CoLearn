@@ -29,7 +29,7 @@ class UserViewController: UIViewController, FBSDKLoginButtonDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         facebookLogoutButton.delegate = self
         
         languageTableView.dataSource = self
@@ -41,13 +41,6 @@ class UserViewController: UIViewController, FBSDKLoginButtonDelegate, UITableVie
     override func viewDidAppear(animated: Bool) {
         languageTableView.reloadData()
         setUserProperties()
-        UIApplication.sharedApplication().statusBarStyle = .LightContent
-
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
     }
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {

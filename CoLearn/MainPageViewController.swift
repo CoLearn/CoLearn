@@ -35,7 +35,6 @@ class MainPageViewController: UITabBarController {
 
 }
 
-/*
 extension UIViewController {
     func hideKeyboardOnTapOutside() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
@@ -46,4 +45,17 @@ extension UIViewController {
         view.endEditing(true)
     }
 }
-*/
+
+extension UIColor {
+    convenience init(hex: Int, alpha: CGFloat) {
+        
+        let components = (
+            R: CGFloat((hex >> 16) & 0xff) / 255,
+            G: CGFloat((hex >> 08) & 0xff) / 255,
+            B: CGFloat((hex >> 00) & 0xff) / 255,
+            A: alpha
+        )
+        
+        self.init(red: components.R, green: components.G, blue: components.B, alpha: components.A)
+    }
+}
