@@ -2,6 +2,8 @@
 
 **CoLearn** is a language learning application. The idea here is enable people across the world to learn languages by collaborating through audio/video communication. This app gives a chance to everyone to learn a language they like or need in an effective and simple manner.
 
+CoLearn's first demo video- https://www.youtube.com/watch?v=QxzCQNdpvtA
+
 
 ## User Stories
 
